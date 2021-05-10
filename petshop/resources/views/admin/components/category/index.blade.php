@@ -319,10 +319,7 @@
                                     </span>
                                 </th>
                                 <th class="image"></th>
-                                <th class="name"><span>
-                                        Danh mục
-
-                                    </span></th>
+                                <th class="name">Danh mục</th>
                                 <th class="conditions" style="width:25%"><span>Điều
                                         kiện</span></th>
                             </tr>
@@ -350,8 +347,8 @@
                                 <td>
                                 </td>
                                 <td>
-                                    <a data-nested-link-target="true"
-                                        href="{{route('category.edit', ['category_slug' => $category->category_slug])}}">{{$category->category_name}}</a>
+                                    <a data-nested-link-target="true" 
+                                        href="{{route('category.edit', $category->category_slug)}}">{{$category->category_name}}</a>
                                     <div>
                                     </div>
                                 </td>

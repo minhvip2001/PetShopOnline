@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Category; 
+use Illuminate\Support\Facades\Auth;
 class CategoryController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {   
-        $categories = Category::latest()->paginate(5); 
+        $categories = Category::latest()->where('category_status', '1')->paginate(5); 
         return view('admin.pages.category.index', compact('categories'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -24,9 +25,23 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.pages.category.add');
+        if ($request->getMethod() == 'GET') {
+            return view('admin.pages.category.add'); 
+        }
+
+        // Category::create([
+        //     'category_name' => $request->category_name,
+        //     'category_slug' => STR::slug($request->category_name),
+        //     'category_ordinal' => 1,
+        //     'user_id' => Auth::guard('admin')->user()->id,
+        // ]);
+        
+        return response()->json(['category_slug' => STR::slug($request->category_name)]);
+
+       
+
     }
 
     /**
@@ -35,10 +50,6 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -57,21 +68,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        if ($request->getMethod() == 'GET') {
+            return view('admin.pages.category.edit'); 
+        }
     }
 
     /**

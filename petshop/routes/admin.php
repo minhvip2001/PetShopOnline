@@ -13,10 +13,10 @@ Route::middleware('auth:admin')->group(function (){
   Route::group(['prefix'=>'/categories'],function(){
   Route::get('/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
   Route::get('/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
-  // Route::post('/create', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category.store');
+  Route::post('/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.store');
   Route::get('/{category_slug}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.edit');
-  // Route::get('/{category_slug}', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category.update');
-  // Route::post('/{category_slug}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('category.update'); 
+  Route::post('/{category_slug}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.update');
+  // Route::post('/{category_slug}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('category.delete'); 
   });
    // Brand
    Route::group(['prefix'=>'/brands'],function(){

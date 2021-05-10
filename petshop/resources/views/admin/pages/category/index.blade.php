@@ -95,7 +95,7 @@ Danh mục
                             </div>
                             <div class="ui-title-bar__actions-group">
                                 <div class="ui-title-bar__actions">
-                                    <a href="{{route('category.create')}"
+                                    <a href="{{route('category.create')}}"
                                         class="ui-button ui-button--primary ui-title-bar__action">Tạo danh mục</a>
                                 </div>
                             </div>

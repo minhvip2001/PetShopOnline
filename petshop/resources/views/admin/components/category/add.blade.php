@@ -1,13 +1,11 @@
-<form class="" enctype="multipart/form-data" id="formCollection"
-                        method="post" define="{form: new Bizweb.EditCollection(this)}"
-                        data-context-create-name="Danh mục" data-context-cancel-path="/admin/collections"
-                        data-tg-full-refresh-on-error-except="collection-image-drop" onsubmit="return bindName();">
+<form class=""  data-url="{{route('category.store')}}" method="post" enctype="multipart/form-data" id="form-add"
+                        data-context-create-name="Danh mục" data-context-cancel-path="{{route('category.list')}}">
                         {{ csrf_field() }}
                         <header class="ui-title-bar-container">
                             <div class="ui-title-bar">
                                 <div class="ui-title-bar__navigation">
                                     <div class="ui-breadcrumbs">
-                                        <a href="{{route('collections.list')}}"
+                                        <a href="{{route('category.list')}}"
                                             class="ui-button ui-button--transparent ui-breadcrumb">
                                             <svg class="next-icon next-icon--size-20 next-icon--no-nudge">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -35,9 +33,7 @@
                         </header>
                         <h3 style="color:blue;"></h3>
                         <div class="container-fluid-md">
-
-
-                            <input id="hidden-submit" type="hidden" name="submit" value="Submit">
+                            <!-- <input id="hidden-submit" type="hidden" name="submit" value="Submit"> -->
                             <div class="ui-layout">
                                 <div class="ui-layout__sections">
 
@@ -48,26 +44,30 @@
                                                 <div class="section-content">
                                                     <div class="next-card__section">
                                                         <div class="next-input-wrapper">
-                                                            <label class="next-label" for="collection-name">Tên danh
+                                                            <label class="next-label" for="category-name">Tên danh
                                                                 mục</label>
-                                                            <input bind="collection.name" class="next-input"
-                                                                id="Name"
+                                                            <input class="next-input"
+                                                                id="category-name"
                                                                 name="category_name" placeholder="Nhập tên danh mục" 
                                                                 type="text" value="">
                                                         </div>
                                                         <div class="next-input-wrapper" id="content-editor-wrapper">
-                                                            <label class="next-label" for="collection-name">Mô
+                                                            <label class="next-label">Mô
                                                                 tả</label>
                                                             <textarea class="form-control" id="Description" cols="20"
                                                                 rows="2" name="category_description" placeholder=""
                                                                 type="text"></textarea>
                                                             <script>
+                                                                   
                                                                     CKEDITOR.replace('Description');
-                                                                    // timer = setInterval(updateDiv,100); 
-                                                                    // function updateDiv(){ 
-                                                                    //     var desc = CKEDITOR.instances['Description'].getData();
-                                                                    //     console.log(desc);
-                                                                    // } 
+                                                                    timer = setInterval(updateDiv,100); 
+                                                                    function updateDiv(){ 
+                                                                        for (instance in CKEDITOR.instances) {
+                                                                         var desc = CKEDITOR.instances[instance].updateElement();
+                                                                        }
+                                                                        // console.log(desc);                                                                     
+                                                                        // console.log($('#form-add').serialize());
+                                                                        } 
                                                             </script>
                                                         </div>
                                                     </div>
@@ -132,8 +132,8 @@
                                             <a class="btn" href="/admin/collections">Hủy</a>
                                             <button
                                                 class="ui-button js-btn-loadable js-btn-primary btn-primary has-loading"
-                                                name="submit" type="submit" value="Submit"
-                                                disabled="disabled"><span>Lưu</span></button>
+                                                type="submit" value="Submit"
+                                                ><span>Lưu</span></button>
                                         </div>
                                     </div>
                                 </div>
@@ -141,5 +141,30 @@
                         </div>
                     </form>
                     <script>
-                    
-	</script>
+                    $(document).ready(function(){
+                        $('#form-add').submit(function(e){
+                            e.preventDefault();
+                            var url = $(this).attr('data-url');
+                            console.log($(this).serialize());
+                            
+                            $.ajax({
+                                type: 'post',
+                                url: url,
+                                data: $(this).serialize(),
+                                dataType: 'JSON',
+                                success: function(respone){
+                                   if(respone){
+                                    var url = '{{route ("category.edit", ":category_slug")}}';
+                                    url = url.replace(':category_slug', respone.category_slug);
+                                    window.location.href = url
+                                    
+                                   }
+                                   
+                                },
+                                error: function(jqXHR, textStatus, errorThrown){
+
+                                }
+                            }) 
+                        }) 
+                    })
+                    </script>

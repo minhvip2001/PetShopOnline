@@ -13,13 +13,12 @@ class LoginController extends Controller
         // session()->flush();
         if ($request->getMethod() == 'GET') {
             return view('admin.pages.login.index');
-        }else{
+        }
         $account = [
             'email' => $request->email,
             'password'=> $request->password
         ];
        
-       }
         if (Auth::guard('admin')->attempt($account)) {
             return redirect()->route('admin.dashboard');
         } else {

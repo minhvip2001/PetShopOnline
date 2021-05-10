@@ -15,13 +15,19 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="//bizweb.dktcdn.net/assets/admin/font-awesome.min.css?v5" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .select2-container .select2-selection--single{
+            height:40px;
+        }
+    </style>
     <!-- Latest compiled and minified JS -->
     <script src="//code.jquery.com/jquery.js"></script>
     <!-- <script src="//bizweb.dktcdn.net/dev/admin/default.min.js?c083805"></script> -->
     <script src="{{asset('asset/backend/js/script.js')}}"></script>
     <!-- Ckeckeditor -->
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js?v=1"></script>
-
+  
     <style>
         #surveys {
             position: fixed;
@@ -571,7 +577,8 @@
                 </svg></symbol>
         </svg>
     </div>
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="{{asset('asset/backend/js/main.js')}}"></script>
 </body>
 
 </html>
