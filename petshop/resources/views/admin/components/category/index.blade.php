@@ -295,15 +295,12 @@
                                                                             define="{urlBulkActionPublish:'/admin/collections/bulkpublish'}">Hiển
                                                                             thị</a></li>
                                                                     <li><a class="next-list__item"
-                                                                            href="javascript:void(0);"
-                                                                            bind-event-click="unPublishItems()"
-                                                                            define="{urlBulkActionUnPublish:'/admin/collections/bulkunpublish'}">Ẩn</a>
+                                                                            href="javascript:void(0);">Ẩn</a>
                                                                     </li>
                                                                     <li>
                                                                         <a define="{urlBulkActionDelete:'/admin/collections/bulkdelete'}"
                                                                             class="next-list__item"
-                                                                            href="javascript:void(0);"
-                                                                            bind-event-click="showDeleteItemsModal()">Xóa
+                                                                            href="javascript:void(0);">Xóa
                                                                             danh mục</a>
                                                                     </li>
                                                                 </ul>
@@ -320,8 +317,7 @@
                                 </th>
                                 <th class="image"></th>
                                 <th class="name">Danh mục</th>
-                                <th class="conditions" style="width:25%"><span>Điều
-                                        kiện</span></th>
+                                <th class="" style="width:25%"><span>Người tạo</span></th>
                             </tr>
                         </thead>
                         <tbody>

@@ -22,7 +22,7 @@ class LoginController extends Controller
         if (Auth::guard('admin')->attempt($account)) {
             return redirect()->route('admin.dashboard');
         } else {
-            return redirect()->back()->with('msg', 'The message');
+            return redirect()->back()->with('msg', 'Tài khoản hoặc mật khẩu không đúng');
         }
     }
 }

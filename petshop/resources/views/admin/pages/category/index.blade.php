@@ -56,42 +56,6 @@ Danh mục
                                     </span>
                                     <h1 class="ui-title-bar__title">Danh mục</h1>
                                 </div>
-                                <div class="action-bar" define="{titleBarActions: new Bizweb.TitleBarActions(this)}">
-                                    <div class="action-bar__item action-bar__item--link-container">
-                                        <div class="action-bar__more action-bar__more--has-many hide">
-                                            <div class="ui-popover__container">
-                                                <button class="ui-button ui-button--transparent" type="button"
-                                                    name="button">
-                                                    <span data-singular-label="Chọn thao tác"
-                                                        data-multiple-label="Chọn thao tác"
-                                                        class="action-bar__more-label">Chọn thao tác</span>
-                                                    <svg class="next-icon next-icon--size-20">
-                                                        <use xlink:href="#next-disclosure"></use>
-                                                    </svg>
-                                                </button>
-                                                <div class="ui-popover ui-popover--align-edge">
-                                                    <div class="ui-popover__tooltip"></div>
-                                                    <div class="ui-popover__content-wrapper">
-                                                        <div class="ui-popover__content">
-                                                            <div class="ui-popover__pane">
-                                                                <ul class="action-bar__popover-wrapper">
-
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ui-title-bar__mobile-primary-actions">
-                                        <div class="ui-title-bar__actions">
-                                            <a href="{{route('category.create')}}"
-                                                class="ui-button ui-button--primary ui-title-bar__action">Tạo danh
-                                                mục</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="ui-title-bar__actions-group">
                                 <div class="ui-title-bar__actions">

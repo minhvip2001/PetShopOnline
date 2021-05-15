@@ -27,7 +27,8 @@
     <script src="{{asset('asset/backend/js/script.js')}}"></script>
     <!-- Ckeckeditor -->
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js?v=1"></script>
-  
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
     <style>
         #surveys {
             position: fixed;
@@ -577,8 +578,7 @@
                 </svg></symbol>
         </svg>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-    <script src="{{asset('asset/backend/js/main.js')}}"></script>
+    <script src="{{asset('asset/backend/js/main.js?v=')}}<?= time()?>"></script>
 </body>
 
 </html>

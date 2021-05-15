@@ -143,7 +143,7 @@
                                         <div class="collapse " id="collapseProducts">
                                             <ol class="next-nav__list next-nav__list--secondary">
                                                 <li class="next-nav__item">
-                                                    <a class="next-nav__link " href=""
+                                                    <a class="next-nav__link " href="{{route('product.list')}}"
                                                         id="nav__link_products" title="Danh sách sản phẩm">Danh sách sản
                                                         phẩm</a>
                                                 </li>

@@ -11,20 +11,27 @@ Route::middleware('auth:admin')->group(function (){
   Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.dashboard');
   // Category
   Route::group(['prefix'=>'/categories'],function(){
-  Route::get('/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
-  Route::get('/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
-  Route::post('/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.store');
-  Route::get('/{category_slug}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.edit');
-  Route::post('/{category_slug}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.update');
+    Route::get('/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
+    Route::get('/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
+    Route::post('/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.store');
+    Route::get('/{category_slug}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/{category_slug}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.update');
   // Route::post('/{category_slug}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('category.delete'); 
   });
-   // Brand
-   Route::group(['prefix'=>'/brands'],function(){
+  // Brand
+  Route::group(['prefix'=>'/brands'],function(){
     Route::get('/', [App\Http\Controllers\Admin\BrandController::class, 'index'])->name('brand.list');
     Route::get('/create', [App\Http\Controllers\Admin\BrandController::class, 'create'])->name('brand.create');
-    Route::post('/create', [App\Http\Controllers\Admin\BrandController::class, 'store'])->name('brand.store');
+    Route::post('/create', [App\Http\Controllers\Admin\BrandController::class, 'create'])->name('brand.store');
     Route::get('/{brand_slug}', [App\Http\Controllers\Admin\BrandController::class, 'edit'])->name('brand.edit');
-    Route::get('/{brand_slug}', [App\Http\Controllers\Admin\BrandController::class, 'store'])->name('brand.update');
-    Route::post('/{brand_slug}', [App\Http\Controllers\Admin\BrandController::class, 'destroy'])->name('brand.update'); 
-    });
+    Route::post('/{brand_slug}', [App\Http\Controllers\Admin\BrandController::class, 'edit'])->name('brand.update');
+  });
+  // Product
+  Route::group(['prefix'=>'/products'],function(){
+    Route::get('/', [App\Http\Controllers\Admin\ProductController::class, 'index'])->name('product.list');
+    Route::get('/create', [App\Http\Controllers\Admin\ProductController::class, 'create'])->name('product.create');
+    Route::post('/create', [App\Http\Controllers\Admin\ProductController::class, 'create'])->name('product.store');
+    Route::get('/{brand_slug}', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/{brand_slug}', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('product.update');
+  });
 });
