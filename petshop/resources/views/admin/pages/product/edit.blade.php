@@ -1,6 +1,8 @@
 @extends('admin.layouts.master')
 @section('title')
-Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - CutePets
+@foreach($products as $product)
+{{$product->product_name}}
+@endforeach
 @endsection
 @section('content')
 <main id="AppFrameMain" class="ui-app-frame__main">
@@ -17,18 +19,11 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                     <div class="aviary-modal-bg">
                         <div class="aviary-modal"></div>
                     </div>
-                    <form autocomplete="off" data-context="form" data-define="{
-        form: new Bizweb.Forms(
-          this, {
-            disabledUntilDirty: true,
-            alertUnsavedChanges: true
-          }
-        )
-      }" data-tg-full-refresh-on-error-except="product-images-content"
-                        data-tg-full-refresh-on-success-except="product-images-content" data-tg-remote="true"
-                        id="edit_product_20684576" class="edit_product" action="/admin/products/20684576"
-                        accept-charset="UTF-8" method="post">
-                        <input type="hidden" name="product_id" value="20684576">
+                    @foreach($products as $product)
+                    <form autocomplete="off" data-url="{{route('product.update', $product->product_slug)}}"
+                        id="form-edit" method="post">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="product_id" value="{{$product->product_name}}">
                         <header class="ui-title-bar-container">
                             <div class="ui-title-bar">
                                 <div class="ui-title-bar__navigation">
@@ -46,8 +41,13 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                     <div class="ui-title-bar__pagination">
                                         <ul class="segmented">
                                             <li>
-                                                <a class="btn tooltip tooltip-bottom tooltip-right-align js-prev-btn disabled"
-                                                    href="javascript:void(0)">
+                                                <a class="btn tooltip tooltip-bottom tooltip-right-align js-prev-btn <?php if($prev->count() != 0){
+                                                        echo '';
+                                                    }else echo 'disabled';  
+                                                    ?>" href="<?php if($prev->count() != 0){
+                                                        echo $prev[0]->product_slug;
+                                                    }else echo 'javascript:void(0)';  
+                                                    ?>">
                                                     <span class="tooltip-container">
                                                         <span class="tooltip-label">Trước</span>
                                                     </span>
@@ -64,8 +64,15 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="btn tooltip tooltip-bottom tooltip-right-align js-next-btn "
-                                                    href="/admin/products/20675109">
+
+
+                                                <a class="btn tooltip tooltip-bottom tooltip-right-align js-next-btn <?php if($next->count() != 0){
+                                                        echo '';
+                                                    }else echo 'disabled';  
+                                                    ?>" href="<?php if($next->count() != 0){
+                                                        echo $next[0]->product_slug;
+                                                    }else echo 'javascript:void(0)';  
+                                                    ?>">
                                                     <span class="tooltip-container">
                                                         <span class="tooltip-label">Sau</span>
                                                     </span>
@@ -79,6 +86,8 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                                             xlink:href="#arrow-detailed"></use>
                                                     </svg>
                                                 </a>
+
+
                                             </li>
                                         </ul>
                                     </div>
@@ -91,11 +100,9 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                                     xlink:href="#next-products"></use>
                                             </svg>
                                         </span>
-                                        <h1 class="ui-title-bar__title">Smart Heart Power Pack puppy 20kg phát triển cơ
-                                            bắp dành cho cho con - CutePets </h1>
+                                        <h1 class="ui-title-bar__title">{{$product->product_name}}</h1>
                                     </div>
-                                    <div
-                                        class="action-bar">
+                                    <div class="action-bar">
                                         <div class="action-bar__item action-bar__item--link-container">
                                             <div class="action-bar__top-links">
                                                 </button>
@@ -126,8 +133,66 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                         </header>
                         <div class="ui-layout">
                             <div class="ui-layout__sections">
-
-
+                                <?php if(session()->get('editsuccess')): ?>
+                                <div class="ui-layout__section" id="load-content-success">
+                                    <div class="ui-layout__item">
+                                        <div class="ui-banner ui-banner--status-success hide-when-printing"
+                                            tabindex="-1" role="alert" data-notice-announced="true">
+                                            <div class="ui-banner__ribbon"><svg
+                                                    class="next-icon next-icon--size-20 next-icon--no-nudge">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                        xlink:href="#checkmark-circle">
+                                                    </use>
+                                                </svg></div>
+                                            <div class="ui-banner__content">
+                                                <h2 class="ui-banner__title type--breakall">
+                                                    {{session()->get('editsuccess')}} đã được chỉnh sửa.</h2>
+                                                <div class="ui-type-container ui-type-container--spacing-tight">
+                                                    <p>
+                                                        <a data-allow-default="1" class="ui-button btn"
+                                                            href="{{route('product.create')}}">Tạo sản phẩm khác</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    setTimeout(function () {
+                                        <? php session() -> forget('editsuccess') ?>
+                                         }, 1000);
+                                </script>
+                                <?php endif ?>
+                                <?php if(session()->get('success')): ?>
+                                <div class="ui-layout__section" id="load-content-success">
+                                    <div class="ui-layout__item">
+                                        <div class="ui-banner ui-banner--status-success hide-when-printing"
+                                            tabindex="-1" role="alert" data-notice-announced="true">
+                                            <div class="ui-banner__ribbon"><svg
+                                                    class="next-icon next-icon--size-20 next-icon--no-nudge">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                        xlink:href="#checkmark-circle">
+                                                    </use>
+                                                </svg></div>
+                                            <div class="ui-banner__content">
+                                                <h2 class="ui-banner__title type--breakall">
+                                                    {{session()->get('success')}} đã được tạo.</h2>
+                                                <div class="ui-type-container ui-type-container--spacing-tight">
+                                                    <p>
+                                                        <a data-allow-default="1" class="ui-button btn"
+                                                            href="{{route('product.create')}}">Tạo sản phẩm khác</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    setTimeout(function () {
+                                        <? php session() -> forget('success') ?>
+                                         }, 1000);
+                                </script>
+                                <?php endif ?>
                                 <div class="ui-layout__section ui-layout__section--primary">
                                     <div class="ui-layout__item">
                                         <section class="ui-card" id="product-form-container">
@@ -137,15 +202,15 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                                         <label class="next-label" for="product-name">
                                                             Tên sản phẩm
                                                         </label>
-                                                        <input required="" data-has-error="true"
-                                                            data-bind="product.title" id="product-name"
-                                                            value="Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - CutePets"
+                                                        <input required="" id="product-name"
+                                                            value="{{$product->product_name}}"
                                                             placeholder="Nhập tên sản phẩm" class="next-input" size="30"
-                                                            type="text" name="product[name]">
+                                                            type="text" name="product_name">
                                                     </div>
                                                     <div class="next-input-wrapper">
                                                         <label class="next-label" for="Content">Nội dung</label>
-                                                        <textarea name="htmlckeditor" class="next-input"></textarea>
+                                                        <textarea name="product_content"
+                                                            class="next-input">{{$product->product_content}}</textarea>
                                                     </div>
                                                     <div define="{shownSummary: false}" class="next-input-wrapper">
                                                         <label bind-show="!shownSummary" class="next-label"
@@ -158,21 +223,118 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                                             <label class="next-label" for="product-summary">
                                                                 Mô tả ngắn
                                                             </label>
-                                                            <textarea name="htmlckeditor1"
-                                                                class="next-input"></textarea>
+                                                            <textarea name="product_description"
+                                                                class="next-input">{{$product->product_description}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <script>
+                                                        CKEDITOR.replace('product_content');
+                                                        CKEDITOR.replace('product_description');
+                                                        timer = setInterval(updateDiv, 100);
+                                                        function updateDiv() {
+                                                            for (instance in CKEDITOR.instances) {
+                                                                var desc = CKEDITOR.instances[instance].updateElement();
+                                                            }
+                                                        }
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section class="ui-card" id="product-images-container">
+                                            <div data-define="{ imageActions: new Bizweb.ProductCreateImageActions(this, $context) }"
+                                                data-context="imageActions" id="product-images-content"
+                                                data-tg-refresh="product-images-content">
+                                                <header class="next-card__header">
+                                                    <div
+                                                        class="next-grid next-grid--no-padding next-grid--vertically-centered">
+                                                        <div class="next-grid__cell">
+                                                            <h2 class="next-heading">Ảnh sản phẩm</h2>
+                                                        </div>
+                                                        <div class="next-grid__cell next-grid__cell--no-flex">
+                                                            <div
+                                                                class="next-grid next-grid--no-outside-padding next-grid--vertically-centered">
+                                                                <div class="next-grid__cell next-grid__cell--no-flex">
+                                                                    <div class="styled-file-input">
+                                                                        <div class="btn btn--link"
+                                                                            style="display:flex;">
+                                                                            <a href="#"
+                                                                                class="ui-button btn--link change-avatar updateavatar"
+                                                                                style="padding:0 15px;"
+                                                                                id="ht-cre-product-add-image">Thêm ảnh
+                                                                                sản phẩm</a>
+                                                                            <input id="uploadAvatar" type="file"
+                                                                                name="product_image" accept="image/*"
+                                                                                class="js-no-dirty hide">
+                                                                            <a href="#"
+                                                                                class="ui-button btn--link change-avatar uploadImage"
+                                                                                style="padding:0 15px;display:none;"
+                                                                                id="ht-cre-product-add-image">Thêm các
+                                                                                ảnh sản phẩm</a>
+                                                                            <input id="uploadImage" type="file"
+                                                                                name="product_images[]" multiple=""
+                                                                                accept="image/*"
+                                                                                class="js-no-dirty hide">
+                                                                            <script>
+                                                                                $('.updateavatar').click(function (e) {
+                                                                                    e.preventDefault();
+                                                                                    $("#uploadAvatar").trigger('click');
+                                                                                })
+                                                                                $('.uploadImage').click(function (e) {
+                                                                                    e.preventDefault();
+                                                                                    $("#uploadImage").trigger('click');
+                                                                                })
+
+                                                                            </script>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </header>
+                                                <div class="next-card__section">
+                                                    <div class="next-upload-dropzone__wrapper">
+                                                        <!-- Upload Image -->
+                                                        <ol id="product-images" data-tg-refresh="product-images"
+                                                            class="product-photo-grid product-photo-grid--is-showing-all clearfix ui-sortable">
+                                                        </ol>
+                                                        <!-- Process if image is null -->
+                                                        <div id="image-exist">
+                                                            <div class="next-upload-dropzone">
+                                                                <div
+                                                                    class="next-upload-dropzone__hit-area next-upload-dropzone__hit-area--padded">
+                                                                    <svg
+                                                                        class="next-icon next-icon--size-24 next-upload-dropzone__icon">
+                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                            xlink:href="#next-dropzone">
+                                                                        </use>
+                                                                    </svg>
+                                                                    <h3
+                                                                        class="next-heading next-heading--no-margin next-upload-dropzone__heading">
+                                                                        <div class="styled-file-input hide">
+                                                                            Add images<input type="file" multiple=""
+                                                                                accept="image/*" class="js-no-dirty">
+                                                                            or drag and drop to upload
+                                                                        </div>
+                                                                        <div data-bind-show="dragging"
+                                                                            aria-hidden="true">
+                                                                            Thả file ảnh vào đây để thêm mới
+                                                                        </div>
+                                                                    </h3>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </section>
                                     </div>
-
-
-
                                     <div class="ui-layout__item" id="product-outer-variants"
                                         data-tg-refresh="product-outer-variants">
                                         <div>
-                                            <input value="42001679" type="hidden" name="product[variant][id]"
+                                            <input value="{{$product->product_id}}" type="hidden" name="product_id"
                                                 id="product_variant_id">
                                             <section class="ui-card">
                                                 <header class="ui-card__header">
@@ -189,8 +351,7 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                                                         class="next-input--stylized next-input--has-content">
                                                                         <span
                                                                             class="next-input__add-on next-input__add-on--before">₫</span>
-                                                                        <input type="text"
-                                                                            name="product[variant][price]"
+                                                                        <input type="text" name="product_price"
                                                                             id="variant-price" value="0"
                                                                             class="next-input next-input--invisible js-money-field"
                                                                             placeholder="0" data-bind="price"
@@ -204,8 +365,7 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                                                     <div class="next-input--stylized">
                                                                         <span
                                                                             class="next-input__add-on next-input__add-on--before">₫</span>
-                                                                        <input type="text"
-                                                                            name="product[variant][compareAtPrice]"
+                                                                        <input type="text" name="product_price_sale"
                                                                             id="variant-compare_at_price" value=""
                                                                             class="next-input next-input--invisible js-money-field"
                                                                             data-bind="compareAtPrice"
@@ -217,7 +377,7 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                                     </div>
                                                 </div>
                                             </section>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -228,7 +388,8 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                                 <h3 class="ui-heading">Trạng thái</h3>
                                             </header>
                                             <section class="next-card__section">
-                                                <div class="visibility" id="PublishingPanel">
+                                                <div class="visibility" id="PublishingPanel"
+                                                    data-context="publishingPanel">
                                                     <div class="ui-form__section">
                                                         <div class="ui-form__element">
                                                             <fieldset class="ui-choice-list">
@@ -239,10 +400,8 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                                                                 for="active-true">
                                                                                 Hiển thị
                                                                             </label>
-                                                                            <input type="radio" name="product[active]"
+                                                                            <input type="radio" name="product_active"
                                                                                 id="active-true" value="true"
-                                                                              
-                                                                            
                                                                                 class="next-radio"
                                                                                 checked="&quot;checked&quot;">
                                                                             <span class="next-radio--styled"></span>
@@ -254,7 +413,7 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                                                                 for="active-false">
                                                                                 Ẩn
                                                                             </label>
-                                                                            <input type="radio" name="product[active]"
+                                                                            <input type="radio" name="product_active"
                                                                                 id="active-false" value="false"
                                                                                 class="next-radio">
                                                                             <span class="next-radio--styled"></span>
@@ -277,110 +436,77 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                                                 <div class="ui-type-container">
                                                     <div class="next-input-wrapper">
                                                         <label for="product_product_type">Danh mục</label>
-                                                        <div class="ui-popover__container ui-popover__container--full-width-container"
-                                                            >
+                                                        <div
+                                                            class="ui-popover__container ui-popover__container--full-width-container">
                                                             <div>
                                                                 <div class="next-field__connected-wrapper">
-                                                                    <input value="Chó"
-                                                                        class="next-input next-field--connected"
-                                                                        placeholder="Nhập danh mục sản phẩm"
-                                                                        data-bind="input"
-                                                                        size="30"
-                                                                        type="text" name="product[productType]"
-                                                                        id="product_product_type"
-                                                                        >
-                                                                    <a class="btn btn--icon next-field--connected next-field--connected--no-flex"
-                                                                        >
-                                                                        <svg
-                                                                            class="next-icon next-icon--color-slate-lighter next-icon--size-16">
-                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                xlink:href="#next-arrow-double"></use>
-                                                                        </svg>
-                                                                    </a>
-                                                                </div>
-                                                                
-                                                            </div>
-                                                            <div class="ui-popover ui-popover--full-width ui-popover--no-focus ui-popover--is-positioned-beneath" style="display: block" data-popover-horizontally-relative-to-closest=".next-card" data-popover-css-vertical-margin="16.25" data-popover-css-horizontal-margin="0" data-popover-css-max-height="300" data-popover-css-max-width="10000" id="ui-popover--1" aria-labelledby="product_product_type" aria-expanded="false" role="dialog" style="margin-right: 0px; margin-left: 0px; transform-origin: 50% -5px;">
-                    <div class="ui-popover__tooltip"></div><div class="ui-popover__content-wrapper">
-                        <div class="ui-popover__content" style="max-height: 131.7px;">
-                            <div class="ui-popover__pane scroll-shadow--bottom">
-                                <ul class="js-autocomplete-suggestions next-list next-list--compact next-list--toggles" role="listbox" id="popover-dropdown-2">
-                
+                                                                    <style>
+                                                                        .select2-container .select2-selection--single {
+                                                                            height: 40px;
+                                                                        }
+                                                                    </style>
+                                                                    <select class="next-input select2"
+                                                                        name="category_id">
 
-                
-                <li role="option">
-                    <a class="next-list__item next-list__item--is-selected" selectable="" data-bind-event-click="selectSuggestion(&quot;Bàn cờ&quot;, event)" id="selected-option-1">
-                        Bàn cờ
-                    </a>
-                </li>
-                
-                <li role="option">
-                    <a class="next-list__item" selectable="" data-bind-event-click="selectSuggestion(&quot;Cúp Junior&quot;, event)">
-                        Cúp Junior
-                    </a>
-                </li>
-                
-                <li role="option">
-                    <a class="next-list__item" selectable="" data-bind-event-click="selectSuggestion(&quot;Sách&quot;, event)">
-                        Sách
-                    </a>
-                </li>
-                
-                <li role="option">
-                    <a class="next-list__item" selectable="" data-bind-event-click="selectSuggestion(&quot;Sách khai cuộc&quot;, event)">
-                        Sách khai cuộc
-                    </a>
-                </li>
-                
-            </ul>
-                                <div class="ui-popover__section hide" data-bind-show="loadingResults">
-                                    <p class="type--subdued tc">
-                                        <span class="next-spinner">
-                                            <svg class="next-icon next-icon--size-16"> <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#next-spinner"></use> </svg>
-                                        </span>
-                                        Loading…
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                                                           
+                                                                        <option value="">Nhập danh mục</option>
+                                                                       
+                                                                        </option>
+                                                                        @foreach($list_cat as $cat)
+                                                                            @if($product->category_id == $cat->category_id)
+                                                                                <option selected value="{{$cat->category_id}}">{{str_repeat('---', $cat->level).$cat->category_name}}</option>                                                                        
+                                                                            @else
+                                                                            <option value="{{$cat->category_id}}">{{str_repeat('---', $cat->level).$cat->category_name}}</option>                                                                        
+                 
+                                                                            @endif
+                                                                        @endforeach
+
+
+                                                                    </select>
+                                                                    <script>
+                                                                        $(document).ready(function () {
+                                                                            $(".select2").select2(
+                                                                                {
+                                                                                    placeholder: "Nhập danh mục",
+                                                                                    allowClear: true
+                                                                                }
+                                                                            );
+                                                                        });
+                                                                    </script>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                        
                                                     </div>
                                                     <div class="next-input-wrapper">
                                                         <label for="product_vendor">Thương hiệu</label>
-                                                        <div class="ui-popover__container ui-popover__container--full-width-container"
-                                                           >
+                                                        <div
+                                                            class="ui-popover__container ui-popover__container--full-width-container">
                                                             <div>
                                                                 <div class="next-field__connected-wrapper">
-                                                                    <input value="Smart Heart "
-                                                                        class="next-input next-field--connected"
-                                                                        placeholder="Nhập thương hiệu sản phẩm"
-                                                                       
-                                                                        size="30"
-                                                                        type="text" name="product[vendor]"
-                                                                      >
-                                                                    <a class="btn btn--icon next-field--connected next-field--connected--no-flex"
-                                                                       >
-                                                                        <svg
-                                                                            class="next-icon next-icon--color-slate-lighter next-icon--size-16">
-                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                xlink:href="#next-arrow-double"></use>
-                                                                        </svg>
-                                                                    </a>
+                                                                    <select class="next-input select1" name="brand_id">
+                                                                        <option value="">Nhập thương hiệu</option>
+                                                                        @foreach($brands as $brand)
+                                                                        <option value="{{$brand->brand_id}}">
+                                                                            {{$brand->brand_name}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    <script>
+                                                                        $(document).ready(function () {
+                                                                            $(".select1").select2(
+                                                                                {
+                                                                                    placeholder: "Nhập thương hiệu",
+                                                                                    allowClear: true
+                                                                                }
+                                                                            );
+                                                                        });
+                                                                    </script>
                                                                 </div>
-                                                               
                                                             </div>
-                                                           
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </section>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -388,8 +514,8 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                             <div class="ui-page-actions__container">
                                 <div class="ui-page-actions__actions ui-page-actions__actions--secondary">
                                     <div class="ui-page-actions__button-group">
-                                        <button class="ui-button btn-destroy" type="button"
-                                            name="button">Xóa sản phẩm</button>
+                                        <button class="ui-button btn-destroy" type="button" name="button">Xóa sản
+                                            phẩm</button>
                                     </div>
                                 </div>
                                 <div class="ui-page-actions__actions ui-page-actions__actions--primary">
@@ -403,6 +529,146 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
                             </div>
                         </div>
                     </form>
+                    <script>
+                        $(document).ready(function () {
+                            var result = "";
+                            var filesAmount = 0;
+                            var index = 0;
+                            var dataImage = new Array();
+                            var visible = function (result, imgPreviewPlaceholder) {
+                                var addImage = `<li class="js-product-photo-grid-item product-photo-grid__item ui-sortable-handle">
+                      <div class="aspect-ratio aspect-ratio--square">
+                        <img class="aspect-ratio__content"
+                          src="${result}"
+                          id="image-41702134">
+                        <div class="product-photo-hover-overlay drag">
+                          <ul class="photo-overlay-actions photo-overlay-actions__selection"
+                            data-bind-event-click="toggleImageSelection(41702134)">
+                            <li>
+                              <a class="photo-overlay-actions__link image-action tooltip tooltip-top">
+                                <i
+                                  style="width: 17px; height: 17px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 2px solid white">
+                                  <svg class="next-icon next-icon--color-white hide"
+                                    style="top:0;width:10px;height:10px"
+                                    data-bind-show="isImageIdSelected(41702134)">
+                                    <use xlink:href="#next-checkmark-thick"></use>
+                                  </svg>
+                                </i>
+                                <span class="tooltip-container"><span class="tooltip-label">Chọn</span></span>
+                              </a>
+                            </li>
+                          </ul>
+                          <ul class="photo-overlay-actions">
+                            <li>
+                              <a href="javascript:void(0)"
+                                data-bind-event-click="imageAltImage_41702134.show()"
+                                class="photo-overlay-actions__link tooltip tooltip-top">
+                                <svg role="img" class="next-icon next-icon--color-white next-icon--size-16"
+                                  aria-labelledby="next-preview-ae8344009b0b43faaa8885080c887429-title">
+                                  <title id="next-preview-bf4d06cb5d3047b3bdd85ac6883de0b9-title">xem ảnh
+                                  </title>
+                                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#next-preview">
+                                  </use>
+                                </svg>
+                                <span class="tooltip-container">
+                                  <span class="tooltip-label">Xem ảnh</span>
+                                </span>
+                              </a>
+                            </li>
+                            <li>
+                              <a data-bind-event-click="deleteImage_41702134.show()"
+                                class="photo-overlay-actions__link tooltip tooltip-top">
+                                <svg role="img" class="next-icon next-icon--color-white next-icon--size-20"
+                                  aria-labelledby="delete-minor-f82704e58a9f4943b98c26f1acbf02fa-title">
+                                  <title id="delete-minor-439892bff05a47d3989cab2f1d478c2e-title">Xóa ảnh
+                                  </title>
+                                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#delete-minor">
+                                  </use>
+                                </svg>
+                                <span class="tooltip-container"><span class="tooltip-label">Xóa
+                                    ảnh</span></span>
+                              </a>
+                            </li>
+                          </ul>
+                         </div>
+                       </div>
+                   </li>`;
+                                $(imgPreviewPlaceholder).append(addImage);
+                            }
+                            // Feature Image
+                            var ShowImagePreview = function (input, imgPreviewPlaceholder, result) {
+                                if (input.files) {
+                                    filesAmount = input.files.length;
+                                    for (var i = 0; i < filesAmount; i++) {
+                                        var reader = new FileReader();
+                                        reader.onload = function (event) {
+                                            var result = event.target.result;
+                                            visible(result, imgPreviewPlaceholder);
+                                        }
+
+                                        reader.readAsDataURL(input.files[i]);
+                                    }
+                                }
+                            };
+
+                            // Ảnh image feature
+                            $('#uploadAvatar').on('change', function () {
+                                $('#image-exist').css('display', 'none');
+                                $('#ht-cre-product-add-image').css('display', 'none');
+                                $('.uploadImage').css('display', 'block');
+                                ShowImagePreview(this, '#product-images');
+
+                            });
+
+                            // Product Mutiple Image
+                            var ShowMultipleImagePreview = function (input, imgPreviewPlaceholder) {
+                                if (input.files) {
+                                    filesAmount = input.files.length;
+                                    for (var i = 0; i < filesAmount; i++) {
+                                        var reader = new FileReader();
+                                        reader.onload = function (event) {
+                                            var result = event.target.result;
+                                            visible(result, imgPreviewPlaceholder);
+                                        }
+
+                                        reader.readAsDataURL(input.files[i]);
+                                    }
+                                }
+                            }
+
+                            $('#uploadImage').on('change', function () {
+                                ShowMultipleImagePreview(this, '#product-images');
+
+
+                            });
+
+                            $('#form-edit').submit(function (e) {
+                                e.preventDefault();
+                                var formData = new FormData(jQuery('#form-edit')[0]);
+                                var url = $(this).attr('data-url');
+                                $.ajax({
+                                    type: 'post',
+                                    url: url,
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    dataType: 'JSON',
+                                    success: function (respone) {
+                                        if (respone) {
+                                            var url = '{{route ("product.edit", ":product_slug")}}';
+                                            url = url.replace(':product_slug', respone.product_slug);
+                                            window.location.href = url
+                                        }
+
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+
+                                    }
+                                })
+                            })
+                        })
+                    </script>
+                    @endforeach
                 </div>
 
                 <div class="ui-footer-help">
@@ -427,8 +693,4 @@ Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - Cu
         </div>
     </div>
 </main>
-<script>
-           CKEDITOR.replace('htmlckeditor');
-           CKEDITOR.replace('htmlckeditor1');
-    </script>
 @endsection

@@ -21,14 +21,8 @@ class UserSeeder extends Seeder
             'email' => 'minh@gmail.com',
             'phone' => '0395445571',
             'password' => Hash::make('password'),
-        ],
-        // DB::table('users')->insert([
-        //     'surname' => 'Nguyễn',
-        //     'name' => 'Hậu',
-        //     'email' => 'hau@gmail.com',
-        //     'phone' => '012345678',
-        //     'password' => Hash::make('password'),
-        // ],
-    );
+        ]);
+       
+        
     }
 }

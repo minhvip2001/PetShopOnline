@@ -32,17 +32,6 @@ Sản phẩm
                 <div id="pages-index" class="page default has-contextual-help discounts-page">
                     <header class="ui-title-bar-container   ui-title-bar-container--full-width">
                         <div class="ui-title-bar ">
-                            <div class="ui-title-bar__navigation">
-                                <div class="ui-breadcrumbs">
-                                    <a href="" class="ui-button ui-button--transparent ui-breadcrumb">
-                                        <svg class="next-icon next-icon--size-20 next-icon--no-nudge">
-                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                xlink:href="#chevron-left-thinner"></use>
-                                        </svg>
-                                        <span class="ui-breadcrumb__item">Sản phẩm</span>
-                                    </a>
-                                </div>
-                            </div>
                             <div class="ui-title-bar__main-group">
                                 <div class="ui-title-bar__heading-group">
                                     <span class="ui-title-bar__icon">
@@ -51,22 +40,21 @@ Sản phẩm
                                                 xlink:href="#next-discounts"></use>
                                         </svg>
                                     </span>
-                                    <h1 class="ui-title-bar__title">Thương hiệu</h1>
+                                    <h1 class="ui-title-bar__title">Sản phẩm</h1>
                                 </div>
                                 <div class="action-bar" define="{titleBarActions: new Bizweb.TitleBarActions(this)}">
                                     <div class="ui-title-bar__mobile-primary-actions">
                                         <div class="ui-title-bar__actions">
-                                            <a href="{{route('brand.create')}}"
-                                                class="ui-button ui-button--primary ui-title-bar__action">Tạo thương
-                                                hiệu</a>
+                                            <a href="{{route('product.create')}}"
+                                                class="ui-button ui-button--primary ui-title-bar__action">Thêm sản phẩm</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="ui-title-bar__actions-group">
                                 <div class="ui-title-bar__actions">
-                                    <a href="{{route('brand.create')}}"
-                                        class="ui-button ui-button--primary ui-title-bar__action">Tạo thương hiệu</a>
+                                    <a href="{{route('product.create')}}"
+                                        class="ui-button ui-button--primary ui-title-bar__action">Thêm sản phẩm</a>
                                 </div>
                             </div>
                         </div>
@@ -541,9 +529,10 @@ Sản phẩm
                                                                 </th>
                                                                 <th class="image"></th>
                                                                 <th><span>Sản phẩm</span></th>
-                                                                <th><span>Kho</span></th>
-                                                                <th><span>Loại</span></th>
-                                                                <th><span>Nhà cung cấp</span></th>
+                                                                <th><span>Giá</span></th>
+                                                                <th><span>Danh mục</span></th>
+                                                                <th><span>Thương hiệu</span></th>
+                                                                <th><span>Trạng thái</span></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -553,12 +542,12 @@ Sản phẩm
                                                                     <div class="next-input-wrapper">
                                                                         <label
                                                                             class="next-label helper--visually-hidden next-label--switch"
-                                                                            for="product_ids_20684576">{{$product->product_name}}</label>
+                                                                            for="product_ids_{{$product->product_id}}">{{$product->product_name}}</label>
                                                                         <input type="checkbox"
-                                                                            name="product_ids_20684576"
-                                                                            id="product_ids_20684576" value="20684576"
-                                                                            data-bind="selected[20684576]"
-                                                                            bind-event-change="addOrRemoveBulkActionItem(20684576,this)"
+                                                                            name="product_ids_{{$product->product_id}}"
+                                                                            id="product_ids_{{$product->product_id}}" value="{{$product->product_id}}"
+                                                                            data-bind="selected[{{$product->product_id}}]"
+                                                                            bind-event-change="addOrRemoveBulkActionItem({{$product->product_id}},this)"
                                                                             class="bulk-action-item next-checkbox">
                                                                         <span class="next-checkbox--styled"><svg
                                                                                 class="next-icon next-icon--size-10 checkmark">
@@ -571,35 +560,38 @@ Sản phẩm
                                                                 <td>
                                                                     <a class="aspect-ratio aspect-ratio--square aspect-ratio--square--50 aspect-ratio--interactive"
                                                                         href="/admin/products/20684576">
-                                                                        <img title="Sicilian Najdorf (B90-B99)"
+                                                                        <img title="{{$product->product_name}}"
                                                                             class="aspect-ratio__content"
-                                                                            src="//bizweb.dktcdn.net/thumb/thumb/100/372/884/products/sicilian-najdorf.png?v=1613968367000"
-                                                                            alt="Sicilian Najdorf (B90-B99)">
+                                                                            src="{{asset('/uploads/products/'.$product->product_feature_image)}}"
+                                                                            alt="{{$product->product_name}})">
                                                                     </a>
                                                                 </td>
                                                                 <td class="name">
                                                                     <div class="ui-stack ui-stack--wrap">
-                                                                        <div class="ui-stack-item">
-                                                                            <a href="/admin/products/20684576"
-                                                                                data-nested-link-target="true">Sicilian
-                                                                                Najdorf (B90-B99)</a>
+                                                                        <div class="ui-stack-item" style="width:150px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                                                                            <a href="{{route('product.edit', $product->product_slug)}}" 
+                                                                                data-nested-link-target="true">{{$product->product_name}}</a>
                                                                         </div>
                                                                     </div>
                                                                 </td>
                                                                 <td class="total">
-                                                                    <p>
-                                                                        <span
-                                                                            class="note strong tooltip tooltip-bottom tooltip--no-decoration"><strong><span>---</span></strong><span
-                                                                                class="tooltip-container"><span
-                                                                                    class="tooltip-label">Không quản lý
-                                                                                    kho hàng</span></span></span>
-                                                                    </p>
+                                                                    <span>{{$product->product_price}}</span>
                                                                 </td>
                                                                 <td class="type">
-                                                                    <p>Sách khai cuộc</p>
+                                                                    <p>{{$product->category->category_name}}</p>
                                                                 </td>
                                                                 <td class="vendor">
-                                                                    <p>CLB Cờ Thông Thái</p>
+                                                                    <p>{{$product->brand->brand_name}}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p>
+                                                                        @if($product->product_status == 'true')
+                                                                           Hiển thị
+                                                                        @else
+                                                                           Ẩn
+                                                                        @endif
+
+                                                                    </p>
                                                                 </td>
                                                             </tr>
                                                           @endforeach
@@ -613,6 +605,10 @@ Sản phẩm
                                                             <div class="t-status-text dataTables_info">Hiển thị kết quả
                                                                 từ 1 - 4 trên tổng 4 </div>
                                                         </div>
+                                                        <div class="col-xs-12 col-lg-6 col-md-6 col-sm-12 no-padding">
+                                                                {{$products->links()}}
+                                                        </div>
+                                                        <!-- <div class="col-xs-12 col-lg-6 col-md-6 col-sm-12 no-padding"><div class="dataTables_paginate paging_bootstrap"><ul class="pagination"><li class="disabled"><a class="t-state-disabled t-link" data-page-number="0" href="javascript:"><span class="t-icon t-arrow-prev">← Trang trước</span></a></li><li class="active"><span class="t-state-active hidden-xs hidden-width-small">1</span></li><li><a class="t-link hidden-xs hidden-width-small" data-page-number="2" href="/admin/products?Page=2&amp;Query=">2</a></li><li><a class="t-link" data-page-number="2" href="/admin/products?Page=2&amp;Query="><span class="t-icon t-arrow-next">Trang sau →</span></a></li></ul></div></div> -->
                                                     </div>
                                                 </div>
                                             </div>

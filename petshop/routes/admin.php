@@ -31,7 +31,15 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('/', [App\Http\Controllers\Admin\ProductController::class, 'index'])->name('product.list');
     Route::get('/create', [App\Http\Controllers\Admin\ProductController::class, 'create'])->name('product.create');
     Route::post('/create', [App\Http\Controllers\Admin\ProductController::class, 'create'])->name('product.store');
-    Route::get('/{brand_slug}', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('product.edit');
-    Route::post('/{brand_slug}', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('product.update');
+    Route::get('/{product_slug}', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/{product_slug}', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('product.update');
+  });
+  // Customer
+    Route::group(['prefix'=>'/customers'],function(){
+    Route::get('/', [App\Http\Controllers\Admin\CustomerController::class, 'index'])->name('customer.list');
+    Route::get('/create', [App\Http\Controllers\Admin\CustomerController::class, 'create'])->name('customer.create');
+    Route::post('/create', [App\Http\Controllers\Admin\CustomerController::class, 'create'])->name('customer.store');
+    Route::get('/id={customer_id}&active=true', [App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('customer.edit');
+    Route::post('/{customer_id}', [App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('customer.update');
   });
 });

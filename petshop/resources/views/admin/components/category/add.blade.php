@@ -52,7 +52,7 @@
                                             }
                                         </style>
                                         <select class="next-input select2" name="parent_id">
-                                            <option value="0">Chọn cấp bậc</option>
+                                            <option value="">Chọn cấp bậc</option>
                                             @foreach($list_cat as $cat)
                                             <option value="{{$cat->category_id}}">{{str_repeat('---', $cat->level).$cat->category_name}}</option>
                                             @endforeach

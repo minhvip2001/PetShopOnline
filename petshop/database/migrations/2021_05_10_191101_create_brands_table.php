@@ -20,7 +20,7 @@ class CreateBrandsTable extends Migration
             $table->string('brand_slug');
             $table->string('brand_status')->default('true');
             $table->integer('brand_ordinal');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');  
             $table->timestamps();
         });

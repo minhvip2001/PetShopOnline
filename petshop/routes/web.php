@@ -18,12 +18,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/a', function () {
     return view('welcome');
 })->name('dashboard')->middleware('auth:web');
-// // Route::get('/', [
-// //     App\Http\Controllers\UserController::class,'index'
-// //     ])->name('manage.login');
-// Route::match(['get', 'post'], '/', [LoginController::class, 'login'])->name('login');
-// Route::middleware('auth:admin')->group(function (){
-//     Route::get('/a', [HomeController::class, 'index'])->name('dashboard');
-// });
-// Route::match(['get', 'post'], '/', [LoginController::class, 'login'])->name('login');
 
+Route::group(['prefix'=>'/'],function(){
+    Route::get('/', [
+        App\Http\Controllers\HomeController::class,'index'
+        ])->name('home');
+    Route::get('/danh-cho-cho', [
+        App\Http\Controllers\Admin\CategoryController::class,'show'
+        ])->name('category');;
+    // Route::get('/changepass', [
+    //     App\Http\Controllers\HomeController::class,'changePass'
+    //     ])->name('profile.pass');
+    // Route::post('/updatepass', [
+    //     App\Http\Controllers\HomeController::class,'updatePass'
+    //     ]);
+});

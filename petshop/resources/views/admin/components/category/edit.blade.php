@@ -213,9 +213,7 @@
                                                 for (instance in CKEDITOR.instances) {
                                                     var desc = CKEDITOR.instances[instance].updateElement();
                                                 }
-                                               
                                             }
-         
                                         </script>
                                     </div>
                                 </div>

@@ -44,6 +44,7 @@ class CategoryController extends Controller
             'category_description' => $request->category_description,
             'parent_id' => $request->parent_id,
             'category_slug' => STR::slug($request->category_name),
+            'category_status' => $request->active,
             'category_ordinal' => 1,
             'user_id' => Auth::guard('admin')->user()->id,
         ]);
@@ -68,9 +69,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show()
+    {   
+        return view('website.pages.category.index'); 
     }
 
     /**

@@ -8,7 +8,6 @@ class Recursive{
     $this->data = $data;
   }
   public function categoryRecursive($parent_id = 0, $level = 0){
-  
     $result = [];
     foreach($this->data as $item){
         if($item['parent_id'] == $parent_id){      

@@ -17,18 +17,16 @@ class CategorySeeder extends Seeder
             'category_name' => 'Dành cho chó',
             'category_description' => 'Dành cho chó',
             'category_slug' => 'danh-cho-cho',
-            'parent_id' => 0,
             'category_status' => 'true',
             'category_ordinal' => 1,
             'user_id' => 1,
         ]);
-        DB::table('categories')->insert([
-            'category_name' => 'Dành cho mèo',
-            'category_description' => 'Dành cho mèo',
-            'category_slug' => 'danh-cho-meo',
-            'parent_id' => 0,
-            'category_status' => 'true',
-            'category_ordinal' => 1,
+        DB::table('brands')->insert([
+            'brand_name' => 'Smart Heart',
+            'brand_description' => 'Smart Heart',
+            'brand_slug' => 'smart-heart',
+            'brand_status' => 'true',
+            'brand_ordinal' => 1,
             'user_id' => 1,
         ]);
     }

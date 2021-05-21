@@ -15,11 +15,15 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="//bizweb.dktcdn.net/assets/admin/font-awesome.min.css?v5" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
     <style>
         .select2-container .select2-selection--single{
             height:40px;
         }
+        /* .select2-container{
+            width: 280px !important;
+        } */
     </style>
     <!-- Latest compiled and minified JS -->
     <script src="//code.jquery.com/jquery.js"></script>
@@ -27,7 +31,6 @@
     <script src="{{asset('asset/backend/js/script.js')}}"></script>
     <!-- Ckeckeditor -->
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js?v=1"></script>
-    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
     <style>
         #surveys {

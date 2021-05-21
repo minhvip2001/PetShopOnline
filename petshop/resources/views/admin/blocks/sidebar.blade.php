@@ -170,7 +170,7 @@
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="" title="Danh sách khách hàng"
+                                        <a href="{{route('customer.list')}}" title="Danh sách khách hàng"
                                             id="nav__link_customers">
                                             <svg class="next-icon">
                                                 <use xlink:href="#icon-customer"
