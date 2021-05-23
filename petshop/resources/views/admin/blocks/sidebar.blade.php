@@ -161,7 +161,7 @@
                                         </div>
                                     </li>
                                     <li class="">
-                                        <a href="" title="Danh sách nhân viên" id="nav__link_customers">
+                                        <a href="{{route('user.list')}}" title="Danh sách nhân viên" id="nav__link_customers">
                                             <svg class="next-icon">
                                                 <use xlink:href="#icon-customer"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink"></use>

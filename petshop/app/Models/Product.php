@@ -10,20 +10,7 @@ class Product extends Model
     use HasFactory;
     protected $guarded = [];
     protected $table = 'products';
-    protected $fillable = [
-        'product_name',
-        'product_price',
-        'product_price_sale',
-        'product_content',
-        'product_description',
-        'product_feature_image',
-        'product_slug',
-        'parent_id',
-        'product_ordinal',
-        'category_id',
-        'brand_id',
-        'user_id'
-    ];
+  
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'category_id');
@@ -34,6 +21,6 @@ class Product extends Model
     }
     public function images()
     {
-        return $this->hasMany(ProductImage::class, 'product_id');
+        return $this->hasMany(ProductImage::class, 'product_id', 'product_id');
     }
 }

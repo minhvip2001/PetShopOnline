@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User; 
 use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
@@ -13,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-       
+        $users = User::paginate(10);
+        return view('admin.pages.user.index', compact('users')); 
     }
 
     /**

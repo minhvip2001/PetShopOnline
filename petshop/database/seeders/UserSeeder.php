@@ -16,11 +16,30 @@ class UserSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         DB::table('users')->insert([
+            [
             'surname' => 'Nguyễn',
             'name' => 'Minh',
             'email' => 'minh@gmail.com',
             'phone' => '0395445571',
             'password' => Hash::make('password'),
+            'created_at' => now(),
+		    'updated_at' => now(),
+		    'email_verified_at' => now(),
+            ],
+            [
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('password'),
+            'created_at' => now(),
+            'updated_at' => now(),
+            'email_verified_at' => now(),
+            ],
+            'name' => 'normal',
+		    'email' => 'normal@gmail.com',
+            'password' => Hash::make('password'),
+		    'created_at' => now(),
+		    'updated_at' => now(),
+		    'email_verified_at' => now(),
         ]);
        
         

@@ -37,9 +37,10 @@
                                             <span class="ui-breadcrumb__item">Quay lại danh sách sản phẩm</span>
                                         </a>
                                     </div>
-
+                                    @if($prev->count() != 0 || $next->count() != 0)
                                     <div class="ui-title-bar__pagination">
                                         <ul class="segmented">
+
                                             <li>
                                                 <a class="btn tooltip tooltip-bottom tooltip-right-align js-prev-btn <?php if($prev->count() != 0){
                                                         echo '';
@@ -64,8 +65,6 @@
                                                 </a>
                                             </li>
                                             <li>
-
-
                                                 <a class="btn tooltip tooltip-bottom tooltip-right-align js-next-btn <?php if($next->count() != 0){
                                                         echo '';
                                                     }else echo 'disabled';  
@@ -91,6 +90,8 @@
                                             </li>
                                         </ul>
                                     </div>
+                                    @endif
+
                                 </div>
                                 <div class="ui-title-bar__main-group">
                                     <div class="ui-title-bar__heading-group">
@@ -159,7 +160,7 @@
                                 </div>
                                 <script>
                                     setTimeout(function () {
-                                        <? php session() -> forget('editsuccess') ?>
+                                        <?php session()->forget('editsuccess') ?>
                                          }, 1000);
                                 </script>
                                 <?php endif ?>
@@ -189,7 +190,7 @@
                                 </div>
                                 <script>
                                     setTimeout(function () {
-                                        <? php session() -> forget('success') ?>
+                                        <?php session()->forget('success') ?>
                                          }, 1000);
                                 </script>
                                 <?php endif ?>
@@ -260,14 +261,14 @@
                                                                             <a href="#"
                                                                                 class="ui-button btn--link change-avatar updateavatar"
                                                                                 style="padding:0 15px;"
-                                                                                id="ht-cre-product-add-image">Thêm ảnh
-                                                                                sản phẩm</a>
+                                                                                id="ht-cre-product-add-image">Sửa
+                                                                                ảnh</a>
                                                                             <input id="uploadAvatar" type="file"
                                                                                 name="product_image" accept="image/*"
                                                                                 class="js-no-dirty hide">
                                                                             <a href="#"
                                                                                 class="ui-button btn--link change-avatar uploadImage"
-                                                                                style="padding:0 15px;display:none;"
+                                                                                style="padding:0 15px;"
                                                                                 id="ht-cre-product-add-image">Thêm các
                                                                                 ảnh sản phẩm</a>
                                                                             <input id="uploadImage" type="file"
@@ -275,6 +276,7 @@
                                                                                 accept="image/*"
                                                                                 class="js-no-dirty hide">
                                                                             <script>
+
                                                                                 $('.updateavatar').click(function (e) {
                                                                                     e.preventDefault();
                                                                                     $("#uploadAvatar").trigger('click');
@@ -298,8 +300,162 @@
                                                         <!-- Upload Image -->
                                                         <ol id="product-images" data-tg-refresh="product-images"
                                                             class="product-photo-grid product-photo-grid--is-showing-all clearfix ui-sortable">
+
+                                                            @if($product->product_feature_image != '')
+                                                            <li
+                                                                class="js-product-photo-grid-item product-photo-grid__item ui-sortable-handle">
+                                                                <div class="aspect-ratio aspect-ratio--square">
+                                                                    <img class="aspect-ratio__content"
+                                                                        src="{{asset('uploads/products/'.$product->product_feature_image)}}"
+                                                                        id="image-41702134">
+                                                                    <div class="product-photo-hover-overlay drag">
+                                                                        <ul class="photo-overlay-actions photo-overlay-actions__selection"
+                                                                            data-bind-event-click="toggleImageSelection(41702134)">
+                                                                            <li>
+                                                                                <a
+                                                                                    class="photo-overlay-actions__link image-action tooltip tooltip-top">
+                                                                                    <i
+                                                                                        style="width: 17px; height: 17px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 2px solid white">
+                                                                                        <svg class="next-icon next-icon--color-white hide"
+                                                                                            style="top:0;width:10px;height:10px"
+                                                                                            data-bind-show="isImageIdSelected(41702134)">
+                                                                                            <use
+                                                                                                xlink:href="#next-checkmark-thick">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </i>
+                                                                                    <span
+                                                                                        class="tooltip-container"><span
+                                                                                            class="tooltip-label">Chọn</span></span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <ul class="photo-overlay-actions">
+                                                                            <li>
+                                                                                <a href="javascript:void(0)"
+                                                                                    id="deleteFeatureImage"
+                                                                                    class="photo-overlay-actions__link tooltip tooltip-top">
+                                                                                    <svg role="img"
+                                                                                        class="next-icon next-icon--color-white next-icon--size-16"
+                                                                                        aria-labelledby="next-preview-ae8344009b0b43faaa8885080c887429-title">
+                                                                                        <title
+                                                                                            id="next-preview-bf4d06cb5d3047b3bdd85ac6883de0b9-title">
+                                                                                            xem ảnh
+                                                                                        </title>
+                                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                            xlink:href="#next-preview">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                    <span class="tooltip-container">
+                                                                                        <span class="tooltip-label">Xem
+                                                                                            ảnh</span>
+                                                                                    </span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a
+                                                                                    class="photo-overlay-actions__link tooltip tooltip-top">
+                                                                                    <svg role="img"
+                                                                                        class="next-icon next-icon--color-white next-icon--size-20"
+                                                                                        aria-labelledby="delete-minor-f82704e58a9f4943b98c26f1acbf02fa-title">
+                                                                                        <title
+                                                                                            id="delete-minor-439892bff05a47d3989cab2f1d478c2e-title">
+                                                                                            Xóa ảnh
+                                                                                        </title>
+                                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                            xlink:href="#delete-minor">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                    <span
+                                                                                        class="tooltip-container"><span
+                                                                                            class="tooltip-label">Xóa
+                                                                                            ảnh</span></span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+
+                                                            @foreach($product->images as $mutipleImage)
+                                                            <li
+                                                                class="js-product-photo-grid-item product-photo-grid__item ui-sortable-handle">
+                                                                <div class="aspect-ratio aspect-ratio--square">
+                                                                    <img class="aspect-ratio__content"
+                                                                        src="{{asset('uploads/products/'.$mutipleImage->image_path)}}"
+                                                                        id="image-41702134">
+                                                                    <div class="product-photo-hover-overlay drag">
+                                                                        <ul class="photo-overlay-actions photo-overlay-actions__selection"
+                                                                            data-bind-event-click="toggleImageSelection(41702134)">
+                                                                            <li>
+                                                                                <a
+                                                                                    class="photo-overlay-actions__link image-action tooltip tooltip-top">
+                                                                                    <i
+                                                                                        style="width: 17px; height: 17px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 2px solid white">
+                                                                                        <svg class="next-icon next-icon--color-white hide"
+                                                                                            style="top:0;width:10px;height:10px"
+                                                                                            data-bind-show="isImageIdSelected(41702134)">
+                                                                                            <use
+                                                                                                xlink:href="#next-checkmark-thick">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </i>
+                                                                                    <span
+                                                                                        class="tooltip-container"><span
+                                                                                            class="tooltip-label">Chọn</span></span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <ul class="photo-overlay-actions">
+                                                                            <li>
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="photo-overlay-actions__link tooltip tooltip-top">
+                                                                                    <svg role="img"
+                                                                                        class="next-icon next-icon--color-white next-icon--size-16"
+                                                                                        aria-labelledby="next-preview-ae8344009b0b43faaa8885080c887429-title">
+                                                                                        <title
+                                                                                            id="next-preview-bf4d06cb5d3047b3bdd85ac6883de0b9-title">
+                                                                                            xem ảnh
+                                                                                        </title>
+                                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                            xlink:href="#next-preview">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                    <span class="tooltip-container">
+                                                                                        <span class="tooltip-label">Xem
+                                                                                            ảnh</span>
+                                                                                    </span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a
+                                                                                    class="photo-overlay-actions__link tooltip tooltip-top">
+                                                                                    <svg role="img"
+                                                                                        class="next-icon next-icon--color-white next-icon--size-20"
+                                                                                        aria-labelledby="delete-minor-f82704e58a9f4943b98c26f1acbf02fa-title">
+                                                                                        <title
+                                                                                            id="delete-minor-439892bff05a47d3989cab2f1d478c2e-title">
+                                                                                            Xóa ảnh
+                                                                                        </title>
+                                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                            xlink:href="#delete-minor">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                    <span
+                                                                                        class="tooltip-container"><span
+                                                                                            class="tooltip-label">Xóa
+                                                                                            ảnh</span></span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            @endforeach
+                                                            @endif
                                                         </ol>
                                                         <!-- Process if image is null -->
+                                                        @if($product->product_feature_image == '')
                                                         <div id="image-exist">
                                                             <div class="next-upload-dropzone">
                                                                 <div
@@ -326,6 +482,7 @@
 
                                                             </div>
                                                         </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -403,7 +560,8 @@
                                                                             <input type="radio" name="product_active"
                                                                                 id="active-true" value="true"
                                                                                 class="next-radio"
-                                                                                checked="&quot;checked&quot;">
+                                                                                {{($product->product_status == 'true' ?
+                                                                            'checked' : '')}}>
                                                                             <span class="next-radio--styled"></span>
                                                                         </div>
                                                                     </li>
@@ -415,7 +573,9 @@
                                                                             </label>
                                                                             <input type="radio" name="product_active"
                                                                                 id="active-false" value="false"
-                                                                                class="next-radio">
+                                                                                class="next-radio"
+                                                                                {{($product->product_status == 'false' ?
+                                                                            'checked' : '')}}>
                                                                             <span class="next-radio--styled"></span>
                                                                         </div>
                                                                     </li>
@@ -449,15 +609,19 @@
                                                                         name="category_id">
 
                                                                         <option value="">Nhập danh mục</option>
-                                                                       
+
                                                                         </option>
                                                                         @foreach($list_cat as $cat)
-                                                                            @if($product->category_id == $cat->category_id)
-                                                                                <option selected value="{{$cat->category_id}}">{{str_repeat('---', $cat->level).$cat->category_name}}</option>                                                                        
-                                                                            @else
-                                                                            <option value="{{$cat->category_id}}">{{str_repeat('---', $cat->level).$cat->category_name}}</option>                                                                        
-                 
-                                                                            @endif
+                                                                        @if($product->category_id == $cat->category_id)
+                                                                        <option selected value="{{$cat->category_id}}">
+                                                                            {{str_repeat('---',
+                                                                            $cat->level).$cat->category_name}}</option>
+                                                                        @else
+                                                                        <option value="{{$cat->category_id}}">
+                                                                            {{str_repeat('---',
+                                                                            $cat->level).$cat->category_name}}</option>
+
+                                                                        @endif
                                                                         @endforeach
 
 
@@ -485,8 +649,13 @@
                                                                     <select class="next-input select1" name="brand_id">
                                                                         <option value="">Nhập thương hiệu</option>
                                                                         @foreach($brands as $brand)
+                                                                        @if($product->brand_id == $brand->brand_id)
+                                                                        <option selected value="{{$brand->brand_id}}">
+                                                                            {{$brand->brand_name}}</option>
+                                                                        @else
                                                                         <option value="{{$brand->brand_id}}">
                                                                             {{$brand->brand_name}}</option>
+                                                                        @endif
                                                                         @endforeach
                                                                     </select>
                                                                     <script>
@@ -536,63 +705,78 @@
                             var index = 0;
                             var dataImage = new Array();
                             var visible = function (result, imgPreviewPlaceholder) {
-                                var addImage = `<li class="js-product-photo-grid-item product-photo-grid__item ui-sortable-handle">
-                      <div class="aspect-ratio aspect-ratio--square">
-                        <img class="aspect-ratio__content"
-                          src="${result}"
-                          id="image-41702134">
-                        <div class="product-photo-hover-overlay drag">
-                          <ul class="photo-overlay-actions photo-overlay-actions__selection"
-                            data-bind-event-click="toggleImageSelection(41702134)">
-                            <li>
-                              <a class="photo-overlay-actions__link image-action tooltip tooltip-top">
-                                <i
-                                  style="width: 17px; height: 17px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 2px solid white">
-                                  <svg class="next-icon next-icon--color-white hide"
-                                    style="top:0;width:10px;height:10px"
-                                    data-bind-show="isImageIdSelected(41702134)">
-                                    <use xlink:href="#next-checkmark-thick"></use>
-                                  </svg>
-                                </i>
-                                <span class="tooltip-container"><span class="tooltip-label">Chọn</span></span>
-                              </a>
-                            </li>
-                          </ul>
-                          <ul class="photo-overlay-actions">
-                            <li>
-                              <a href="javascript:void(0)"
-                                data-bind-event-click="imageAltImage_41702134.show()"
-                                class="photo-overlay-actions__link tooltip tooltip-top">
-                                <svg role="img" class="next-icon next-icon--color-white next-icon--size-16"
-                                  aria-labelledby="next-preview-ae8344009b0b43faaa8885080c887429-title">
-                                  <title id="next-preview-bf4d06cb5d3047b3bdd85ac6883de0b9-title">xem ảnh
-                                  </title>
-                                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#next-preview">
-                                  </use>
-                                </svg>
-                                <span class="tooltip-container">
-                                  <span class="tooltip-label">Xem ảnh</span>
-                                </span>
-                              </a>
-                            </li>
-                            <li>
-                              <a data-bind-event-click="deleteImage_41702134.show()"
-                                class="photo-overlay-actions__link tooltip tooltip-top">
-                                <svg role="img" class="next-icon next-icon--color-white next-icon--size-20"
-                                  aria-labelledby="delete-minor-f82704e58a9f4943b98c26f1acbf02fa-title">
-                                  <title id="delete-minor-439892bff05a47d3989cab2f1d478c2e-title">Xóa ảnh
-                                  </title>
-                                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#delete-minor">
-                                  </use>
-                                </svg>
-                                <span class="tooltip-container"><span class="tooltip-label">Xóa
-                                    ảnh</span></span>
-                              </a>
-                            </li>
-                          </ul>
-                         </div>
-                       </div>
-                   </li>`;
+                                var addImage = `  <li
+                                                                class="js-product-photo-grid-item product-photo-grid__item ui-sortable-handle">
+                                                                <div class="aspect-ratio aspect-ratio--square">
+                                                                    <img class="aspect-ratio__content" src="${result}"
+                                                                        id="image-41702134">
+                                                                    <div class="product-photo-hover-overlay drag">
+                                                                        <ul class="photo-overlay-actions photo-overlay-actions__selection"
+                                                                            data-bind-event-click="toggleImageSelection(41702134)">
+                                                                            <li>
+                                                                                <a
+                                                                                    class="photo-overlay-actions__link image-action tooltip tooltip-top">
+                                                                                    <i
+                                                                                        style="width: 17px; height: 17px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 2px solid white">
+                                                                                        <svg class="next-icon next-icon--color-white hide"
+                                                                                            style="top:0;width:10px;height:10px"
+                                                                                            data-bind-show="isImageIdSelected(41702134)">
+                                                                                            <use
+                                                                                                xlink:href="#next-checkmark-thick">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </i>
+                                                                                    <span
+                                                                                        class="tooltip-container"><span
+                                                                                            class="tooltip-label">Chọn</span></span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <ul class="photo-overlay-actions">
+                                                                            <li>
+                                                                                <a href="javascript:void(0)" id="deleteFeatureImage"
+                                                                                    class="photo-overlay-actions__link tooltip tooltip-top">
+                                                                                    <svg role="img"
+                                                                                        class="next-icon next-icon--color-white next-icon--size-16"
+                                                                                        aria-labelledby="next-preview-ae8344009b0b43faaa8885080c887429-title">
+                                                                                        <title
+                                                                                            id="next-preview-bf4d06cb5d3047b3bdd85ac6883de0b9-title">
+                                                                                            xem ảnh
+                                                                                        </title>
+                                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                            xlink:href="#next-preview">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                    <span class="tooltip-container">
+                                                                                        <span class="tooltip-label">Xem
+                                                                                            ảnh</span>
+                                                                                    </span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a
+                                                                                    class="photo-overlay-actions__link tooltip tooltip-top">
+                                                                                    <svg role="img"
+                                                                                        class="next-icon next-icon--color-white next-icon--size-20"
+                                                                                        aria-labelledby="delete-minor-f82704e58a9f4943b98c26f1acbf02fa-title">
+                                                                                        <title
+                                                                                            id="delete-minor-439892bff05a47d3989cab2f1d478c2e-title">
+                                                                                            Xóa ảnh
+                                                                                        </title>
+                                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                            xlink:href="#delete-minor">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                    <span
+                                                                                        class="tooltip-container"><span
+                                                                                            class="tooltip-label">Xóa
+                                                                                            ảnh</span></span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </li>`;
                                 $(imgPreviewPlaceholder).append(addImage);
                             }
                             // Feature Image
@@ -613,12 +797,13 @@
 
                             // Ảnh image feature
                             $('#uploadAvatar').on('change', function () {
+                                $('.js-product-photo-grid-item').remove()
                                 $('#image-exist').css('display', 'none');
-                                $('#ht-cre-product-add-image').css('display', 'none');
-                                $('.uploadImage').css('display', 'block');
+                                $('.updateavatar').css('display', 'none');
                                 ShowImagePreview(this, '#product-images');
 
                             });
+                            // Nếu ấn nút sửa
 
                             // Product Mutiple Image
                             var ShowMultipleImagePreview = function (input, imgPreviewPlaceholder) {
@@ -667,6 +852,13 @@
                                 })
                             })
                         })
+                        // window.addEventListener("beforeunload", function (e) {
+                        // var confirmationMessage = 'It looks like you have been editing something. '
+                        //     + 'If you leave before saving, your changes will be lost.';
+
+                        // (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+                        //  return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+                        // });
                     </script>
                     @endforeach
                 </div>

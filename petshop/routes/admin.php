@@ -42,4 +42,13 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('/id={customer_id}&active=true', [App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('customer.edit');
     Route::post('/{customer_id}', [App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('customer.update');
   });
+   // Khách hàng
+   Route::group(['prefix'=>'/users'],function(){
+    Route::get('/', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('user.list');
+    // Route::get('/create', [App\Http\Controllers\Admin\CustomerController::class, 'create'])->name('customer.create');
+    // Route::post('/create', [App\Http\Controllers\Admin\CustomerController::class, 'create'])->name('customer.store');
+    // Route::get('/id={customer_id}&active=true', [App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('customer.edit');
+    // Route::post('/{customer_id}', [App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('customer.update');
+  });
+
 });

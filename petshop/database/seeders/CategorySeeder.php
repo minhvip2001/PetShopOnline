@@ -21,13 +21,6 @@ class CategorySeeder extends Seeder
             'category_ordinal' => 1,
             'user_id' => 1,
         ]);
-        DB::table('brands')->insert([
-            'brand_name' => 'Smart Heart',
-            'brand_description' => 'Smart Heart',
-            'brand_slug' => 'smart-heart',
-            'brand_status' => 'true',
-            'brand_ordinal' => 1,
-            'user_id' => 1,
-        ]);
+       
     }
 }

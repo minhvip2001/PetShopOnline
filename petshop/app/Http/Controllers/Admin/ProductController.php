@@ -44,6 +44,7 @@ class ProductController extends Controller
             $brands = Brand::all();
             return view('admin.pages.product.add', compact('list_cat', 'brands')); 
         }
+
         $dataProductCreate = [
             'product_name' => $request->product_name,
             'product_price' => $request->product_price,
@@ -57,7 +58,7 @@ class ProductController extends Controller
             'brand_id' => $request->brand_id,
             'user_id' => Auth::guard('admin')->user()->id,
         ];
-        
+       
         if($request->hasFile('product_image')){
             $file = $request->file('product_image') ;
             $fileName = $file->getClientOriginalName();
@@ -73,16 +74,18 @@ class ProductController extends Controller
                     $pathNameItem =  STR::random(5).'-'.date('his').'-'.STR::random(3).'.'.$fileItem->getClientOriginalExtension();
                     $pathImg = $fileItem->move(public_path().'/uploads/products/', $pathNameItem);  
                     // C2:
-                    $product->images()->create([
+                    // $product->images()->create([
+                    //     'image_path' => $pathNameItem
+                    // ]);
+                    C1: ProductImage::create([
+                        'product_id' => $product->id,
                         'image_path' => $pathNameItem
                     ]);
-                    //C1: ProductImage::create([
-                    //     'product_id' => $product->id,
-                    //     'image_path' => $pathNameItem
-
-                    // ]);
                 }
             }
+        }
+        else{
+            $product = Product::create($dataProductCreate);
         }
             
         $message = $request->product_name;
@@ -132,9 +135,11 @@ class ProductController extends Controller
             }
             $prev = Product::Where('product_id', '>', $id)->orderBy('product_id', 'DESC')->limit(1)->get();
             $next = Product::Where('product_id', '<', $id)->orderBy('product_id', 'DESC')->limit(1)->get();
- 
+
             return view('admin.pages.product.edit', compact('list_cat', 'brands', 'categories','products', 'next', 'prev')); 
         }
+
+        $check = true;
         $dataProductUpdate = [
             'product_name' => $request->product_name,
             'product_price' => $request->product_price,
@@ -148,9 +153,9 @@ class ProductController extends Controller
             'brand_id' => $request->brand_id,
             'user_id' => Auth::guard('admin')->user()->id,
         ];
-        
-        Product::where('product_slug', $slug)->take(1)->update($dataProductUpdate);
+      
         if($request->hasFile('product_image')){
+            $check = false;
             $product_id = 0;
             $file = $request->file('product_image') ;
             $fileName = $file->getClientOriginalName();
@@ -163,25 +168,64 @@ class ProductController extends Controller
             foreach ($products as $product) {
                 $product_id = $product->product_id;
             }
-         
-            if($request->hasFile('product_images')){
-                ProductImage::where('product_id', $product_id)->delete();
-                foreach($request->file('product_images') as $fileItem){
-                    $fileNameItem = $fileItem->getClientOriginalName();
-                    $pathNameItem =  STR::random(5).'-'.date('his').'-'.STR::random(3).'.'.$fileItem->getClientOriginalExtension();
-                    $pathImg = $fileItem->move(public_path().'/uploads/products/', $pathNameItem);  
-                    // C2:
-                    // $products->images()->create([
-                    //     'image_path' => $pathNameItem
-                    // ]);
-                    // C1: 
-                    ProductImage::create([
-                        'product_id' => $product_id,
-                        'image_path' => $pathNameItem
-
-                    ]);
+            if($product->product_feature_image !=''){
+                $destinationPath = 'uploads/products/'.$product->product_feature_image;
+                if(file_exists($destinationPath)){
+                    unlink($destinationPath);
                 }
             }
+            if ($check == false){
+                if($request->hasFile('product_images')){
+                    // get product_id in ProductImages
+                    $images = ProductImage::where('product_id', '=', $product_id)->get();
+                    foreach($images as $image):
+                        $destinationUrl = 'uploads/products/'.$image->image_path;
+                        if(file_exists($destinationUrl)){
+                            unlink($destinationUrl);
+                        }
+                    endforeach;    
+                    ProductImage::where('product_id', $product_id)->delete();
+                    foreach($request->file('product_images') as $fileItem){
+                        $fileNameItem = $fileItem->getClientOriginalName();
+                        $pathNameItem =  STR::random(5).'-'.date('his').'-'.STR::random(3).'.'.$fileItem->getClientOriginalExtension();
+                        $pathImg = $fileItem->move(public_path().'/uploads/products/', $pathNameItem);  
+                        // C2:
+                        // $products->images()->create([
+                        //     'image_path' => $pathNameItem
+                        // ]);
+                        // C1: 
+                        ProductImage::create([
+                            'product_id' => $product_id,
+                            'image_path' => $pathNameItem
+                        ]);
+                    }
+                }
+            }
+        }
+        if($check == true){
+        if($request->hasFile('product_images')){
+            $product_create_id = 0;
+            $productCreats = Product::where('product_slug', $slug)->take(1)->get();
+            foreach ($productCreats as $productCreat) {
+                $product_create_id = $productCreat->product_id;
+            }
+            // get product_id in ProductImages
+            
+            foreach($request->file('product_images') as $fileItem){
+                $fileNameItem = $fileItem->getClientOriginalName();
+                $pathNameItem =  STR::random(5).'-'.date('his').'-'.STR::random(3).'.'.$fileItem->getClientOriginalExtension();
+                $pathImg = $fileItem->move(public_path().'/uploads/products/', $pathNameItem);  
+                // C2:
+                // $products->images()->create([
+                //     'image_path' => $pathNameItem
+                // ]);
+                // C1: 
+                ProductImage::create([
+                    'product_id' => $product_create_id,
+                    'image_path' => $pathNameItem
+                ]);
+            }
+        }
         }
         Product::where('product_slug', $slug)->take(1)->update($dataProductUpdate);
         $message = $request->product_name;

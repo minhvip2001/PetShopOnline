@@ -559,7 +559,7 @@ Sản phẩm
                                                                 </td>
                                                                 <td>
                                                                     <a class="aspect-ratio aspect-ratio--square aspect-ratio--square--50 aspect-ratio--interactive"
-                                                                        href="/admin/products/20684576">
+                                                                        href="{{route('product.edit', $product->product_slug)}}">
                                                                         <img title="{{$product->product_name}}"
                                                                             class="aspect-ratio__content"
                                                                             src="{{asset('/uploads/products/'.$product->product_feature_image)}}"
@@ -578,10 +578,10 @@ Sản phẩm
                                                                     <span>{{$product->product_price}}</span>
                                                                 </td>
                                                                 <td class="type">
-                                                                    <p>{{$product->category->category_name}}</p>
+                                                                   {{$product->category_id != '' ? $product->category->category_name : '---'}}
                                                                 </td>
                                                                 <td class="vendor">
-                                                                    <p>{{$product->brand->brand_name}}</p>
+                                                                <p>{{$product->category_id != '' ? $product->brand->brand_name : '---'}}</p>
                                                                 </td>
                                                                 <td>
                                                                     <p>

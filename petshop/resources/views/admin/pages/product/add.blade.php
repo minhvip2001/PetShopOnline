@@ -67,7 +67,7 @@ Thêm mới sản phẩm
                             </label>
                             <input data-has-error="true" autofocus="autofocus" id="product-name" value=""
                               placeholder="Nhập tên sản phẩm" class="next-input" size="30" type="text"
-                              name="product_name">
+                              name="product_name" required>
                           </div>
                           <div class="next-input-wrapper">
                             <label class="next-label" for="Content">Nội dung</label>
@@ -445,13 +445,11 @@ Thêm mới sản phẩm
                 
                   reader.readAsDataURL(input.files[i]);
                 }
-              }
+                }
               }
 
               $('#uploadImage').on('change', function () {
                 ShowMultipleImagePreview(this, '#product-images');
-                 
-               
               });
 
              
