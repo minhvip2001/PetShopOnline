@@ -45,10 +45,10 @@ Route::middleware('auth:admin')->group(function (){
    // Khách hàng
    Route::group(['prefix'=>'/users'],function(){
     Route::get('/', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('user.list');
-    // Route::get('/create', [App\Http\Controllers\Admin\CustomerController::class, 'create'])->name('customer.create');
-    // Route::post('/create', [App\Http\Controllers\Admin\CustomerController::class, 'create'])->name('customer.store');
-    // Route::get('/id={customer_id}&active=true', [App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('customer.edit');
-    // Route::post('/{customer_id}', [App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('customer.update');
+    Route::get('/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('user.create');
+    Route::post('/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('user.store');
+    Route::get('/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('user.edit');
+    // Route::post('/{customer_id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('user.update');
   });
 
 });
