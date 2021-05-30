@@ -31,7 +31,7 @@ class UserController extends Controller
             $roles = Role::all();
             return view('admin.pages.user.add', compact('roles')); 
         }
-        
+       
         $user = User::create([
             'surname' => $request->LastName,
             'name' => $request->FirstName,
@@ -50,6 +50,10 @@ class UserController extends Controller
         //         'user_id' => $user->id
         //     ]);
         // }
+        $message = $request->FirstName.' '.$request->LastName;
+        session()->put('success', $message);
+        return response()->json(['user_slug' => $user->id]);
+
         
     }
    
@@ -73,9 +77,22 @@ class UserController extends Controller
     public function edit(Request $request ,$id)
     {
         if ($request->getMethod() == 'GET') {
-        
-            return view('admin.pages.user.edit'); 
+            $user = User::find($id);
+            return view('admin.pages.user.edit', compact('user')); 
         }
+        $user = User::find($id);
+        $user->update(
+            [
+                'surname' => $request->LastName,
+                'name' => $request->FirstName,
+                'phone' => $request->PhoneNumber,
+                'email' => $request->Email,
+                'password' => bcrypt($request->Password),
+            ]
+        );
+        $message = $request->FirstName.' '.$request->LastName;
+        session()->put('editsuccess', $message);
+        return response()->json(['user_slug' => $user->id]);
     }
 
    

@@ -78,7 +78,7 @@ Tài khoản
                                             <div class="ui-type-container">
                                                 <ul class="staff-accounts-list" id="all-accounts">
                                                   @foreach($users as $user)
-                                                    <li class="staff-accounts-list__item">
+                                                    <li class="staff-accounts-list__item" style="{{auth()->guard('admin')->user()->id == $user->id ? 'background: pink':''}}">
                                                         <div class="ui-stack">
                                                             <span class="user-avatar user-avatar--style-2">
                                                                 <img class="user-avatar__gravatar-image" alt=""
@@ -95,7 +95,7 @@ Tài khoản
                                                                     class="ui-stack ui-stack--wrap ui-stack--distribution-leading">
                                                                     <div class="ui-stack-item ui-stack-item--fill">
                                                                         <p>
-                                                                            <a href="{{route('user.edit', $user->id)}}">{{$user->name}} {{$user->surname}}</a>
+                                                                            <a href="{{route('user.edit',$user->id)}}">{{$user->name}} {{$user->surname}}</a>
                                                                         </p>
                                                                         <p>
                                                                             <span>Đăng nhập lần cuối 25/04/2021
@@ -104,7 +104,15 @@ Tài khoản
                                                                     </div>
                                                                     <div>
                                                                         <p>
-                                                                            <span>Chủ tài khoản</span>
+                                                                            <span>
+                                                                                @if(auth()->guard('admin')->user()->id == $user->id)
+                                                                                    Chủ tài khoản
+                                                                                @else
+                                                                                    @foreach($user->roles as $key)
+                                                                                        {{$key->name}}
+                                                                                    @endforeach
+                                                                                @endif
+                                                                            </span>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -112,75 +120,7 @@ Tài khoản
                                                         </div>
                                                     </li>
                                                   @endforeach  
-                                                    <!-- <li class="staff-accounts-list__item">
-                                                        <div class="ui-stack">
-                                                            <span class="user-avatar user-avatar--style-2">
-                                                                <img class="user-avatar__gravatar-image" alt=""
-                                                                    src="https://secure.gravatar.com/avatar/1277499e0d60b16ccb2df12cfb5b0ddd.jpg?s=45&amp;d=blank">
-                                                                <span class="user-avatar__initials">
-                                                                    <img class="profile-pic img-circle"
-                                                                        data-name="Ánh Dương"
-                                                                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHBvaW50ZXItZXZlbnRzPSJub25lIiB3aWR0aD0iNDYiIGhlaWdodD0iNDYiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTg5LCAxOTUsIDE5OSk7IHdpZHRoOiA0NnB4OyBoZWlnaHQ6IDQ2cHg7IGJvcmRlci1yYWRpdXM6IDBweDsiPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHk9IjUwJSIgeD0iNTAlIiBkeT0iMC4zNWVtIiBwb2ludGVyLWV2ZW50cz0iYXV0byIgZmlsbD0iI2ZmZmZmZiIgZm9udC1mYW1pbHk9IkhlbHZldGljYU5ldWUtTGlnaHQsSGVsdmV0aWNhIE5ldWUgTGlnaHQsSGVsdmV0aWNhIE5ldWUsSGVsdmV0aWNhLCBBcmlhbCxMdWNpZGEgR3JhbmRlLCBzYW5zLXNlcmlmIiBzdHlsZT0iZm9udC13ZWlnaHQ6IDQwMDsgZm9udC1zaXplOiAyMHB4OyI+QjwvdGV4dD48L3N2Zz4=">
-                                                                </span>
-                                                            </span>
-                                                            </span>
-                                                            <div class="ui-stack-item ui-stack-item--fill">
-                                                                <div
-                                                                    class="ui-stack ui-stack--wrap ui-stack--distribution-leading">
-                                                                    <div class="ui-stack-item ui-stack-item--fill">
-                                                                        <p>
-                                                                            <a href="/admin/settings/account/488752">Ánh
-                                                                                Dương</a>
-                                                                        </p>
-                                                                        <p>
-                                                                            <span>Đăng nhập lần cuối 20/04/2021
-                                                                                20:04:34</span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div>
-                                                                        <p>
-                                                                            <span class="text-success">Đã đăng
-                                                                                nhập</span>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="staff-accounts-list__item">
-                                                        <div class="ui-stack">
-                                                            <span class="user-avatar user-avatar--style-2">
-                                                                <img class="user-avatar__gravatar-image" alt=""
-                                                                    src="https://secure.gravatar.com/avatar/1277499e0d60b16ccb2df12cfb5b0ddd.jpg?s=45&amp;d=blank">
-                                                                <span class="user-avatar__initials">
-                                                                    <img class="profile-pic img-circle"
-                                                                        data-name="Văn Sang"
-                                                                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHBvaW50ZXItZXZlbnRzPSJub25lIiB3aWR0aD0iNDYiIGhlaWdodD0iNDYiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTg5LCAxOTUsIDE5OSk7IHdpZHRoOiA0NnB4OyBoZWlnaHQ6IDQ2cHg7IGJvcmRlci1yYWRpdXM6IDBweDsiPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHk9IjUwJSIgeD0iNTAlIiBkeT0iMC4zNWVtIiBwb2ludGVyLWV2ZW50cz0iYXV0byIgZmlsbD0iI2ZmZmZmZiIgZm9udC1mYW1pbHk9IkhlbHZldGljYU5ldWUtTGlnaHQsSGVsdmV0aWNhIE5ldWUgTGlnaHQsSGVsdmV0aWNhIE5ldWUsSGVsdmV0aWNhLCBBcmlhbCxMdWNpZGEgR3JhbmRlLCBzYW5zLXNlcmlmIiBzdHlsZT0iZm9udC13ZWlnaHQ6IDQwMDsgZm9udC1zaXplOiAyMHB4OyI+QjwvdGV4dD48L3N2Zz4=">
-                                                                </span>
-                                                            </span>
-                                                            <div class="ui-stack-item ui-stack-item--fill">
-                                                                <div
-                                                                    class="ui-stack ui-stack--wrap ui-stack--distribution-leading">
-                                                                    <div class="ui-stack-item ui-stack-item--fill">
-                                                                        <p>
-                                                                            <a href="/admin/settings/account/488752">Văn
-                                                                                Sang</a>
-                                                                        </p>
-                                                                        <p>
-                                                                            <span>Đăng nhập lần cuối 20/04/2021
-                                                                                20:04:34</span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div>
-                                                                        <p>
-                                                                            <span class="text-success">Đã đăng
-                                                                                nhập</span>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li> -->
+                                                 
                                                 </ul>
                                             </div>
                                         </div>

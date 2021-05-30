@@ -34,7 +34,7 @@ Siêu thị thú cưng Pet shop Hà Nội
                             11%
                           </span>
 
-                          <a class="image_link display_flex" href="/thuc-an-cho-lon-ganador-adult-10kg-vi-cuu-va-gao"
+                          <a class="image_link display_flex" href="{{route('product')}}"
                             title="Thức ăn chó lớn Ganador Adult 10Kg - Vị Cừu và Gạo">
                             <img src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/product-1.png?1620452211114"
                               data-lazyload="//bizweb.dktcdn.net/thumb/medium/100/307/433/products/thuc-an-cho-lon-ganador-adult-tai-10kg-vi-cuu-va-gao.jpg?v=1621265866000"
@@ -1285,96 +1285,6 @@ Siêu thị thú cưng Pet shop Hà Nội
                     <div class="wrp_item_small product-col">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                       <div class="product-box">
                         <div class="product-thumbnail">
 
@@ -1383,13 +1293,7 @@ Siêu thị thú cưng Pet shop Hà Nội
                             11%
                           </span>
 
-
-
-
-
-
-
-                          <a class="image_link display_flex" href="/thuc-an-cho-lon-ganador-adult-10kg-vi-cuu-va-gao"
+                          <a class="image_link display_flex" href="{{route('product')}}"
                             title="Thức ăn chó lớn Ganador Adult 10Kg - Vị Cừu và Gạo">
                             <img src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/product-1.png?1620452211114"
                               data-lazyload="//bizweb.dktcdn.net/thumb/medium/100/307/433/products/thuc-an-cho-lon-ganador-adult-tai-10kg-vi-cuu-va-gao.jpg?v=1621265866000"
@@ -1398,7 +1302,7 @@ Siêu thị thú cưng Pet shop Hà Nội
 
 
                           <div class="product-action-grid clearfix">
-                            <form action="/cart/add" method="post" class="variants form-nut-grid"
+                            <form method="post" class="variants form-nut-grid"
                               data-id="product-actions-21622445" enctype="multipart/form-data">
                               <div>
 
@@ -3807,112 +3711,6 @@ Siêu thị thú cưng Pet shop Hà Nội
 
                   <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 padding-small custom-mobile">
                     <div class="wrp_item_small product-col">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                       <div class="product-box">
                         <div class="product-thumbnail">

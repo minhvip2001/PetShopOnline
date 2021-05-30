@@ -170,6 +170,24 @@
                                         </a>
                                     </li>
                                     <li class="">
+                                        <a href="{{route('role.list')}}" title="Danh sách vai trò" id="nav__link_customers">
+                                            <svg class="next-icon">
+                                                <use xlink:href="#icon-customer"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink"></use>
+                                            </svg> <span class="menu-name">Vai trò</span>
+                                            <span class="tooltip-menu"><i></i>Vai trò</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="{{route('permission.create')}}" title="Danh sách quyền" id="nav__link_customers">
+                                            <svg class="next-icon">
+                                                <use xlink:href="#icon-customer"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink"></use>
+                                            </svg> <span class="menu-name">Thêm Quyền</span>
+                                            <span class="tooltip-menu"><i></i>Thêm quyền</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
                                         <a href="{{route('customer.list')}}" title="Danh sách khách hàng"
                                             id="nav__link_customers">
                                             <svg class="next-icon">

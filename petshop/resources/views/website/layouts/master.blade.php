@@ -6,9 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>
     Cutepets - Siêu thị thú cưng Pet shop Hà Nội
-
-
-
   </title>
 
   <script>
@@ -441,8 +438,6 @@
       </div>
     </div>
   </section>
-
-
 
   <section class="awe-section-10">
     <section class="section_service_end">

@@ -191,12 +191,7 @@
                                         </select>
                                         <script>
                                             $(document).ready(function () {
-                                                $(".select2").select2(
-                                                    {
-                                                        placeholder: "Chọn cấp bậc",
-                                                        allowClear: true
-                                                    }
-                                                );
+                                                $(".select2").select2();
                                             });
                                         </script>
 

@@ -13,6 +13,7 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $customers = Customer::latest()->where('customer_status', 'true')->paginate(5); 
@@ -24,6 +25,16 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function login()
+    {
+        return view('website.pages.login.index');
+    }
+
+    public function register()
+    {
+        return view('website.pages.register.index');
+    }
+
     public function create(Request $request)
     {
         if ($request->getMethod() == 'GET') {

@@ -175,16 +175,16 @@ Thêm mới
                                                         }
                                                     </style>
                                                     <div class="ui-form__element hide" data-bind-show="isLimitAccess" style="width:50%">
-                                                    <div class="next-input-wrapper">
-                                                    <label class="next-label">Vai trò</label>
-                                                    <select name="role_id[]" class="next-input select-all"
+                                                        <div class="next-input-wrapper">
+                                                        <label class="next-label">Vai trò</label>
+                                                        <select name="role_id[]" class="next-input select-all"
                                                         multiple="multiple">
                                                         <option value="">Nhập danh mục</option>
                                                         @foreach($roles as $role)
                                                         <option value="{{$role->id}}">{{$role->name}}</option>
                                                         @endforeach
-                                                    </select>
-                                                    </div>
+                                                        </select>
+                                                        </div>
                                                     </div>
                                                     <script>
                                                         $(document).ready(function () {
@@ -525,9 +525,10 @@ Thêm mới
                                     dataType: 'JSON',
                                     success: function (respone) {
                                         if (respone) {
-                                            // var url = '{{route ("product.edit", ":product_slug")}}';
-                                            // url = url.replace(':product_slug', respone.product_slug);
-                                            // window.location.href = url
+                                            var url = '{{route ("user.edit", ":user_slug")}}';
+                                            url = url.replace(':user_slug', respone.user_slug);
+                                            window.location.href = url
+
                                            
                                         }
 

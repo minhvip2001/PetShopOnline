@@ -316,84 +316,9 @@
 									</a>
 								</li>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-								<li class=" parent vermenu-option-2 dropdown 
-					 ">
-
-									<a class=" link-lv1" href="/danh-cho-cho">
-
-
+								<li class="parent vermenu-option-2 dropdown">
+									<a class="link-lv1" href="{{route('category')}}">
 										<i class="fa fa-paw"></i>
-
-
 										<span class="menu-icon">
 											<span class="menu-title">Dành cho chó</span>
 										</span>

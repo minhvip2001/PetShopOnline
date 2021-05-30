@@ -23,9 +23,28 @@ Route::group(['prefix'=>'/'],function(){
     Route::get('/', [
         App\Http\Controllers\HomeController::class,'index'
         ])->name('home');
-    Route::get('/danh-cho-cho', [
+    Route::get('tai-khoan/dang-nhap.html', [
+        App\Http\Controllers\Admin\CustomerController::class,'login'
+        ])->name('login');    
+    Route::get('tai-khoan/dang-ki.html', [
+        App\Http\Controllers\Admin\CustomerController::class,'register'
+        ])->name('register');  
+    // Chi tiết sản phẩm   
+    Route::get('/thuc-an-cho-lon-ganador-adult-10kg-vi-cuu-va-gao.html', [
+        App\Http\Controllers\Admin\ProductController::class,'show'
+        ])->name('product');
+    // Danh muc
+    Route::get('/danh-cho-cho.html', [
         App\Http\Controllers\Admin\CategoryController::class,'show'
-        ])->name('category');;
+        ])->name('category');
+    Route::get('/gio-hang.html', [
+        App\Http\Controllers\Admin\CartController::class,'index'
+        ])->name('cart');
+    // Checkout
+    Route::get('/thanh-toan.html', [
+        App\Http\Controllers\Admin\OrderController::class,'show'
+        ])->name('checkout');
+   
     // Route::get('/changepass', [
     //     App\Http\Controllers\HomeController::class,'changePass'
     //     ])->name('profile.pass');
