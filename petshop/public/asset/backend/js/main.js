@@ -8,3 +8,4 @@ CKEDITOR.config.ProcessHTMLEntities = false;
 CKEDITOR.config.entities = false;
 CKEDITOR.config.entities_latin = false;
 CKEDITOR.config.ForceSimpleAmpersand = true;
+
