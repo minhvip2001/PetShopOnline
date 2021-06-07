@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product; 
+use App\Helper\Cart;
 
+use DB;
 class CartController extends Controller
 {
     /**
@@ -14,62 +17,48 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('website.pages.cart.index'); 
+        // session()->forget('cart');
+        return view('website.pages.cart.index');   
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Request $request,$id)
     {
-        //
-    }
+      $product = Product::find($id);
+      $cart = session()->has('cart') ? session()->get('cart') : null; 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+      if(isset($cart[$id])){
+        $cart[$id]['quantity'] = $cart[$id]['quantity'] + $request->product_qty;
+      } else {
+        $cart[$id] = [
+            'id' => $product->product_id,
+            'name' => $product->product_name,
+            'image' => $product->product_feature_image,
+            'price' => $product->product_price,
+            'slug' => $product->product_slug,
+            'quantity' => $request->product_qty
+        ];
+      }
+      session()->put('cart', $cart);
+      return response()->json($cart); 
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
+   
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+          if($request->id && $request->quantity){
+            $carts = session()->get('cart');
+            $carts[$request->id]['quantity'] = $request->quantity;
+            session()->put('cart', $carts);
+            $cartComponent = view('website.pages.cart.component.cart')->render();
+            return response()->json([
+                'data'=> $cartComponent
+            ]);
+          }
     }
 
     /**

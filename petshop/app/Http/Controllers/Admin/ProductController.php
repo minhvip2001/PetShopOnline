@@ -110,9 +110,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id='')
-    {
-        return view('website.pages.product.index'); 
+    public function show($product_slug)
+    {   
+        if($product_slug){
+            $product = Product::where('product_slug', $product_slug)->take(1)->get();
+            return view('website.pages.product.index', compact('product')); 
+        }
+      
     }
 
     /**

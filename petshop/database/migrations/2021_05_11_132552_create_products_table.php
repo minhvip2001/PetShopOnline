@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('product_feature_image')->nullable();
             $table->text('product_content')->nullable();
             $table->text('product_description')->nullable();
-            $table->string('product_price');
-            $table->string('product_price_sale');
+            $table->integer('product_price');
+            $table->integer('product_price_sale');
             $table->string('product_hot')->nullable();
             $table->integer('product_ordinal')->nullable();
             $table->string('product_status')->default('true');

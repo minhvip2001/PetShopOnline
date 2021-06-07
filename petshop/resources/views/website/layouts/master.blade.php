@@ -74,7 +74,7 @@
 
 
   <!-- Header JS -->
-  <script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/jquery-2.2.3.min.js?1620452211114"
+  <script src="{{asset('asset/frontend/js/jquery-2.2.3.min.js')}}"
     type="text/javascript"></script>
 
   <link href="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/iwish.css?1620452211114" rel="stylesheet"
@@ -747,17 +747,24 @@
             <div class="tfoot-popup-2 clearfix">
               <a class="button checkout_ btn-proceed-checkout" title="Thực hiện thanh toán" href="/checkout"><span>Thực
                   hiện thanh toán</span></a>
-              <a class="button buy_ btn-continus-h" title="Tiếp tục mua hàng"
-                onclick="$('#popup-cart').modal('hide');"><span><span>Tiếp tục mua hàng</span></span></a>
-
+              <a class="button buy_ btn-continus-h" onclick="$('#popup-cart').css('display', 'none')" title="Tiếp tục mua hàng"><span><span>Tiếp tục mua hàng</span></span></a>
             </div>
           </div>
         </div>
-        <a title="Close" class="quickview-close close-window" href="javascript:;"
-          onclick="$('#popup-cart').modal('hide');"><i class="fa  fa-close"></i></a>
+        <a title="Close" class="quickview-close close-window" href="javascript:;"><i class="fa fa-close"></i></a>
       </div>
     </div>
-
+    <script>
+      $('.add_cart').click(function(e){
+        e.preventDefault();
+        $('#popup-cart').css('display', 'block')            
+        $('#popup-cart').css('opacity', '1')            
+      })
+      $('.close-window').click(function(){
+        $('#popup-cart').css('display', 'none')            
+        $('#popup-cart').css('opacity', '0')            
+      })
+    </script>  
   </div>
   <div id="myModal" class="modal fade" role="dialog">
   </div>
@@ -766,7 +773,6 @@
   <script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/appear.js?1620452211114"
     type="text/javascript"></script>
   <!-- Quick view -->
-
 
 
   <div id="quick-view-product" class="quickview-product" style="display:none;">
