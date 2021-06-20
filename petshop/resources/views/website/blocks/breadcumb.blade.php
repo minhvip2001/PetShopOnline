@@ -1,4 +1,4 @@
-<section class="bread-crumb">
+<section class="bread-crumb  ">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -7,9 +7,14 @@
 						<a itemprop="url" href="/"><span itemprop="title">Trang chủ</span></a>						
 						<span><i class="fa">/</i></span>
 					</li>
-						
-					<li><strong><span itemprop="title">{{$name}}</span></strong></li>
-						
+					@if($element != 'hidden')
+					<li>
+						<a itemprop="url" href="{{$url}}"><span itemprop="title">{{$name}}</span></a>
+						<span><i class="fa">/</i></span>
+					</li>
+          @endif
+					<li><strong itemprop="title">{{$param}}</strong></li>
+					
 				</ul>
 			</div>
 		</div>

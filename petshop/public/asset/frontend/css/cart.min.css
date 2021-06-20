@@ -1,0 +1,25 @@
+#popup-cart-desktop .content-popup-cart .tbody-popup .item-popup .items-count1.btn-minus {
+  line-height: 20px;
+  font-size: 22px;
+}
+
+#popup-cart-desktop .content-popup-cart .tbody-popup .item-popup .items-count1 {
+  border: 1px solid #ddd;
+  outline: none;
+  background: #fff;
+  height: 25px;
+  margin-top: 10px;
+  width: 25px;
+  text-align: center;
+  vertical-align: top;
+  padding: 0;
+  color: #333;
+  line-height: 25px;
+  font-size: 15px;
+  font-weight: 100;
+}
+
+#popup-cart-desktop .content-popup-cart .tbody-popup .item-popup .num1 {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}

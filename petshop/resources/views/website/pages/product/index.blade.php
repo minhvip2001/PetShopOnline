@@ -3,6 +3,7 @@
 Ten san pham
 @endsection
 @section('content')
+@include("website.blocks.breadcumb", ['element' => 'show','name' => $product[0]->category->category_name, 'url' => route('category'), 'param' => $product[0]->product_name])
 <section class="product margin-top-20">
 	<div class="container">
 		<div class="main-product-page">
@@ -708,100 +709,11 @@ Ten san pham
 							</div>
 
 
-
 							<div class="item saler_item col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
 								<div class="owl_item_product product-col">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 									<div class="product-box">
 										<div class="product-thumbnail">
-
-
-
-
-
 
 											<a class="image_link display_flex" href="/white-dogs-thuc-an-vi-cuu-cho-cho-long-trang-400g"
 												title="Thức ăn cho chó lông trắng Superior Care Adult Thịt Cừu - CutePets">

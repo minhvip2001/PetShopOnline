@@ -95,6 +95,7 @@ class CategorySeeder extends Seeder
                 'user_id' => 1,
             ],
             
+            
         ]);
        
     }

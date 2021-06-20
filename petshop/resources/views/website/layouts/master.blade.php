@@ -7,7 +7,7 @@
   <title>
     Cutepets - Siêu thị thú cưng Pet shop Hà Nội
   </title>
-
+  
   <script>
     var iwish_template = 'index';
     var iwish_cid = parseInt('0', 10);
@@ -15,46 +15,10 @@
   <script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/iwishheader.js?1620452211114"
     type="text/javascript"></script>
 
-
-  <!-- ================= Page description ================== -->
-  <meta name="description" content="Chuyên bán buôn - bán lẻ phụ kiện, thức ăn đồ dùng cho thú cưng tại Hà Nội và trong toàn quốc.
- - Sẵn sàng giải đáp mọi thắc mắc và tư vấn nhiệt tình.
- - Có hỗ trợ vận chuyển
- - Cam kết sản phẩm chất lượng">
-  <!-- ================= Meta ================== -->
-  <meta name="keywords"
-    content="Cutepets , Pet shop hà nội , phụ kiện chó mèo , Petshop, Pet shop Cầu Giấy, Pet Shop Hà Đông, đồ dùng chó mèo, thức ăn chó mèo" />
-  <link rel="canonical" href="https://petshophanoi.com/" />
-
-  <meta name="robots" content="noodp,index,follow" />
   <!-- ================= Favicon ================== -->
 
   <link rel="icon" href="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/favicon.png?1620452211114"
     type="image/x-icon" />
-
-  <!-- ================= Google Fonts ================== -->
-
-
-
-  <link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css" />
-
-
-
-  <!-- Facebook Open Graph meta tags -->
-
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Cutepets - Siêu thị thú cưng Pet shop Hà Nội">
-  <meta property="og:image" content="https://bizweb.dktcdn.net/100/307/433/themes/751183/assets/logo.png?1620452211114">
-  <meta property="og:image:secure_url"
-    content="https://bizweb.dktcdn.net/100/307/433/themes/751183/assets/logo.png?1620452211114">
-
-  <meta property="og:description" content="Chuyên bán buôn - bán lẻ phụ kiện, thức ăn đồ dùng cho thú cưng tại Hà Nội và trong toàn quốc.
- - Sẵn sàng giải đáp mọi thắc mắc và tư vấn nhiệt tình.
- - Có hỗ trợ vận chuyển
- - Cam kết sản phẩm chất lượng">
-  <meta property="og:url" content="https://petshophanoi.com/">
-  <meta property="og:site_name" content="Cutepets - Siêu thị thú cưng Pet shop Hà Nội">
 
   <!-- Plugin CSS -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -71,11 +35,9 @@
   <link href="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/style.scss.css?1620452211114" rel="stylesheet"
     type="text/css" />
 
-
-
+  <link rel="stylesheet" href="{{asset('asset/frontend/css/cart.min.css')}}">
   <!-- Header JS -->
-  <script src="{{asset('asset/frontend/js/jquery-2.2.3.min.js')}}"
-    type="text/javascript"></script>
+  <script src="{{asset('asset/frontend/js/jquery-2.2.3.min.js')}}" type="text/javascript"></script>
 
   <link href="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/iwish.css?1620452211114" rel="stylesheet"
     type="text/css" />
@@ -715,57 +677,9 @@
   <!-- Plugin JS -->
   <script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/owl.carousel.min.js?1620452211114"
     type="text/javascript"></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    crossorigin="anonymous"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
   <!-- Add to cart -->
 
-  <div id="popup-cart" class="modal fade" role="dialog">
-    <div id="popup-cart-desktop" class="clearfix">
-      <div class="title-popup-cart">
-        <img src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/icon-check.png?1620452211114"
-          alt="Cutepets - Siêu thị thú cưng Pet shop Hà Nội" /> <span class="your_product">Bạn đã thêm <span
-            class="cart_name_style">[ <span class="cart-popup-name"></span>]</span> vào giỏ hàng thành công ! </span>
-      </div>
-      <div class="wrap_popup">
-        <div class="title-quantity-popup">
-          <span class="cart_status" onclick="window.location.href='/cart';">Giỏ hàng của bạn có <span
-              class="cart-popup-count"></span> sản phẩm </span> <i class="fa fa-caret-right" aria-hidden="true"></i>
-        </div>
-        <div class="content-popup-cart">
-          <div class="thead-popup">
-            <div style="width: 53%;" class="text-left">Sản phẩm</div>
-            <div style="width: 15%;" class="text-center">Đơn giá</div>
-            <div style="width: 15%;" class="text-center">Số lượng</div>
-            <div style="width: 17%;" class="text-center">Thành tiền</div>
-          </div>
-          <div class="tbody-popup scrollbar-dynamic">
-          </div>
-          <div class="tfoot-popup">
-            <div class="tfoot-popup-1 a-right clearfix">
-              <span class="total-p popup-total">Tổng tiền thanh toán: <span class="total-price"></span></span>
-            </div>
-            <div class="tfoot-popup-2 clearfix">
-              <a class="button checkout_ btn-proceed-checkout" title="Thực hiện thanh toán" href="/checkout"><span>Thực
-                  hiện thanh toán</span></a>
-              <a class="button buy_ btn-continus-h" onclick="$('#popup-cart').css('display', 'none')" title="Tiếp tục mua hàng"><span><span>Tiếp tục mua hàng</span></span></a>
-            </div>
-          </div>
-        </div>
-        <a title="Close" class="quickview-close close-window" href="javascript:;"><i class="fa fa-close"></i></a>
-      </div>
-    </div>
-    <script>
-      $('.add_cart').click(function(e){
-        e.preventDefault();
-        $('#popup-cart').css('display', 'block')            
-        $('#popup-cart').css('opacity', '1')            
-      })
-      $('.close-window').click(function(){
-        $('#popup-cart').css('display', 'none')            
-        $('#popup-cart').css('opacity', '0')            
-      })
-    </script>  
-  </div>
   <div id="myModal" class="modal fade" role="dialog">
   </div>
   <script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/cs.script.js?1620452211114"
@@ -861,10 +775,9 @@
       <a title="Close" class="quickview-close close-window" href="javascript:;"><i class="fa   fa-times"></i></a>
     </div>
   </div>
- 
+
   <script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/quickview.js?1620452211114"
     type="text/javascript"></script>
-
 
   <!-- Main JS -->
   <script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/main.js?1620452211114"
@@ -878,6 +791,8 @@
   <script
     src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/appbulk-available-notice-variant-change.js?1620452211114"
     type="text/javascript"></script>
+  
+  <script src="{{asset('asset/frontend/js/add-to-cart.js?v=')}}<?= time()?>" type="text/javascript"></script>
 
 </body>
 

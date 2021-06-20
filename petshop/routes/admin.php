@@ -59,12 +59,20 @@ Route::middleware('auth:admin')->group(function (){
     Route::post('/{id}', [App\Http\Controllers\Admin\RoleController::class, 'edit'])->name('role.update');
   });
   // Permission
-  Route::group(['prefix'=>'/permission'],function(){
+  Route::group(['prefix'=>'/permissions'],function(){
     // Route::get('/', [App\Http\Controllers\Admin\PermissionController::class, 'index'])->name('role.list');
     Route::get('/create', [App\Http\Controllers\Admin\PermissionController::class, 'create'])->name('permission.create');
     Route::post('/create', [App\Http\Controllers\Admin\PermissionController::class, 'create'])->name('permission.store');
     Route::get('/{id}', [App\Http\Controllers\Admin\PermissionController::class, 'edit'])->name('permission.edit');
     Route::post('/{id}', [App\Http\Controllers\Admin\PermissionController::class, 'edit'])->name('permission.update');
+  });
+  // Order
+  Route::group(['prefix'=>'/orders'],function(){
+    Route::get('/', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('order.list');
+    // Route::get('/create', [App\Http\Controllers\Admin\PermissionController::class, 'create'])->name('permission.create');
+    // Route::post('/create', [App\Http\Controllers\Admin\PermissionController::class, 'create'])->name('permission.store');
+    Route::get('/chi-tiet-hoa-don', [App\Http\Controllers\Admin\OrderController::class, 'edit'])->name('order.edit');
+    // Route::post('/{id}', [App\Http\Controllers\Admin\PermissionController::class, 'edit'])->name('permission.update');
   });
 
 });

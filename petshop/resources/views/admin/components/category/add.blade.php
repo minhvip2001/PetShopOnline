@@ -1,6 +1,6 @@
 <form class="" data-url="{{route('category.store')}}" method="post" enctype="multipart/form-data" id="form-add"
     data-context-create-name="Danh mục" data-context-cancel-path="{{route('category.list')}}">
-    {{ csrf_field() }}
+    srf_field() }}
     <header class="ui-title-bar-container">
         <div class="ui-title-bar">
             <div class="ui-title-bar__navigation">

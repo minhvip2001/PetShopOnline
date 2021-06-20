@@ -124,7 +124,7 @@
                                         <div class="collapse " id="collapseOrders">
                                             <ol class="next-nav__list next-nav__list--secondary">
                                                 <li class="next-nav__item">
-                                                    <a class="next-nav__link " href="/admin/orders"
+                                                    <a class="next-nav__link " href="{{route('order.list')}}"
                                                         id="nav__link_orders" title="Danh sách đơn hàng">Danh sách đơn
                                                         hàng</a>
                                                 </li>

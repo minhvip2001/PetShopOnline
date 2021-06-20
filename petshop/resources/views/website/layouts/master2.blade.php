@@ -18,15 +18,6 @@
 	<script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/iwishheader.js?1621568561910"
 		type="text/javascript"></script>
 
-
-	<!-- ================= Page description ================== -->
-	<meta name="description"
-		content="Thức ăn chó lớn Ganador Adult Tải 10Kg - Vị Cừu và Gạo ganador adult 10kg- thức ăn hạt cho chó trưởng thành vị gà và cừu trọng lượng: 10kg (10.000 g) Được lập công thức và thiết kế tại Pháp đảm bảo mức độ dinh dưỡng cao để duy trì giai đoạn sống lâu dài nhất của chó lớn, cho tất cả các giống và kích cỡ. Hoàn thiện với ">
-	<!-- ================= Meta ================== -->
-	<meta name="keywords"
-		content="Thức ăn chó lớn Ganador Adult 10Kg - Vị Cừu và Gạo, Thức ăn cho chó, Sản Phẩm Mới !!!, Dành Cho Chó, Chó, Ganador, thức ăn chó, Cutepets - Siêu thị thú cưng Pet shop Hà Nội, petshophanoi.com" />
-	<link rel="canonical" href="https://petshophanoi.com/thuc-an-cho-lon-ganador-adult-10kg-vi-cuu-va-gao" />
-	<meta name='revisit-after' content='1 days' />
 	<meta name="robots" content="noodp,index,follow" />
 	<!-- ================= Favicon ================== -->
 
@@ -35,40 +26,7 @@
 
 	<!-- ================= Google Fonts ================== -->
 
-
-
 	<link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css" />
-
-
-
-	<!-- Facebook Open Graph meta tags -->
-
-
-	<meta property="og:type" content="product">
-	<meta property="og:title" content="Thức ăn chó lớn Ganador Adult 10Kg - Vị Cừu và Gạo">
-
-	<meta property="og:image"
-		content="http://bizweb.dktcdn.net/thumb/grande/100/307/433/products/thuc-an-cho-lon-ganador-adult-tai-10kg-vi-cuu-va-gao.jpg?v=1621265866707">
-	<meta property="og:image:secure_url"
-		content="https://bizweb.dktcdn.net/thumb/grande/100/307/433/products/thuc-an-cho-lon-ganador-adult-tai-10kg-vi-cuu-va-gao.jpg?v=1621265866707">
-
-	<meta property="og:image"
-		content="http://bizweb.dktcdn.net/thumb/grande/100/307/433/products/thuc-an-cho-cho-con-ganador-adult.jpg?v=1621265869640">
-	<meta property="og:image:secure_url"
-		content="https://bizweb.dktcdn.net/thumb/grande/100/307/433/products/thuc-an-cho-cho-con-ganador-adult.jpg?v=1621265869640">
-
-	<meta property="og:image"
-		content="http://bizweb.dktcdn.net/thumb/grande/100/307/433/products/thuc-an-cho-cho-con-ganador-adult-2.jpg?v=1621265872720">
-	<meta property="og:image:secure_url"
-		content="https://bizweb.dktcdn.net/thumb/grande/100/307/433/products/thuc-an-cho-cho-con-ganador-adult-2.jpg?v=1621265872720">
-
-	<meta property="og:price:amount" content="425.000">
-	<meta property="og:price:currency" content="VND">
-
-	<meta property="og:description"
-		content="Thức ăn chó lớn Ganador Adult Tải 10Kg - Vị Cừu và Gạo ganador adult 10kg- thức ăn hạt cho chó trưởng thành vị gà và cừu trọng lượng: 10kg (10.000 g) Được lập công thức và thiết kế tại Pháp đảm bảo mức độ dinh dưỡng cao để duy trì giai đoạn sống lâu dài nhất của chó lớn, cho tất cả các giống và kích cỡ. Hoàn thiện với ">
-	<meta property="og:url" content="https://petshophanoi.com/thuc-an-cho-lon-ganador-adult-10kg-vi-cuu-va-gao">
-	<meta property="og:site_name" content="Cutepets - Siêu thị thú cưng Pet shop Hà Nội">
 
 	<!-- Plugin CSS -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -82,10 +40,9 @@
 		type="text/css" />
 
 	<!-- Build Main CSS -->
-	<link href="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/style.scss.css?1621568561910" rel="stylesheet"
-		type="text/css" />
+  <link rel="stylesheet" href="{{asset('asset/frontend/css/style.css')}}">
 
-
+	<link rel="stylesheet" href="{{asset('asset/frontend/css/cart.min.css')}}">
 
 	<!-- Header JS -->
 	<script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/jquery-2.2.3.min.js?1621568561910"
@@ -215,22 +172,31 @@
 						<div class="list-inline a-center f-right">
 							<ul>
 
-
-								<li>
-									<i class="fa fa-user"></i>
-									<a href="{{route('register')}}" title="Đăng ký" class="account_a">
-										<span>Đăng kí</span>
-									</a>
-								</li>
-
-								<li>
-									<i class="fa fa-lock"></i>
-									<a href="{{route('login')}}" title="Đăng nhập" class="account_a">
-										<span>Đăng nhập</span>
-									</a>
-								</li>
-
-
+							<li>
+							<i class="fa fa-user"></i>
+							@if(session()->has('auth'))
+							<a href="/account" title="{{session()->get('auth')}}" class="account_a">
+								<span>{{session()->get('auth')}}</span>
+							</a>
+							@else
+								<a href="{{route('register')}}" title="Đăng ký" class="account_a">
+									<span>Đăng kí</span>	
+								</a>
+							@endif
+						</li>
+						<li>
+							<i class="fa fa-lock"></i>
+							@if(session()->has('auth'))
+							<a href="{{route('logout')}}" title="Thoát" class="account_a">
+								<span>Thoát</span>
+							</a>
+							@else
+							<a href="{{route('login')}}" title="Đăng nhập" class="account_a">
+									<span>Đăng nhập</span>	
+								</a>
+							@endif
+						</li>
+					
 								<li>
 									<i class="fa fa-map-marker"></i>
 									<a href="/lien-he" title="Liên hệ" class="account_a">
@@ -348,12 +314,12 @@
 											<div class="mini-cart text-xs-center">
 												<div class="heading-cart">
 													<a class="bg_cart" href="{{route('cart')}}" title="Giỏ hàng">
-														<span class="absolute count_item count_item_pr"></span>
+														<span class="absolute count_item count_item_pr">{{session()->get('quantity_cart')}}</span>
 
 														<i class="fa fa-shopping-bag"></i>
 														<span class="block-small-cart">
 															<span class="text-giohang hidden-xs">Giỏ hàng</span>
-															<span class="block-count-pr">(<span class="count_item count_item_pr"></span>) sản phẩm
+															<span class="block-count-pr">(<span class="count_item count_item_pr">{{session()->get('quantity_cart')}}</span>) sản phẩm
 															</span>
 														</span>
 													</a>
@@ -2331,35 +2297,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
 		type="text/javascript"></script>
 
-
-
-
-
-
-	<section class="bread-crumb  ">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12">
-					<ul class="breadcrumb" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-						<li class="home">
-							<a itemprop="url" href="/"><span itemprop="title">Trang chủ</span></a>
-							<span><i class="fa">/</i></span>
-						</li>
-
-
-						<li>
-							<a itemprop="url" href="/thuc-an-danh-cho-cho"><span itemprop="title">Thức ăn cho chó</span></a>
-							<span><i class="fa">/</i></span>
-						</li>
-
-						<li><strong><span itemprop="title">Thức ăn chó lớn Ganador Adult 10Kg - Vị Cừu và Gạo</span></strong>
-						<li>
-
-					</ul>
-				</div>
-			</div>
-		</div>
-	</section>
   @yield('content')
 
 	<footer class="footer">
@@ -3231,7 +3168,7 @@
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 		crossorigin="anonymous"></script>
-	<!-- Add to cart -->
+
 	<div class="ajax-load">
 		<span class="loading-icon">
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -3336,43 +3273,6 @@
 		</div>
 	</div>
 
-	<div id="popup-cart" class="modal" role="dialog">
-		<div id="popup-cart-desktop" class="clearfix">
-			<div class="title-popup-cart">
-				<img src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/icon-check.png?1621568561910"
-					alt="Cutepets - Siêu thị thú cưng Pet shop Hà Nội" /> <span class="your_product">Bạn đã thêm <span
-						class="cart_name_style">[ <span class="cart-popup-name"></span>]</span> vào giỏ hàng thành công ! </span>
-			</div>
-			<div class="wrap_popup">
-				<div class="title-quantity-popup">
-					<span class="cart_status" onclick="window.location.href='/cart';">Giỏ hàng của bạn có <span
-							class="cart-popup-count"></span> sản phẩm </span> <i class="fa fa-caret-right" aria-hidden="true"></i>
-				</div>
-				<div class="content-popup-cart">
-					<div class="thead-popup">
-						<div style="width: 53%;" class="text-left">Sản phẩm</div>
-						<div style="width: 15%;" class="text-center">Đơn giá</div>
-						<div style="width: 15%;" class="text-center">Số lượng</div>
-						<div style="width: 17%;" class="text-center">Thành tiền</div>
-					</div>
-					<div class="tbody-popup scrollbar-dynamic">
-					</div>
-					<div class="tfoot-popup">
-						<div class="tfoot-popup-1 a-right clearfix">
-							<span class="total-p popup-total">Tổng tiền thanh toán: <span class="total-price"></span></span>
-						</div>
-						<div class="tfoot-popup-2 clearfix">
-							<a class="button checkout_ btn-proceed-checkout" title="Thực hiện thanh toán" href="/checkout"><span>Thực
-									hiện thanh toán</span></a>
-							<a class="button buy_ btn-continus-h" title="Tiếp tục mua hàng"><span><span>Tiếp tục mua hàng</span></span></a>
-						</div>
-					</div>
-				</div>
-				<a title="Close" class="quickview-close close-window"><i class="fa fa-close"></i></a>
-			</div>
-		</div>
-
-	</div>
 	<div id="myModal" class="modal fade" role="dialog">
 	</div>
 	<script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/cs.script.js?1621568561910"
@@ -3575,6 +3475,8 @@
 
 		};
 	</script>
+	<script src="{{asset('asset/frontend/js/add-to-cart.js')}}" type="text/javascript"></script>
+
 	<script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/quickview.js?1621568561910"
 		type="text/javascript"></script>
 
@@ -3625,8 +3527,6 @@
 	<!--0bab001634504ff906c489f915646c29-->
 	<script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/ega.code-scanner.settings.js?1621568561910"
 		type="text/javascript"></script>
-	<!--0bab001634504ff906c489f915646c29-->
-	<!-- Load Facebook SDK for JavaScript -->
 </body>
 
 </html>

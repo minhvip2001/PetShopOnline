@@ -250,7 +250,6 @@ Thêm mới vai trò
                             $('#form-add').submit(function (e) {
                                 e.preventDefault();
                                 var url = $(this).attr('data-url');
-                                console.log($(this).serialize());
 
                                 $.ajax({
                                     type: 'post',

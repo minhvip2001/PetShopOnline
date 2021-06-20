@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product; 
-use App\Helper\Cart;
+use App\Models\Order; 
 
-use DB;
 class CartController extends Controller
 {
     /**
@@ -39,7 +38,12 @@ class CartController extends Controller
         ];
       }
       session()->put('cart', $cart);
-      return response()->json($cart); 
+      $cartModel = view('website.pages.home.component.cartModel')->render();
+      $cartMini = view('website.pages.home.component.cartMini')->render();
+      return response()->json([
+        'data'=>$cartModel,
+        'data1'=>$cartMini
+      ]); 
     }
    
     /**
@@ -55,20 +59,30 @@ class CartController extends Controller
             $carts[$request->id]['quantity'] = $request->quantity;
             session()->put('cart', $carts);
             $cartComponent = view('website.pages.cart.component.cart')->render();
+            $cartModel = view('website.pages.home.component.cartModel')->render();
+            $cartMini = view('website.pages.home.component.cartMini')->render();
             return response()->json([
-                'data'=> $cartComponent
+                'data'=> $cartComponent,
+                'data1'=> $cartModel,
+                'data2'=> $cartMini
             ]);
           }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+      if($request->id){
+        $carts=session()->get('cart');
+        unset($carts[$request->id]);
+        session()->put('cart', $carts);
+        $cartComponent = view('website.pages.cart.component.cart')->render();
+        $cartModel = view('website.pages.home.component.cartModel')->render();
+        $cartMini = view('website.pages.home.component.cartMini')->render();
+        return response()->json([
+            'data'=> $cartComponent,
+            'data1'=> $cartModel,
+            'data2'=> $cartMini
+        ]);
+      }   
     }
 }

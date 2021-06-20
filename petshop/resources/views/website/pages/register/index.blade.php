@@ -3,29 +3,16 @@
 Ten san pham
 @endsection
 @section('content')
+@include("website.blocks.breadcumb", ['element' => 'hidden','name' => '', 'url' => '', 'param' => 'Đăng ký tài khoản'])
 <div class="container">
-
 	<div class="row">
 		<div class="content_login_base">
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 margin-bottom-40">
 				<div class="page_login_ page_base_h">
 					<h1 class="title_center_page title_customers"><span>Đăng ký</span></h1>
 					<div id="login">
-						<form accept-charset="utf-8" action="/account/register" id="customer_register" method="post">
-							<input name="FormType" type="hidden" value="customer_register">
-							<input name="utf8" type="hidden" value="true"><input type="hidden"
-								id="Token-d28240c524134c4da70c6faac2d7bbbc" name="Token"
-								value="03AGdBq25i8foEMLQ2VHsg2F1UnnMKw4qGxZTSzv7P4RKR8jd9hw3whbF6Nb57w79mBZmI91Ew9y-gE1v1-9i1-xQAvYrKgIS6PzWxwxNJ3J21G3ZSDUJB8rUtXI4E4mIpg_7x5lKSrIes22znTsrbEFX2PVxVZmz2EY2aZ1zxVqgyGf6vjiq7xwEXVgEWMxL6yGf5E5u63bp1mR-D8lFix3oUFScXQl_YObu7oowpH6ePKacj7I5xbeA5SWi4WrWPlYTEoxrBp8g8O-W-eYqghxSgSBnTYvL7UR9srT9TPXGpyY4uf-X4NHFLL40e9MPMGxrqrey7DdJZcqNYzayzut--bTBQmJ6sqWn9-QGthsFDSpT5SSbtm6giYvnmcohefiUW35EDcd_kCSE1fHhst2HSJFtKK--aZIX8DcLShheHOaV0nHmBvqGEmFc_xUIQ0d3aFhxqbI6FfBEjpa5Jcj2q9E1znjZt3A">
-							<script
-								src="https://www.google.com/recaptcha/api.js?render=6Ldtu4IUAAAAAMQzG1gCw3wFlx_GytlZyLrXcsuK"></script>
-							<script>
-								grecaptcha.ready(function () {
-									grecaptcha.execute("6Ldtu4IUAAAAAMQzG1gCw3wFlx_GytlZyLrXcsuK", { action: "/account/register" })
-										.then(function (token) {
-											document.getElementById("Token-d28240c524134c4da70c6faac2d7bbbc").value = token
-										});
-								});
-							</script>
+						<form accept-charset="utf-8" id="customer_register" method="post">
+							
 							<div class="form-signup text_warning margin-bottom-10">
 
 							</div>

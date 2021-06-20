@@ -1,9 +1,10 @@
 @extends('website.layouts.master2')
 @section('title')
-Siêu thị thú cưng Pet shop Hà Nội
+Siêu thị thú cưng Pet shop Hà Nội - Giỏ hàng
 @endsection
 @section('content')
-<section class="main-cart-page main-container col1-layout">
+@include("website.blocks.breadcumb", ['element' => 'hidden','name' => '', 'url' => '', 'param' => 'Giỏ hàng'])
+<section class="main-cart-page main-container col1-layout cart-content" data-url="{{route('cart.delete')}}">
 	@if(session()->get('cart') != null)
 	  @include('website.pages.cart.component.cart')
 	@else
@@ -27,7 +28,7 @@ Siêu thị thú cưng Pet shop Hà Nội
 
 				<div class="title-cart">
 					<h3>Giỏ hàng của bạn</h3>
-					<p>(Chưa có sản phẩm nào) nhấn vào <a href="/collections/all">cửa hàng</a> để mua hàng</p>
+					<p>(Chưa có sản phẩm nào) nhấn vào <a href="{{route('home')}}">cửa hàng</a> để mua hàng</p>
 				</div>
 
 			</div>
@@ -39,48 +40,5 @@ Siêu thị thú cưng Pet shop Hà Nội
 	</div>
 	@endif
 </section>
-<script>
-  
-	function plus(){
-		let id = $(this).data('id') 
-		var qty =  document.getElementById("input-quantity-"+id)
-		var newQuantity = parseInt(qty.value)+1;
-    qty.value = newQuantity
-		
-	}
-	function minus(){
-		let id = $(this).data('id') 
-		var qty =  document.getElementById("input-quantity-"+id)
-		var newQuantity = parseInt(qty.value)-1;
-    qty.value = newQuantity
-		if(qty.value < 1){
-			doccument.setAttribute("disabled", true);
-		}
-		
-	}
-	function cartUpdate(event){
-		
-		event.preventDefault();
-		let urlUpdateCart = $('.update_cart_url').data('url')
-		let id = $(this).data('id') 
-		let quantity = $(this).parents('.input_qty_pr').find('input.quantity').val();
-		// console.log(quantity)
-		$.ajax({
-			type: "Get",
-			url: urlUpdateCart,
-			data: {
-				id: id,
-				quantity: quantity
-			},
-			success:function(data){
-				$('.main-cart-page.main-container.col1-layout').html(data.data);
-			}
-		})
-	}
-	$(function(){
-		$(document).on('click', '.btn-plus', plus)
-		$(document).on('click', '.btn-minus', minus)
-		$(document).on('click', '.cart_update', cartUpdate)
-	})
-</script>
+
 @endsection

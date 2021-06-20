@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Brand; 
 use App\Models\ProductImage; 
 use Illuminate\Support\Facades\Auth;
+
 class ProductController extends Controller
 {
     /**

@@ -3,7 +3,7 @@
 Siêu thị thú cưng Pet shop Hà Nội
 @endsection
 @section('content')
-
+@include("website.blocks.breadcumb", ['element' => 'hidden','name' => '', 'url' => '', 'param' => 'Dành cho chó'])
 <div class="container">
 	<div class="row">
 		<div class="main-category-page col-md-12 col-sm-12 col-xs-12 no-padding">
