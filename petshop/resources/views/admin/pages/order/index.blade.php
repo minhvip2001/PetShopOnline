@@ -583,33 +583,8 @@
                                                 <div class="ui-popover__section ui-popover__section--no-padding">
                                                   <ul class="next-list next-list--compact">
                                                     <li>
-                                                      <a class="next-list__item" href="javascript: void(0);"
-                                                        define="{urlBulkActionFulfillOrders:'/admin/orders/bulkfulfillorders'}"
-                                                        bind-event-click="fulfillOrders()">Giao hàng</a>
+                                                      <a class="next-list__item" href="javascript: void(0);">Xóa sản phẩm</a>
                                                     </li>
-                                                    <li><a class="next-list__item" href="javascript: void(0);"
-                                                        define="{urlBulkActionPrintOrders:'/admin/orders/bulkprintorders'}"
-                                                        bind-event-click="printOrders()">In đơn hàng</a></li>
-                                                  </ul>
-                                                </div>
-                                                <div class="ui-popover__section ui-popover__section--no-padding">
-                                                  <ul class="next-list next-list--compact">
-                                                    <li><a class="next-list__item" href="javascript: void(0);"
-                                                        define="{urlBulkActionArchiveOrders:'/admin/orders/bulkarchiveorders'}"
-                                                        bind-event-click="archiveOrders()">Lưu trữ</a></li>
-                                                    <li><a class="next-list__item" href="javascript: void(0);"
-                                                        define="{urlBulkActionUnArchiveOrders:'/admin/orders/bulkunarchiveorders'}"
-                                                        bind-event-click="unarchiveOrders()">Hủy lưu trữ</a></li>
-                                                  </ul>
-                                                </div>
-                                                <div class="ui-popover__section ui-popover__section--no-padding">
-                                                  <ul class="next-list next-list--compact">
-                                                    <li><a class="next-list__item" href="javascript: void(0);"
-                                                        define="{urlBulkActionAddTag:'/admin/orders/bulkaddtags'}"
-                                                        bind-event-click="addTags()">Thêm tags</a></li>
-                                                    <li><a class="next-list__item" href=""
-                                                        define="{urlBulkActionRemoveTag:'/admin/orders/bulkremovetags'}"
-                                                        bind-event-click="removeTags()">Xóa tags</a></li>
                                                   </ul>
                                                 </div>
                                               </div>
@@ -626,14 +601,26 @@
 
                                 <th><span>Đơn hàng</span></th>
                                 <th><span>Ngày đặt</span></th>
-                                <th><span>Khách hàng</span></th>
+                                <th style="width: 15%"><span>Khách hàng</span></th>
                                 <th><span>Thanh toán</span></th>
-                                <th><span>Giao hàng</span></th>
+                                <th><span>Trạng thái</span></th>
                                 <th class="tr"><span>Tổng tiền</span></th>
+                                <th><span>Xử lí</span></th>
                               </tr>
                             </thead>
                             <tbody>
+                            
                             @foreach($orders as $order)
+                              @php
+                                $total = 0;
+                              @endphp
+                              @foreach($order->orderDetails as $item)
+                                @if($order->order_id == $item->order_id)
+                                  @php
+                                    $total += $item->price * $item->quantity;
+                                  @endphp
+                                @endif  
+                              @endforeach    
                               <tr id="parent-quick-view-{{$order->order_id}}" class="ui-nested-link-container parent-quick-view"
                                 data-define="{nestedLinkContainer: new Bizweb.NestedLinkContainer(this)}">
                                 <td class="select">
@@ -651,15 +638,15 @@
                                   </div>
                                 </td>
                                 <td class="no-wrap">
-                                  <a href="{{route('order.edit')}}" data-nested-link-target="true">#{{$order->order_id}}</a>
+                                  <a href="{{route('order.edit', $order->order_id)}}" data-nested-link-target="true">#{{$order->order_id}}</a>
                                 </td>
                                 <td class="no-wrap next-table__cell--full-width-when-condensed">
-                                  <span>{{$order->created_at->format('d-m-Y H:i:s')}}</span>
+                                  <span>{{$order->created_at->format('d/m/Y H:i')}}</span>
                                 </td>
                                 <td class="next-table__cell--full-width-when-condensed" width="250">
                                   <div class="ui-stack ui-stack--alignment-center ui-stack--spacing-tight">
-                                    <div class="ui-stack-item" style="max-width:90%">{{$order->customer->customer_name}}</div>
-                                    <a href="/admin/customers/11594289" class="customer-link tooltip tooltip-top">
+                                    <div class="ui-stack-item" style="max-width:90%">{{$order->customer->customer_name}} {{$order->customer->customer_surname}}</div>
+                                    <a href="{{route('customer.edit', $order->customer->customer_id)}}" class="customer-link tooltip tooltip-top">
                                       <div class="tooltip-container">
                                         <span class="tooltip-label">Xem khách hàng</span>
                                       </div>
@@ -680,20 +667,38 @@
                                 </td>
 
                                 <td class="no-wrap" id="fulfill-status-{{$order->order_id}}">
-
-                                  <span class="badge badge--status-attention badge--progress-incomplete">Chưa
-                                    chuyển</span>
-
-
+                                @if($order->status == 0)
+                                  <span class="badge badge--status-attention badge--progress-incomplete" style="background: #8cff1a">
+                                    Chưa xử lí
+                                  </span>
+                                @elseif($order->status == 1)
+                                  <span class="badge badge--status-attention badge--progress-incomplete" style="background: pink">
+                                    Đã nhận đơn
+                                  </span>
+                                @elseif($order->status == 2)
+                                  <span class="badge badge--status-attention badge--progress-incomplete" style="background: green">
+                                    Đã hoàn thành
+                                  </span>
+                                @else
+                                  <span class="badge badge--status-attention badge--progress-incomplete" style="background: red">
+                                    Đã hủy
+                                  </span>  
+                                @endif  
                                 </td>
                                
-                              
                                 <td class="type--right total next-table__cell--top-right-when-condensed">
-                                   {{$order->products->count()}}
+                                  {{number_format($total, 0, ',', '.')}}₫
+                                </td>
+                                <td class="no-wrap" id="fulfill-status-{{$order->order_id}}">
+                                  @if($order->status == 0)
+                                    <span class="badge badge--status-attention badge--progress-incomplete" style="background: white; border:1px solid red; color: red">
+                                      Nhận đơn
+                                    </span>
+                                  @endif 
                                 </td>
                              
                               </tr>
-                             
+                            
                             @endforeach  
                             </tbody>
                           </table>
@@ -735,82 +740,6 @@
               </div>
             </div>
           </div>
-          <script class="modal_source" define="{exportOrdersModal: new Bizweb.Modal(this)}" type="text/html">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="ui-modal__header">
-              <div class="ui-modal__header-title">
-                  <h2 class="ui-title">Xuất danh sách đơn hàng</h2>
-              </div>
-              <div class="ui-modal__header-actions">
-                  <div class="ui-modal__close-button">
-                      <button class="ui-button ui-button--transparent close-modal" data-dismiss="modal" aria-label="Close modal" type="button" name="button"><svg class="next-icon next-icon--color-ink-lighter next-icon--size-20"> <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cancel-small-minor"></use> </svg></button>
-                  </div>
-              </div>
-          </div>
-          <div class="ui-modal__body">
-              <div class="ui-modal__section">
-                  <div class="next-fieldset-wrapper">
-                      <form id="form-export-orders">
-                          <input type="hidden" name="AuthenticityToken" value="Dj8aCGHm33kRtk0wsdAdTtpDXvbKCQvBfGzC+7z/RhA2FpJdraOWMQKrMgtzycKO9XhiF37O+jHzc7p0k+J5Yg==" />
-                          <input type="hidden" name="Query" />
-                          <input type="hidden" name="Status" />
-                          <input type="hidden" name="FinancialStatus" />
-                          <input type="hidden" name="FulfillmentStatus" />
-                          <input type="hidden" name="CustomerId" />
-                          <input type="hidden" name="ProductId" />
-                          <input type="hidden" name="CreatedOnMax" />
-                          <input type="hidden" name="CreatedOnMin" />
-                          <input type="hidden" name="Tag" />
-                          <input type="hidden" name="Page" />
-                          <input type="hidden" name="ShippingProvince" />
-                          <input type="hidden" name="ShippingDistrict" />
-                          <input type="hidden" name="PaymentMethodTermFilter" />
-                          <input type="hidden" name="Source" />
-                          <input type="hidden" name="ExportTransactions" value="false" />
-
-                              <div class="next-input-wrapper">
-                                  <label class="next-label next-label--switch" for="exportOrdersType-all-orders">Tất cả đơn hàng</label>
-                                  <input type="radio" name="exportOrdersType" id="exportOrdersType-all-orders" value="allOrders" class="next-radio" checked="checked">
-                                  <span class="next-radio--styled"></span>
-                              </div>
-                          <div class="next-input-wrapper">
-                              <label class="next-label next-label--switch" for="exportOrdersType-current-page">Trên trang này</label>
-                              <input type="radio" name="exportOrdersType" id="exportOrdersType-current-page" value="currentPage" class="next-radio" >
-                              <span class="next-radio--styled"></span>
-                          </div>
-                          <div class="next-input-wrapper">
-                              <label class="next-label next-label--switch" for="exportOrdersType-selected-orders">Các đơn hàng được chọn</label>
-                              <input type="radio" name="exportOrdersType" id="exportOrdersType-selected-orders" value="selectedOrders" class="next-radio">
-                              <span class="next-radio--styled"></span>
-                          </div>
-                              <div class="next-input-wrapper">
-                                  <label class="next-label next-label--switch" for="exportOrdersType-current-search"><span id="orders-match-current-search"></span> đơn hàng phù hợp với kết quả tìm kiếm hiện tại</label>
-                                  <input type="radio" name="exportOrdersType" id="exportOrdersType-current-search" value="currentSearch" class="next-radio">
-                                  <span class="next-radio--styled"></span>
-                              </div>
-                      </form>
-                  </div>
-              </div>
-          </div>
-          <div class="ui-modal__footer">
-              <div class="ui-modal__footer-actions">
-                  <div class="ui-modal__secondary-actions">
-                      <div class="button-group">
-                          <button class="ui-button close-modal" data-dismiss="modal" type="button" name="button">Hủy</button>
-                      </div>
-                  </div>
-                  <div class="ui-modal__primary-actions">
-                      <div class="button-group button-group--right-aligned">
-                          <button class="ui-button ui-button--primary js-btn-loadable has-loading" type="button" name="commit" bind-event-click="exportOrderTransactions()">Xuất lịch sử giao dịch</button>
-                          <button class="ui-button ui-button--primary js-btn-loadable has-loading" type="button" name="commit" bind-event-click="exportOrders()">Xuất danh sách đơn hàng</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</script>
           <script type="text/javascript">
             if (typeof scrollPaggingMobile === 'undefined') {
               $(window).scroll(function () {

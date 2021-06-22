@@ -36,10 +36,10 @@ Ten san pham
 												</thead>
 
 												<tbody>
-                          @php
-                            $total = 0;    
-                          @endphp
 													@foreach($customer->orders as $order)
+														@php
+															$total = 0;    
+														@endphp
                             @foreach($order->orderDetails as $item)
                               @php
                                 $total += $item->price * $item->quantity

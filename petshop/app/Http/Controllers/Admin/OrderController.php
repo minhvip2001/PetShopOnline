@@ -15,7 +15,7 @@ class OrderController extends Controller
     
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::latest()->get();
         return view('admin.pages.order.index', compact('orders'));
     }
 
@@ -65,7 +65,6 @@ class OrderController extends Controller
             'customer_surname' => $request->surname,
             'customer_name' => $request->name,
             'customer_phone' => $request->phone,
-            'customer_note' => $request->note,
             'customer_address' => $request->address,
             'customer_city' => $request->city,
             'customer_district' => $request->district,
@@ -85,7 +84,8 @@ class OrderController extends Controller
                 ]);
         }
         $order = Order::create([
-            'customer_id'=>session()->has('auth') ? session()->get('auth_id') : $customer->customer_id 
+            'customer_id'=>session()->has('auth') ? session()->get('auth_id') : $customer->customer_id, 
+            'order_note' => $request->note
         ]);
         foreach (session()->get('cart') as $item){
             OrderDetail::create([
@@ -119,9 +119,14 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id="")
+    public function edit(Request $request, $id)
     {
-        return view('admin.pages.order.edit');  
+        if ($request->getMethod() == 'GET') {
+            $order = Order::find($id);
+            $prev = Order::Where('order_id', '>', $id)->orderBy('order_id', 'DESC')->limit(1)->get();
+            $next = Order::Where('order_id', '<', $id)->orderBy('order_id', 'DESC')->limit(1)->get();
+            return view('admin.pages.order.edit', compact('order', 'next', 'prev'));
+        }      
     }
 
     /**

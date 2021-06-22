@@ -203,44 +203,66 @@ Thêm mới đơn hàng
               <div class="ui-title-bar">
                 <div class="ui-title-bar__navigation">
                   <div class="ui-breadcrumbs">
-                    <a href="/admin/orders" class="ui-button ui-button--transparent ui-breadcrumb">
+                    <a href="{{route('order.list')}}" class="ui-button ui-button--transparent ui-breadcrumb">
                       <svg class="next-icon next-icon--size-20 next-icon--no-nudge">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevron-left-thinner"></use>
                       </svg>
                       <span class="ui-breadcrumb__item">Đơn hàng</span>
                     </a>
                   </div>
+                  @if($prev->count() != 0 || $next->count() != 0)
                   <div class="ui-title-bar__pagination">
-                    <ul class="segmented">
-                      <li>
-                        <a class="btn tooltip tooltip-bottom tooltip-right-align js-prev-btn disabled"
-                          href="javascript: void(0);">
-                          <span class="tooltip-container">
-                            <span class="tooltip-label">Đơn hàng mới hơn</span>
-                          </span>
-                          <svg role="img" class="next-icon next-icon--rotate-270 next-icon--size-16"
-                            aria-labelledby="arrow-detailed-05d178844429e1940fb590adf8abe863-title">
-                            <title id="arrow-detailed-05d178844429e1940fb590adf8abe863-title">previous</title>
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-detailed"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="btn tooltip tooltip-bottom tooltip-right-align js-next-btn disabled"
-                          href="javascript: void(0);">
-                          <span class="tooltip-container">
-                            <span class="tooltip-label">Đơn hàng cũ hơn</span>
-                          </span>
-                          <svg role="img" class="next-icon next-icon--rotate-90 next-icon--size-16"
-                            aria-labelledby="arrow-detailed-296072e90a5b111c2fcae9e3f9b22b65-title">
-                            <title id="arrow-detailed-296072e90a5b111c2fcae9e3f9b22b65-title">next</title>
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-detailed"></use>
-                          </svg>
-                        </a>
-                      </li>
-                    </ul>
+                      <ul class="segmented">
+                                            <li>
+                                                <a class="btn tooltip tooltip-bottom tooltip-right-align js-prev-btn <?php if($prev->count() != 0){
+                                                        echo '';
+                                                    }else echo 'disabled';  
+                                                    ?>" href="<?php if($prev->count() != 0){
+                                                        echo $prev[0]->order_id;
+                                                    }else echo 'javascript:void(0)';  
+                                                    ?>">
+                                                    <span class="tooltip-container">
+                                                        <span class="tooltip-label">Trước</span>
+                                                    </span>
+                                                    <svg role="img"
+                                                        class="next-icon next-icon--rotate-270 next-icon--size-16"
+                                                        aria-labelledby="arrow-detailed-18c22d39dd5e48cc8c038cec7890ac6a-title">
+                                                        <title
+                                                            id="arrow-detailed-0f55b97e20a441cc9e1024549a73d37b-title">
+                                                            Trước</title>
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            xlink:href="#arrow-detailed">
+                                                        </use>
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="btn tooltip tooltip-bottom tooltip-right-align js-next-btn <?php if($next->count() != 0){
+                                                        echo '';
+                                                    }else echo 'disabled';  
+                                                    ?>" href="<?php if($next->count() != 0){
+                                                        echo $next[0]->order_id;
+                                                    }else echo 'javascript:void(0)';  
+                                                    ?>">
+                                                    <span class="tooltip-container">
+                                                        <span class="tooltip-label">Sau</span>
+                                                    </span>
+                                                    <svg role="img"
+                                                        class="next-icon next-icon--rotate-90 next-icon--size-16"
+                                                        aria-labelledby="arrow-detailed-20adc9b098e04a4e93e9c46165210122-title">
+                                                        <title
+                                                            id="arrow-detailed-153be3beba1847b6868b35bbedd7c37b-title">
+                                                            Sau</title>
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            xlink:href="#arrow-detailed"></use>
+                                                    </svg>
+                                                </a>
 
-                  </div>
+
+                                            </li>
+                                        </ul>
+                  </div>               
+                  @endif
                 </div>
                 <div class="ui-title-bar__main-group">
                   <div class="ui-title-bar__heading-group">
@@ -248,8 +270,8 @@ Thêm mới đơn hàng
                         class="next-icon next-icon--color-slate-lighter next-icon--size-20">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#next-orders"></use>
                       </svg></span>
-                    <h1 class="ui-title-bar__title">#1003</h1>
-                    <span class="ui-title-bar__metadata">07/04/2021 23:08</span>
+                    <h1 class="ui-title-bar__title">#{{$order->order_id}}</h1>
+                    <span class="ui-title-bar__metadata">{{$order->created_at->format('d/m/Y H:i')}}</span>
                   </div>
                   <div data-define="{titleBarActions: new Bizweb.TitleBarActions(this)}" class="action-bar">
                     <div class="action-bar__item action-bar__item--link-container" context="orderAction"
@@ -407,33 +429,42 @@ Thêm mới đơn hàng
                           <h3 class="ui-subheading">Chưa giao</h3>
                         </div>
                         <div class="next-card__section next-card__section--no-vertical-spacing">
-                         
+                            @php
+                              $fee = 0;
+                              $total = 0;
+                              $item_quantity = 0;
+                            @endphp
                             <table class="table--no-side-padding table--divided">
                               <tbody>
-
+                              @foreach($order->orderDetails as $item)
+                              @php
+                                $fee = 0;
+                                $total += $item->price * $item->quantity;
+                              @endphp
                                 <tr class="orders-line-item">
                                   <td class="orders-line-item__image hide-when-printing">
                                     <div class="aspect-ratio aspect-ratio--square aspect-ratio--square--50">
                                       <img title="Sổ ghi chép ván cờ" class="aspect-ratio__content"
-                                        src="https://bizweb.dktcdn.net/thumb/small/100/307/433/products/smart-heart-power-pack-puppy-20kg.jpg?v=1612325911200">
+                                      src="{{asset('/uploads/products/'.$item->product->product_feature_image)}}">
                                     </div>
                                   </td>
                                   <td class="orders-line-item__description">
-                                    <a href="/admin/products/20645415" target="_blank" rel="noreferrer noopener">Smart
-                                      Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - CutePets</a>
+                                    <a href="/admin/products/20645415" target="_blank" rel="noreferrer noopener">{{$item->product->product_name}}</a>
                                   </td>
                                   <td class="orders-line-item__price">
-                                    1.100.000₫
+                                    {{number_format($item->price, 0, ',', '.')}}₫
                                   </td>
                                   <td class="orders-line-item__times-sign">
                                     ×
                                   </td>
                                   <td class="orders-line-item__quantity">
-                                    1
+                                    {{$item->quantity}}
                                   </td>
                                   <td class="orders-line-item__total">
-                                    1.100.000₫ </td>
+                                    {{number_format($item->price * $item->quantity, 0, ',', '.')}}₫
+                                  </td>
                                 </tr>
+                              @endforeach  
                               </tbody>
                             </table>
                           
@@ -448,7 +479,7 @@ Thêm mới đơn hàng
 
                                 <tr>
                                   <td class="type--subdued">Giá</td>
-                                  <td>1.100.000₫</td>
+                                  <td>{{number_format($total, 0,',','.')}}₫</td>
                                 </tr>
                                 <tr>
                                   <td class="type--subdued">
@@ -458,14 +489,28 @@ Thêm mới đơn hàng
                                   </td>
                                   <td>
                                     <div>
-                                      40.000₫
+                                    <?php if($order->orderDetails[0]->shippingMethod == "Shop liên hệ báo phí ship sau: 1₫"){
+                                        $fee = 1;
+                                        echo "1đ";
+                                      }	else if($order->orderDetails[0]->shippingMethod == "Giao Hàng Tiết Kiệm (Tạm tính): 30.000₫"){
+                                        $fee = 30000;
+                                        echo "30.000đ";
+                                      } else if($order->orderDetails[0]->shippingMethod == "Giao Hàng Nhanh (Tạm tính) - Đường hàng không: 100.000₫"){
+                                        $fee = 100000;
+                                        echo "100.000đ"; 
+                                      }
+                                      else{
+                                        $fee = 60000;
+                                        echo "60.000đ"; 
+                                      }
+                                    ?>
                                     </div>
                                   </td>
                                 </tr>
 
                                 <tr>
                                   <td><strong>Tổng cộng</strong></td>
-                                  <td><strong>1.140.000₫</strong></td>
+                                  <td><strong>{{number_format($total + $fee, 0,',','.')}}₫</strong></td>
                                 </tr>
 
                               </tbody>
@@ -473,73 +518,6 @@ Thêm mới đơn hàng
                           </div>
                         </div>
                       </div>
-
-                      <div class="ui-card__section hide-when-printing" id="order-payment-callout">
-                        <div class="ui-stack ui-stack--wrap ui-stack--distribution-trailing ui-stack--alignment-center">
-                          <div class="ui-stack-item ui-stack-item--fill">
-                            <div class="ui-stack ui-stack--alignment-center">
-                              <div>
-                                <svg class="next-icon next-icon--24 next-icon--color-blue next-icon--no-nudge">
-                                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#next-credit-card">
-                                  </use>
-                                </svg>
-                              </div>
-                              <div class="ui-stack-item ui-stack-item--fill">
-                                <h3 class="ui-subheading">
-                                  Thanh toán khi giao hàng (COD) </h3>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="ui-stack-item" context="paymentProcessing"
-                            define="{paymentProcessing: new Bizweb.OrderPaymentProcessing(this, { orderId: 8486175, cultureCode: 'vi-VN' })}">
-                            <script id="modal-mark-as-paid" class="modal_source"
-                              define="{markAsPaidModal: new Bizweb.Modal(this)}" type="text/html">
-                                          <form action="/admin/orders/markaspaid?OrderId=8486175&amp;Amount=90000.0000&amp;ParentId=9327098&amp;Kind=capture" method="post">
-                                              <input type="hidden" name="AuthenticityToken" value="Dj8aCGHm33kRtk0wsdAdTn7pzOE785F5XvYi04Aw2eGgdetEeYYTNbfDAGosx8u068+dZrL8YzLjew49r0r0iw==" />
-                                              <div class="modal-dialog">
-                                                  <div class="modal-content">
-                                                      <div class="ui-modal__header">
-                                                          <div class="ui-modal__header-title">
-                                                              <h2 class="ui-title">Xác nhận thanh toán</h2>
-                                                          </div>
-                                                          <div class="ui-modal__header-actions">
-                                                              <div class="ui-modal__close-button">
-                                                                  <button class="ui-button ui-button--transparent close-modal" data-dismiss="modal" aria-label="Close modal" type="button" name="button"><svg class="next-icon next-icon--color-ink-lighter next-icon--size-20"> <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cancel-small-minor"></use> </svg></button>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                      <div class="ui-modal__body">
-                                                          <div class="ui-modal__section">
-                                                              <div>
-
-                                                                  <span>Xác nhận khách hàng đã thanh toán số tiền 90,000₫ qua phương thức thanh to&#225;n Thanh to&#225;n khi giao h&#224;ng (COD) cho đơn h&#224;ng n&#224;y</span>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                      <div class="ui-modal__footer">
-                                                          <div class="ui-modal__footer-actions">
-                                                              <div class="ui-modal__secondary-actions">
-                                                                  <div class="button-group">
-                                                                      <button class="ui-button close-modal" data-dismiss="modal" type="button" name="button">Hủy</button>
-                                                                  </div>
-                                                              </div>
-                                                              <div class="ui-modal__primary-actions">
-                                                                  <div class="button-group button-group--right-aligned">
-                                                                      <button class="ui-button ui-button--primary js-btn-loadable has-loading" type="submit">Xác nhận</button>
-                                                                  </div>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </form>
-                                      </script>
-                            <button class="ui-button btn-save" type="button"
-                              bind-event-click="markAsPaidModal.show()">Xác nhận</button>
-                          </div>
-                        </div>
-                      </div>
-
 
                       <div class="ui-card__section" id="shipping-label-card" refresh="order-actions">
                         <div class="ui-stack ui-stack--wrap ui-stack--alignment-center">
@@ -559,6 +537,29 @@ Thêm mới đơn hàng
 
                             <a class="btn btn-primary" href="/admin/orders/8486175/fulfillments/create">Giao
                               hàng</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ui-card__section" id="shipping-label-card" refresh="order-actions">
+                        <div class="ui-stack ui-stack--wrap ui-stack--alignment-center">
+
+                          <div class="ui-stack-item">
+                            <svg
+                              class="next-icon next-icon--color-slate-lighter next-icon--size-20 next-icon--no-nudge">
+                              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#next-shipping"></use>
+                            </svg>
+                          </div>
+                          <div class="ui-stack-item ui-stack-item--fill">
+                            <h3 class="ui-subheading" style="color: red">
+                              
+                            </h3>
+                          </div>
+                          <div class="ui-stack-item">
+                          <div class="ui-page-actions__actions ui-page-actions__actions--secondary">
+                              <div class="ui-page-actions__button-group">
+                                  <a class="btn btn-destroy">Hủy đơn hàng</a>
+                              </div>
+                          </div>
                           </div>
                         </div>
                       </div>
@@ -657,8 +658,8 @@ Thêm mới đơn hàng
                       <div class="ui-card__section">
                         <div class="ui-type-container ui-type-container--spacing-tight">
                           <div>
-                            <p><a href="/admin/customers/11594289">Nguyễn Bình Minh</a></p>
-                            <p><a href="/admin/orders?CustomerId=11594289">1 đơn hàng</a></p>
+                            <p><a href="{{route('customer.edit', $order->customer->customer_id)}}">{{$order->customer->customer_name}} {{$order->customer->customer_surname}}</a></p>
+                            <p><a href="/admin/orders?CustomerId=11594289">{{$order->customer->orders->count()}} đơn hàng</a></p>
                           </div>
                         </div>
                       </div>
@@ -732,7 +733,7 @@ Thêm mới đơn hàng
                           <div>
                             <div class="ui-type-container ui-type-container--spacing-extra-tight">
                               <p>
-                                <span class="customer-email show-when-printing">minhdeptrai@gmail.com</span>
+                                <span class="customer-email show-when-printing">{{$order->customer->email}}</span>
                               </p>
                             </div>
                           </div>
@@ -801,7 +802,7 @@ Thêm mới đơn hàng
                           <div class="next-grid__cell">
                               <div class="next-input-wrapper">
                                   <label class="next-label" for="Name">T&#234;n kh&#225;ch h&#224;ng</label>
-                                  <input class="next-input customer-name" id="Name" name="Name" placeholder="Nhập Tên" type="text" value="Nguyễn Bình Minh" />
+                                  <input class="next-input customer-name" id="Name" name="Name" placeholder="Nhập Tên" type="text" value="{{$order->customer->customer_name}} {{$order->customer->customer_surname}}" />
                                   <div>
                                       <span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
                                   </div>
@@ -1328,13 +1329,13 @@ Thêm mới đơn hàng
                             </div>
                           </div>
                           <p class="type--subdued word_break__content">
-                            Nguyễn Bình Minh<br>
-                            0979988724<br>
-                            18 Lý Thái Tổ<br>
-                            Phường Lý Thái Tổ<br>
-                            Quận Hoàn Kiếm<br>
-                            Hà Nội <br>
-                            Vietnam<br>
+                            {{$order->customer->customer_name}} {{$order->customer->customer_surname}}<br>
+                            {{$order->customer->customer_phone}}<br>
+                            {{$order->customer->customer_address}}<br>
+                            {{$order->customer->customer_ward}}<br>
+                            {{$order->customer->customer_district}}<br>
+                            {{$order->customer->customer_city}}<br>
+                            {{$order->customer->customer_country}}<br>
                           </p>
                         </div>
                       </div>

@@ -71,7 +71,7 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('/', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('order.list');
     // Route::get('/create', [App\Http\Controllers\Admin\PermissionController::class, 'create'])->name('permission.create');
     // Route::post('/create', [App\Http\Controllers\Admin\PermissionController::class, 'create'])->name('permission.store');
-    Route::get('/chi-tiet-hoa-don', [App\Http\Controllers\Admin\OrderController::class, 'edit'])->name('order.edit');
+    Route::get('/{id}', [App\Http\Controllers\Admin\OrderController::class, 'edit'])->name('order.edit');
     // Route::post('/{id}', [App\Http\Controllers\Admin\PermissionController::class, 'edit'])->name('permission.update');
   });
 

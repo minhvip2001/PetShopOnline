@@ -1417,7 +1417,7 @@ Khách hàng
                                                                             </span>
                                                                         </div>
                                                                         <div class="customer-info">
-                                                                            <a id="customer-11657558"
+                                                                            <a id="customer-{{$customer->customer_id}}"
                                                                                 href="{{route('customer.edit', $customer->customer_id)}}"
                                                                                 data-nested-link-target="true">
                                                                                 <span>{{$customer->customer_name}}</span>
@@ -1432,7 +1432,7 @@ Khách hàng
                                                                     </div>
                                                                 </td>
                                                                 <td class="email tc hidden-xs">
-                                                                    {{$customer->customer_email}}
+                                                                    {{$customer->email ? $customer->email : '---'}}
                                                                 </td>
                                                                 <td class="phone tc hidden-xs">
                                                                     {{$customer->customer_phone}}
@@ -1456,6 +1456,7 @@ Khách hàng
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {{$customers->links()}}
 
                                             </div>
                                         </div>
