@@ -41,7 +41,6 @@ Siêu thị thú cưng Pet shop Hà Nội
                               alt="Thức ăn chó lớn Ganador Adult 10Kg - Vị Cừu và Gạo">
                           </a>
 
-
                           <div class="product-action-grid clearfix">
                             <form action="/cart/add" method="post" class="variants form-nut-grid"
                               data-id="product-actions-21622445" enctype="multipart/form-data">
@@ -67,9 +66,10 @@ Siêu thị thú cưng Pet shop Hà Nội
                         <div class="product-info effect a-left">
 
                           <div class="info_hhh">
-                            <h3 class="product-name product-name-hover"><a 
+                            <h3 class="product-name product-name-hover"><a
                                 href="/thuc-an-cho-lon-ganador-adult-10kg-vi-cuu-va-gao"
-                                title="Thức ăn chó lớn Ganador Adult 10Kg - Vị Cừu và Gạo">Thức ăn chó lớn Ganador Adult 10Kg - Vị Cừu và Gạo</a></h3>
+                                title="Thức ăn chó lớn Ganador Adult 10Kg - Vị Cừu và Gạo">Thức ăn chó lớn Ganador Adult
+                                10Kg - Vị Cừu và Gạo</a></h3>
 
                             <div class="bizweb-product-reviews-badge" data-id="21622445"></div> <!-- Đánh Giá -->
 
@@ -1271,7 +1271,7 @@ Siêu thị thú cưng Pet shop Hà Nội
 
                 <div class="clearfix wrap_item_list products-view-grid-bb products-view-grid">
 
-                @foreach($dog_foods as $dog_food)
+                  @foreach($dog_foods as $dog_food)
                   <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 padding-small custom-mobile">
                     <div class="wrp_item_small product-col">
                       <div class="product-box">
@@ -1283,20 +1283,21 @@ Siêu thị thú cưng Pet shop Hà Nội
                             title="{{$dog_food->product_name}}">
                             <img src="{{asset('/uploads/products/'.$dog_food->product_feature_image)}}"
                               data-lazyload="{{asset('/uploads/products/'.$dog_food->product_feature_image)}}"
-                              alt="{{$dog_food->product_name}}" class="cart_product_image_{{$dog_food->product_feature_image}}"> 
+                              alt="{{$dog_food->product_name}}"
+                              class="cart_product_image_{{$dog_food->product_feature_image}}">
                           </a>
                           <div class="product-action-grid clearfix">
-                            <form class="variants form-nut-grid"
-                              enctype="multipart/form-data">
+                            <form class="variants form-nut-grid" enctype="multipart/form-data">
                               {{ csrf_field() }}
                               <div>
-                                <button class="add_cart button_wh_40 btn-cart left-to"  data-url="{{route('cart.create', $dog_food->product_id)}}" title="Đặt mua">
+                                <button class="add_cart button_wh_40 btn-cart left-to"
+                                  data-url="{{route('cart.create', $dog_food->product_id)}}" title="Đặt mua">
                                   Mua hàng
                                 </button>
-                                <input type="hidden" name="product_qty" min="1" value="1" class="cart_product_qty_{{$dog_food->product_id}}"/>
-                                <a title="Xem nhanh" href="/thuc-an-cho-lon-ganador-adult-10kg-vi-cuu-va-gao"
-                                  data-handle="thuc-an-cho-lon-ganador-adult-10kg-vi-cuu-va-gao"
-                                  class="button_wh_40 btn_view right-to quick-view">
+                                <input type="hidden" name="product_qty" min="1" value="1"
+                                  class="cart_product_qty_{{$dog_food->product_id}}" />
+                                <a title="Xem nhanh" href="{{route('product', $dog_food->product_slug)}}"
+                                  class="button_wh_40 btn_view right-to quick_view">
                                   <i class="fa fa-eye"></i>
                                   <span class="style-tooltip">Xem nhanh</span>
                                 </a>
@@ -1308,19 +1309,24 @@ Siêu thị thú cưng Pet shop Hà Nội
                         <div class="product-info effect a-left">
 
                           <div class="info_hhh">
-                            <input type="hidden" value="{{$dog_food->product_feature_image}}" class="cart_product_image_{{$dog_food->product_id}}">
+                            <input type="hidden" value="{{$dog_food->product_feature_image}}"
+                              class="cart_product_image_{{$dog_food->product_id}}">
                             <h3 class="product-name product-name-hover"><a class="product_name_display"
                                 href="{{route('product', $dog_food->product_slug)}}"
                                 title="{{$dog_food->product_name}}">{{$dog_food->product_name}}</a></h3>
-                            <input type="hidden" value="{{$dog_food->product_name}}" class="cart_product_name_{{$dog_food->product_id}}">
-                            <div class="bizweb-product-reviews-badge" data-id="{{$dog_food->product_id}}"></div> <!-- Đánh Giá -->
+                            <input type="hidden" value="{{$dog_food->product_name}}"
+                              class="cart_product_name_{{$dog_food->product_id}}">
+                            <div class="bizweb-product-reviews-badge" data-id="{{$dog_food->product_id}}"></div>
+                            <!-- Đánh Giá -->
 
                             <div class="reviews-product-grid">
                             </div>
 
                             <div class="price-box clearfix">
-                              <input type="hidden" value="{{$dog_food->product_price}}" class="cart_product_price_{{$dog_food->product_id}}">
-                              <span class="price product-price">{{number_format($dog_food->product_price, 0, ',', '.')}}</span>
+                              <input type="hidden" value="{{$dog_food->product_price}}"
+                                class="cart_product_price_{{$dog_food->product_id}}">
+                              <span class="price product-price">{{number_format($dog_food->product_price, 0, ',',
+                                '.')}}</span>
 
                               <span class="price product-price-old">
                                 {{number_format($dog_food->product_price, 0, ',', '.')}}
@@ -1335,9 +1341,9 @@ Siêu thị thú cưng Pet shop Hà Nội
                       </div>
                     </div>
                   </div>
-                @endforeach  
+                  @endforeach
                 </div>
-               
+
               </div>
 
               <div id="content-tabb2" class="content-tab-ft content-tab-proindex" style="display:none">
@@ -1420,95 +1426,8 @@ Siêu thị thú cưng Pet shop Hà Nội
                   <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 padding-small custom-mobile">
                     <div class="wrp_item_small product-col">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                       <div class="product-box">
                         <div class="product-thumbnail">
-
-
-
-
-
 
                           <a class="image_link display_flex" href="/bio-wish-multibio-3p-35g"
                             title="Thực Phẩm chức năng Bio Wish Multibio 3P 35g Men vi sinh bổ sung lợi khuẩn cho thú cưng - CutePets">
@@ -13598,9 +13517,7 @@ Siêu thị thú cưng Pet shop Hà Nội
   </section>
 </section>
 
-@if(session()->get('cart') != null)
-<div id="popup-cart" class="modal cart-content" role="dialog" data-url="{{route('cart.delete')}}">	
-@include('website.pages.home.component.cartModel')
+<div id="popup-cart" class="modal cart-content" role="dialog" data-url="{{route('cart.delete')}}">
+  @include('website.pages.home.component.cartModel')
 </div>
-@endif
 @endsection

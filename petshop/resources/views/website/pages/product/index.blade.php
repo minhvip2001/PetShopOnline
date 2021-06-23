@@ -23,31 +23,15 @@ Ten san pham
 												data-zoom-image="{{asset('/uploads/products/'.$product[0]->product_feature_image)}}" />
 										</a>
 										<div class="hidden">
-
+										@foreach($product[0]->images as $item)
 											<div class="item">
-												<a href="{{asset('/uploads/products/'.$product[0]->product_feature_image)}}"
-													data-image="{{asset('/uploads/products/'.$product[0]->product_feature_image)}}"
-													data-zoom-image="{{asset('/uploads/products/'.$product[0]->product_feature_image)}}"
+												<a href="{{asset('/uploads/products/'.$item->image_path)}}"
+													data-image="{{asset('/uploads/products/'.$item->image_path)}}"
+													data-zoom-image="{{asset('/uploads/products/'.$item->image_path)}}"
 													data-rel="prettyPhoto[product-gallery]">
 												</a>
 											</div>
-
-											<div class="item">
-												<a href="https://bizweb.dktcdn.net/100/307/433/products/thuc-an-cho-cho-con-ganador-adult.jpg?v=1621265869640"
-													data-image="https://bizweb.dktcdn.net/100/307/433/products/thuc-an-cho-cho-con-ganador-adult.jpg?v=1621265869640"
-													data-zoom-image="https://bizweb.dktcdn.net/100/307/433/products/thuc-an-cho-cho-con-ganador-adult.jpg?v=1621265869640"
-													data-rel="prettyPhoto[product-gallery]">
-												</a>
-											</div>
-
-											<div class="item">
-												<a href="https://bizweb.dktcdn.net/100/307/433/products/thuc-an-cho-cho-con-ganador-adult-2.jpg?v=1621265872720"
-													data-image="https://bizweb.dktcdn.net/100/307/433/products/thuc-an-cho-cho-con-ganador-adult-2.jpg?v=1621265872720"
-													data-zoom-image="https://bizweb.dktcdn.net/100/307/433/products/thuc-an-cho-cho-con-ganador-adult-2.jpg?v=1621265872720"
-													data-rel="prettyPhoto[product-gallery]">
-												</a>
-											</div>
-
+										@endforeach
 										</div>
 									</div>
 
@@ -55,40 +39,30 @@ Ten san pham
 										<div id="gallery_02"
 											class="owl-carousel owl-theme thumbnail-product thumb_product_details not-dqowl" data-loop="false"
 											data-lg-items="4" data-md-items="4" data-sm-items="3" data-xs-items="3" data-xxs-items="3">
-
+											@if($product[0]->product_feature_image != '')
+												<div class="item">
+													<a href="#"
+														data-image="{{asset('/uploads/products/'.$product[0]->product_feature_image)}}"
+														data-zoom-image="{{asset('/uploads/products/'.$product[0]->product_feature_image)}}">
+														<img
+															data-img="{{asset('/uploads/products/'.$product[0]->product_feature_image)}}"
+															src="{{asset('/uploads/products/'.$product[0]->product_feature_image)}}"
+															alt="{{asset('/uploads/products/'.$product[0]->product_feature_image)}}">
+													</a>
+												</div>
+											@endif	
+											@foreach($product[0]->images as $item)
 											<div class="item">
 												<a href="#"
-													data-image="https://bizweb.dktcdn.net/100/307/433/products/thuc-an-cho-lon-ganador-adult-tai-10kg-vi-cuu-va-gao.jpg?v=1621265866707"
-													data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/307/433/products/thuc-an-cho-lon-ganador-adult-tai-10kg-vi-cuu-va-gao.jpg?v=1621265866707">
+													data-image="{{asset('/uploads/products/'.$item->image_path)}}"
+													data-zoom-image="{{asset('/uploads/products/'.$item->image_path)}}">
 													<img
-														data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/307/433/products/thuc-an-cho-lon-ganador-adult-tai-10kg-vi-cuu-va-gao.jpg?v=1621265866707"
-														src="//bizweb.dktcdn.net/thumb/small/100/307/433/products/thuc-an-cho-lon-ganador-adult-tai-10kg-vi-cuu-va-gao.jpg?v=1621265866707"
-														alt="Thức ăn chó lớn Ganador Adult Tải 10Kg - Vị Cừu và Gạo">
+														data-img="{{asset('/uploads/products/'.$item->image_path)}}"
+														src="{{asset('/uploads/products/'.$item->image_path)}}"
+														alt="{{asset('/uploads/products/'.$item->image_path)}}">
 												</a>
 											</div>
-
-											<div class="item">
-												<a href="#"
-													data-image="https://bizweb.dktcdn.net/100/307/433/products/thuc-an-cho-cho-con-ganador-adult.jpg?v=1621265869640"
-													data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/307/433/products/thuc-an-cho-cho-con-ganador-adult.jpg?v=1621265869640">
-													<img
-														data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/307/433/products/thuc-an-cho-cho-con-ganador-adult.jpg?v=1621265869640"
-														src="//bizweb.dktcdn.net/thumb/small/100/307/433/products/thuc-an-cho-cho-con-ganador-adult.jpg?v=1621265869640"
-														alt="Thức ăn chó lớn Ganador Adult Tải 10Kg - Vị Cừu và Gạo">
-												</a>
-											</div>
-
-											<div class="item">
-												<a href="#"
-													data-image="https://bizweb.dktcdn.net/100/307/433/products/thuc-an-cho-cho-con-ganador-adult-2.jpg?v=1621265872720"
-													data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/307/433/products/thuc-an-cho-cho-con-ganador-adult-2.jpg?v=1621265872720">
-													<img
-														data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/307/433/products/thuc-an-cho-cho-con-ganador-adult-2.jpg?v=1621265872720"
-														src="//bizweb.dktcdn.net/thumb/small/100/307/433/products/thuc-an-cho-cho-con-ganador-adult-2.jpg?v=1621265872720"
-														alt="Thức ăn chó lớn Ganador Adult Tải 10Kg - Vị Cừu và Gạo">
-												</a>
-											</div>
-
+											@endforeach
 										</div>
 									</div>
 
@@ -97,13 +71,11 @@ Ten san pham
 							<div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 details-pro">
 								<h1 class="title-product">{{$product[0]->product_name}}</h1>
 								<div class="group-status">
-									<span class="first_status">Thương hiệu: <span class="status_name">Ganador</span></span>
+									<span class="first_status">Thương hiệu: <span class="status_name">{{$product[0]->brand->brand_name}}</span></span>
 									<span class="first_status"> <span class="space">&nbsp; | &nbsp;</span> Tình trạng: <span
 											class="status_name availabel">
-											Hết hàng
+											Còn hàng
 										</span></span>
-									<span class="first_status" style="display: block">SKU: <span class="status_name sku">TACGA10CG</span>
-										&nbsp; | &nbsp; Serial: <span class="status_name barcode">8938509770471</span></span>
 								</div>
 								<div class="reviews_details_product">
 									<div class="sapo-product-reviews-badge sapo-product-reviews-badge-detail"
@@ -113,16 +85,15 @@ Ten san pham
 								<div class="price-box" itemscope itemtype="http://schema.org/Offer">
 
 									<span class="special-price"><span class="price product-price"
-											itemprop="price">{{$product[0]->product_price}}₫</span>
+											itemprop="price">{{number_format($product[0]->product_price, 0, ',', '.')}}₫</span>
 										<meta itemprop="priceCurrency" content="VND">
 									</span> <!-- Giá Khuyến mại -->
 									<span class="old-price"><del class="price product-price-old sale"
-											itemprop="priceSpecification">{{$product[0]->product_price}}₫</del>
+											itemprop="priceSpecification">{{number_format($product[0]->product_price, 0, ',', '.')}}₫</del>
 										<meta itemprop="priceCurrency" content="VND">
 									</span> <!-- Giá gốc -->
 
 								</div>
-
 
 								<div class="product-summary product_description ">
 									<div class="rte description text4line ">
@@ -137,27 +108,23 @@ Ten san pham
 
 										<div class="box-variant clearfix ">
 
-											<input type="hidden" name="variantId" value="45627188" />
+											<input type="hidden" name="variantId" value="{{$product[0]->product_id}}" />
 
 										</div>
 										<div class="form-group form_button_details">
 											<div class="form_hai ">
 												<div class="custom input_number_product custom-btn-number form-control">
-													<button class="btn_num num_1 button button_qty"
-														onClick="var result = document.getElementById('qtym'); var qtypro = result.value; if( !isNaN( qtypro ) &amp;&amp; qtypro &gt; 1 ) result.value--;return false;"
-														type="button">-</button>
-													<input type="text" id="qtym" name="quantity" value="1" onkeyup="valid(this,'numbers')"
-														onkeypress='validate(event)' class="form-control prd_quantity">
-													<button class="btn_num num_2 button button_qty"
-														onClick="var result = document.getElementById('qtym'); var qtypro = result.value; if( !isNaN( qtypro )) result.value++;return false;"
-														type="button">+</button>
+													<button class="btn_num num_1 button button_qty btn-minus cart_update" data-id="{{$product[0]->product_id}}" type="button">-</button>
+													<input type="text" id="qtym" name="product_qty" value="1"
+													class="form-control prd_quantity cart_product_qty_{{$product[0]->product_id}} quantity input-quantity-{{$product[0]->product_id}}" data-id="{{$product[0]->product_id}}">
+													<button class="btn_num num_2 button button_qty btn-plus cart_update" data-id="{{$product[0]->product_id}}"type="button">+</button>
 												</div>
 												<div class="button_actions">
-													<input class="hidden" type="hidden" name="variantId" value="45627188" />
+													<input class="hidden" type="hidden" name="variantId" value="{{$product[0]->product_id}}" />
 
-													<button class="btn btn-lg btn-style button_cart_buy_disable  btn-cart" title="Hết hàng"
-														disabled="disabled"><i class="fa fa-shopping-basket hidden"></i>&nbsp;&nbsp;<span>Hết
-															hàng</span></button>
+													<button type="submit" class="btn btn-lg  btn-cart button_cart_buy_enable add_cart btn_buy" data-url="{{route('cart.create', $product[0]->product_id)}}" title="Mua hàng">
+														<span class="btn-content">Mua hàng</span>
+													</button>
 
 
 												</div>
@@ -379,109 +346,26 @@ Ten san pham
 							data-dot="false" data-nav="false" data-lg-items="6" data-md-items="4" data-sm-items="3" data-xs-items="2"
 							data-margin="30">
 
-
-
-
-
+						@foreach($similar_products as $similar_product)
 							<div class="item saler_item col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
 								<div class="owl_item_product product-col">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 									<div class="product-box">
 										<div class="product-thumbnail">
 
 
-
-
-
-
-											<a class="image_link display_flex" href="/smart-heart-power-pack-puppy-20kg"
-												title="Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - CutePets">
-												<img src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/product-1.png?1621568561910"
-													data-lazyload="//bizweb.dktcdn.net/thumb/medium/100/307/433/products/smart-heart-power-pack-puppy-20kg.jpg?v=1612325911000"
-													alt="Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - CutePets">
+											<a class="image_link display_flex" href="{{route('product', $similar_product->product_slug)}}"
+												title="{{$similar_product->product_name}}">
+												<img src="{{asset('/uploads/products/'.$similar_product->product_feature_image)}}"
+													data-lazyload="{{asset('/uploads/products/'.$similar_product->product_feature_image)}}"
+													alt="{{$similar_product->product_name}}">
 											</a>
 
 
 											<div class="product-action-grid clearfix">
 												<form action="/cart/add" method="post" class="variants form-nut-grid"
-													data-id="product-actions-20557867" enctype="multipart/form-data">
+													data-id="product-actions-{{$similar_product->product_id}}" enctype="multipart/form-data">
 													<div>
 
 														<input type="hidden" name="variantId" value="41430195" />
@@ -506,9 +390,8 @@ Ten san pham
 										<div class="product-info effect a-left">
 
 											<div class="info_hhh">
-												<h3 class="product-name product-name-hover"><a href="/smart-heart-power-pack-puppy-20kg"
-														title="Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - CutePets">Smart
-														Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - CutePets</a></h3>
+												<h3 class="product-name product-name-hover"><a href="{{route('product', $similar_product->product_slug)}}"
+														title="Smart Heart Power Pack puppy 20kg phát triển cơ bắp dành cho cho con - CutePets">{{$similar_product->product_name}}</a></h3>
 
 												<div class="bizweb-product-reviews-badge" data-id="20557867"></div> <!-- Đánh Giá -->
 
@@ -518,7 +401,7 @@ Ten san pham
 
 
 												<div class="price-box clearfix">
-													<span class="price product-price">1.130.000₫</span>
+													<span class="price product-price"> {{number_format($similar_product->product_price, 0, ',', '.')}}₫</span>
 												</div>
 
 
@@ -530,922 +413,7 @@ Ten san pham
 									</div>
 								</div>
 							</div>
-
-
-
-							<div class="item saler_item col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
-								<div class="owl_item_product product-col">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-									<div class="product-box">
-										<div class="product-thumbnail">
-
-
-											<span class="sale-off">-
-												33%
-											</span>
-
-
-
-
-
-
-
-											<a class="image_link display_flex" href="/thit-bo-vun-bo-uc-goi-500g"
-												title="Thịt bò vụn - Bò Mỹ Gói 500g - Cutepets">
-												<img src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/product-1.png?1621568561910"
-													data-lazyload="//bizweb.dktcdn.net/thumb/medium/100/307/433/products/thit-bo-vun-bo-my-goi-500g-cutepets.jpg?v=1608698254000"
-													alt="Thịt bò vụn - Bò Mỹ Gói 500g - Cutepets">
-											</a>
-
-
-											<div class="product-action-grid clearfix">
-												<form action="/cart/add" method="post" class="variants form-nut-grid"
-													data-id="product-actions-20209507" enctype="multipart/form-data">
-													<div>
-
-														<!--<button disabled="disabled" class="btn-cart button_wh_40  left-to" title="Hết hàng"><i class="icon-settings icons"></i></button>-->
-
-
-														<a title="Xem nhanh" href="/thit-bo-vun-bo-uc-goi-500g"
-															data-handle="thit-bo-vun-bo-uc-goi-500g"
-															class="button_wh_40 btn_view right-to quick-view">
-															<i class="fa fa-eye"></i>
-															<span class="style-tooltip">Xem nhanh</span>
-														</a>
-
-
-
-													</div>
-												</form>
-											</div>
-										</div>
-										<div class="product-info effect a-left">
-
-											<div class="info_hhh">
-												<h3 class="product-name product-name-hover"><a href="/thit-bo-vun-bo-uc-goi-500g"
-														title="Thịt bò vụn - Bò Mỹ Gói 500g - Cutepets">Thịt bò vụn - Bò Mỹ Gói 500g -
-														Cutepets</a></h3>
-
-												<div class="bizweb-product-reviews-badge" data-id="20209507"></div> <!-- Đánh Giá -->
-
-
-												<div class="reviews-product-grid">
-												</div>
-
-
-												<div class="price-box clearfix">
-													<span class="price product-price">20.000₫</span>
-
-													<span class="price product-price-old">
-														30.000₫
-													</span>
-
-
-												</div>
-
-
-
-											</div>
-
-										</div>
-
-									</div>
-								</div>
-							</div>
-
-
-							<div class="item saler_item col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
-								<div class="owl_item_product product-col">
-
-									<div class="product-box">
-										<div class="product-thumbnail">
-
-											<a class="image_link display_flex" href="/white-dogs-thuc-an-vi-cuu-cho-cho-long-trang-400g"
-												title="Thức ăn cho chó lông trắng Superior Care Adult Thịt Cừu - CutePets">
-												<img src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/product-1.png?1621568561910"
-													data-lazyload="//bizweb.dktcdn.net/thumb/medium/100/307/433/products/thuc-an-cho-cho-long-trang-superior-care-adult-400g-vi-cuu-cutepets-3.jpg?v=1612327585000"
-													alt="Thức ăn cho chó lông trắng Superior Care Adult Thịt Cừu - CutePets">
-											</a>
-
-
-											<div class="product-action-grid clearfix">
-												<form action="/cart/add" method="post" class="variants form-nut-grid"
-													data-id="product-actions-19455933" enctype="multipart/form-data">
-													<div>
-
-														<input class="hidden" type="hidden" name="variantId" value="37262883" />
-														<button class="btn-cart button_wh_40 left-to" title="Tùy chọn" type="button"
-															onclick="window.location.href='/white-dogs-thuc-an-vi-cuu-cho-cho-long-trang-400g'">
-															Tùy chọn
-														</button>
-
-
-														<a title="Xem nhanh" href="/white-dogs-thuc-an-vi-cuu-cho-cho-long-trang-400g"
-															data-handle="white-dogs-thuc-an-vi-cuu-cho-cho-long-trang-400g"
-															class="button_wh_40 btn_view right-to quick-view">
-															<i class="fa fa-eye"></i>
-															<span class="style-tooltip">Xem nhanh</span>
-														</a>
-
-
-
-													</div>
-												</form>
-											</div>
-										</div>
-										<div class="product-info effect a-left">
-
-											<div class="info_hhh">
-												<h3 class="product-name product-name-hover"><a
-														href="/white-dogs-thuc-an-vi-cuu-cho-cho-long-trang-400g"
-														title="Thức ăn cho chó lông trắng Superior Care Adult Thịt Cừu - CutePets">Thức ăn cho chó
-														lông trắng Superior Care Adult Thịt Cừu - CutePets</a></h3>
-
-												<div class="bizweb-product-reviews-badge" data-id="19455933"></div> <!-- Đánh Giá -->
-
-
-												<div class="reviews-product-grid">
-												</div>
-
-
-												<div class="price-box clearfix">
-													<span class="price product-price">150.000₫</span>
-												</div>
-
-
-
-											</div>
-
-										</div>
-
-									</div>
-								</div>
-							</div>
-
-
-
-							<div class="item saler_item col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
-								<div class="owl_item_product product-col">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-									<div class="product-box">
-										<div class="product-thumbnail">
-
-
-											<span class="sale-off">-
-												9%
-											</span>
-
-
-
-
-
-
-
-											<a class="image_link display_flex"
-												href="/pho-mai-vien-cheddar-cheese-ball-100g-banh-thuong-bow-wow-cho-cho"
-												title="Phô mai viên Cheddar Cheese Ball 100g Bánh thưởng Bow Wow cho chó - Cutepets">
-												<img src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/product-1.png?1621568561910"
-													data-lazyload="//bizweb.dktcdn.net/thumb/medium/100/307/433/products/pho-mai-vien-cheddar-cheese-ball-100g-banh-thuong-bow-wow-cho-cho-cutepets-6.jpg?v=1599555621860"
-													alt="Phô mai viên Cheddar Cheese Ball 100g Bánh thưởng Bow Wow cho chó - Cutepets">
-											</a>
-
-
-											<div class="product-action-grid clearfix">
-												<form action="/cart/add" method="post" class="variants form-nut-grid"
-													data-id="product-actions-19071289" enctype="multipart/form-data">
-													<div>
-
-														<!--<button disabled="disabled" class="btn-cart button_wh_40  left-to" title="Hết hàng"><i class="icon-settings icons"></i></button>-->
-
-
-														<a title="Xem nhanh"
-															href="/pho-mai-vien-cheddar-cheese-ball-100g-banh-thuong-bow-wow-cho-cho"
-															data-handle="pho-mai-vien-cheddar-cheese-ball-100g-banh-thuong-bow-wow-cho-cho"
-															class="button_wh_40 btn_view right-to quick-view">
-															<i class="fa fa-eye"></i>
-															<span class="style-tooltip">Xem nhanh</span>
-														</a>
-
-
-
-													</div>
-												</form>
-											</div>
-										</div>
-										<div class="product-info effect a-left">
-
-											<div class="info_hhh">
-												<h3 class="product-name product-name-hover"><a
-														href="/pho-mai-vien-cheddar-cheese-ball-100g-banh-thuong-bow-wow-cho-cho"
-														title="Phô mai viên Cheddar Cheese Ball 100g Bánh thưởng Bow Wow cho chó - Cutepets">Phô
-														mai viên Cheddar Cheese Ball 100g Bánh thưởng Bow Wow cho chó - Cutepets</a></h3>
-
-												<div class="bizweb-product-reviews-badge" data-id="19071289"></div> <!-- Đánh Giá -->
-
-
-												<div class="reviews-product-grid">
-												</div>
-
-
-												<div class="price-box clearfix">
-													<span class="price product-price">68.000₫</span>
-
-													<span class="price product-price-old">
-														75.000₫
-													</span>
-
-
-												</div>
-
-
-
-											</div>
-
-										</div>
-
-									</div>
-								</div>
-							</div>
-
-
-
-							<div class="item saler_item col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
-								<div class="owl_item_product product-col">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-									<div class="product-box">
-										<div class="product-thumbnail">
-
-
-
-
-
-
-											<a class="image_link display_flex" href="/banh-thuong-palmer-quy-bo-tron-100g"
-												title="Bánh thưởng PALMER 100g quy bơ tròn dành cho chó - CutePets">
-												<img src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/product-1.png?1621568561910"
-													data-lazyload="//bizweb.dktcdn.net/thumb/medium/100/307/433/products/banh-thuong-palmer-100g-quy-bo-tron1.jpg?v=1592834842000"
-													alt="Bánh thưởng PALMER 100g quy bơ tròn dành cho chó - CutePets">
-											</a>
-
-
-											<div class="product-action-grid clearfix">
-												<form action="/cart/add" method="post" class="variants form-nut-grid"
-													data-id="product-actions-18324690" enctype="multipart/form-data">
-													<div>
-
-														<!--<button disabled="disabled" class="btn-cart button_wh_40  left-to" title="Hết hàng"><i class="icon-settings icons"></i></button>-->
-
-
-														<a title="Xem nhanh" href="/banh-thuong-palmer-quy-bo-tron-100g"
-															data-handle="banh-thuong-palmer-quy-bo-tron-100g"
-															class="button_wh_40 btn_view right-to quick-view">
-															<i class="fa fa-eye"></i>
-															<span class="style-tooltip">Xem nhanh</span>
-														</a>
-
-
-
-													</div>
-												</form>
-											</div>
-										</div>
-										<div class="product-info effect a-left">
-
-											<div class="info_hhh">
-												<h3 class="product-name product-name-hover"><a href="/banh-thuong-palmer-quy-bo-tron-100g"
-														title="Bánh thưởng PALMER 100g quy bơ tròn dành cho chó - CutePets">Bánh thưởng PALMER
-														100g quy bơ tròn dành cho chó - CutePets</a></h3>
-
-												<div class="bizweb-product-reviews-badge" data-id="18324690"></div> <!-- Đánh Giá -->
-
-
-												<div class="reviews-product-grid">
-												</div>
-
-
-												<div class="price-box clearfix">
-													<span class="price product-price">25.000₫</span>
-												</div>
-
-
-
-											</div>
-
-										</div>
-
-									</div>
-								</div>
-							</div>
-
-
-
-							<div class="item saler_item col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
-								<div class="owl_item_product product-col">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-									<div class="product-box">
-										<div class="product-thumbnail">
-
-
-
-
-
-
-											<a class="image_link display_flex" href="/banh-thuong-daisy"
-												title="Bánh thưởng Daisy and Buddy 100g cho chó - CutePets">
-												<img src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/product-1.png?1621568561910"
-													data-lazyload="//bizweb.dktcdn.net/thumb/medium/100/307/433/products/banh-thuong-daisy-and-buddy-100g-cho-cho5.jpg?v=1592834679000"
-													alt="Bánh thưởng Daisy and Buddy 100g cho chó - CutePets">
-											</a>
-
-
-											<div class="product-action-grid clearfix">
-												<form action="/cart/add" method="post" class="variants form-nut-grid"
-													data-id="product-actions-18324681" enctype="multipart/form-data">
-													<div>
-
-														<input class="hidden" type="hidden" name="variantId" value="33639830" />
-														<button class="btn-cart button_wh_40 left-to" title="Tùy chọn" type="button"
-															onclick="window.location.href='/banh-thuong-daisy'">
-															Tùy chọn
-														</button>
-
-
-														<a title="Xem nhanh" href="/banh-thuong-daisy" data-handle="banh-thuong-daisy"
-															class="button_wh_40 btn_view right-to quick-view">
-															<i class="fa fa-eye"></i>
-															<span class="style-tooltip">Xem nhanh</span>
-														</a>
-
-
-
-													</div>
-												</form>
-											</div>
-										</div>
-										<div class="product-info effect a-left">
-
-											<div class="info_hhh">
-												<h3 class="product-name product-name-hover"><a href="/banh-thuong-daisy"
-														title="Bánh thưởng Daisy and Buddy 100g cho chó - CutePets">Bánh thưởng Daisy and Buddy
-														100g cho chó - CutePets</a></h3>
-
-												<div class="bizweb-product-reviews-badge" data-id="18324681"></div> <!-- Đánh Giá -->
-
-
-												<div class="reviews-product-grid">
-												</div>
-
-
-												<div class="price-box clearfix">
-													<span class="price product-price">30.000₫</span>
-												</div>
-
-
-
-											</div>
-
-										</div>
-
-									</div>
-								</div>
-							</div>
-
-
-
-							<div class="item saler_item col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
-								<div class="owl_item_product product-col">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-									<div class="product-box">
-										<div class="product-thumbnail">
-
-
-
-
-
-
-											<a class="image_link display_flex" href="/dog-classic-hat-hat-han-quoc"
-												title="Thức ăn Dograng Classic hạt hàn quốc dành cho chó - CutePets">
-												<img src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/product-1.png?1621568561910"
-													data-lazyload="//bizweb.dktcdn.net/thumb/medium/100/307/433/products/thuc-an-dograng-classic-hat-han-quoc-danh-cho-cho-cutepets3.jpg?v=1588012382000"
-													alt="Thức ăn Dograng Classic hạt hàn quốc dành cho chó - CutePets">
-											</a>
-
-
-											<div class="product-action-grid clearfix">
-												<form action="/cart/add" method="post" class="variants form-nut-grid"
-													data-id="product-actions-17719873" enctype="multipart/form-data">
-													<div>
-
-														<input class="hidden" type="hidden" name="variantId" value="32274993" />
-														<button class="btn-cart button_wh_40 left-to" title="Tùy chọn" type="button"
-															onclick="window.location.href='/dog-classic-hat-hat-han-quoc'">
-															Tùy chọn
-														</button>
-
-
-														<a title="Xem nhanh" href="/dog-classic-hat-hat-han-quoc"
-															data-handle="dog-classic-hat-hat-han-quoc"
-															class="button_wh_40 btn_view right-to quick-view">
-															<i class="fa fa-eye"></i>
-															<span class="style-tooltip">Xem nhanh</span>
-														</a>
-
-
-
-													</div>
-												</form>
-											</div>
-										</div>
-										<div class="product-info effect a-left">
-
-											<div class="info_hhh">
-												<h3 class="product-name product-name-hover"><a href="/dog-classic-hat-hat-han-quoc"
-														title="Thức ăn Dograng Classic hạt hàn quốc dành cho chó - CutePets">Thức ăn Dograng
-														Classic hạt hàn quốc dành cho chó - CutePets</a></h3>
-
-												<div class="bizweb-product-reviews-badge" data-id="17719873"></div> <!-- Đánh Giá -->
-
-
-												<div class="reviews-product-grid">
-												</div>
-
-
-												<div class="price-box clearfix">
-													<span class="price product-price">75.000₫</span>
-												</div>
-
-
-
-											</div>
-
-										</div>
-
-									</div>
-								</div>
-							</div>
-
+						@endforeach
 
 						</div>
 					</div>
@@ -1762,4 +730,7 @@ Ten san pham
 	});
 
 </script>
+<div id="popup-cart" class="modal cart-content" role="dialog" data-url="{{route('cart.delete')}}">	
+  @include('website.pages.home.component.cartModel')
+</div>
 @endsection

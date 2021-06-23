@@ -13,10 +13,23 @@ class OrderController extends Controller
 {
     
     
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::latest()->get();
-        return view('admin.pages.order.index', compact('orders'));
+        if ($request->getMethod() == 'GET') {
+            $orders = Order::latest()->get();
+            return view('admin.pages.order.index', compact('orders'));
+        }
+        if($request->id){
+            $order = Order::find($request->id)->update([
+                'user_id' => auth()->guard('admin')->user()->id,
+                'order_status' => 1
+            ]);
+            $orders = Order::latest()->get();
+            $table = view('admin.pages.order.component.all', compact('orders'))->render();
+            return response()->json([
+                'table'=> $table,
+            ]);
+        }
     }
 
     /**

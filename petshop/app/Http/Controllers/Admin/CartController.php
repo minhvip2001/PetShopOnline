@@ -40,9 +40,11 @@ class CartController extends Controller
       session()->put('cart', $cart);
       $cartModel = view('website.pages.home.component.cartModel')->render();
       $cartMini = view('website.pages.home.component.cartMini')->render();
+      $count = view('website.blocks.component.cart')->render();
       return response()->json([
         'data'=>$cartModel,
-        'data1'=>$cartMini
+        'data1'=>$cartMini,
+        'data2'=>$count,
       ]); 
     }
    
@@ -61,10 +63,12 @@ class CartController extends Controller
             $cartComponent = view('website.pages.cart.component.cart')->render();
             $cartModel = view('website.pages.home.component.cartModel')->render();
             $cartMini = view('website.pages.home.component.cartMini')->render();
+            $count = view('website.blocks.component.cart')->render();
             return response()->json([
                 'data'=> $cartComponent,
                 'data1'=> $cartModel,
-                'data2'=> $cartMini
+                'data2'=> $cartMini,
+                'data3'=> $count
             ]);
           }
     }
@@ -78,10 +82,12 @@ class CartController extends Controller
         $cartComponent = view('website.pages.cart.component.cart')->render();
         $cartModel = view('website.pages.home.component.cartModel')->render();
         $cartMini = view('website.pages.home.component.cartMini')->render();
+        $count = view('website.blocks.component.cart')->render();
         return response()->json([
             'data'=> $cartComponent,
             'data1'=> $cartModel,
-            'data2'=> $cartMini
+            'data2'=> $cartMini,
+            'data3'=> $count
         ]);
       }   
     }

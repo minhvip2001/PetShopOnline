@@ -29,18 +29,21 @@ Route::group(['prefix'=>'/'],function(){
     Route::get('tai-khoan/dang-ki.html', [
         App\Http\Controllers\Admin\CustomerController::class,'register'
         ])->name('register');
+    Route::post('tai-khoan/dang-ki.html', [
+        App\Http\Controllers\Admin\CustomerController::class,'register'
+        ])->name('register');    
     Route::get('tai-khoan/dang-xuat.html', [
         App\Http\Controllers\Admin\CustomerController::class,'logout'
         ])->name('logout'); 
     Route::get('tai-khoan/thong-tin-tai-khoan.html', [
         App\Http\Controllers\Admin\CustomerController::class,'profile'
-        ])->name('profile');
+        ])->name('profile')->middleware('auth:web');
     Route::get('tai-khoan/dia-chi.html', [
         App\Http\Controllers\Admin\CustomerController::class,'address'
-        ])->name('address');
+        ])->name('address')->middleware('auth:web');
     Route::get('tai-khoan/don-hang/{id}', [
         App\Http\Controllers\Admin\CustomerController::class,'order'
-        ])->name('order');                    
+        ])->name('order')->middleware('auth:web');                    
     // Chi tiết sản phẩm   
     Route::get('san-pham/{product_slug}.html', [
         App\Http\Controllers\Admin\ProductController::class,'show'

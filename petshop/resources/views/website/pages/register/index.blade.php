@@ -11,8 +11,8 @@ Ten san pham
 				<div class="page_login_ page_base_h">
 					<h1 class="title_center_page title_customers"><span>Đăng ký</span></h1>
 					<div id="login">
-						<form accept-charset="utf-8" id="customer_register" method="post">
-							
+						<form action="{{route('register')}}" id="customer_register" method="post">
+							{{ csrf_field() }}
 							<div class="form-signup text_warning margin-bottom-10">
 
 							</div>
@@ -20,9 +20,14 @@ Ten san pham
 								<div class="row">
 									<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 										<div class="content_all">
-											<label class="label_h content_l">Họ và tên:</label>
+											<label class="label_h content_l">Họ:</label>
 											<fieldset class="form-group content_r">
 												<input type="text" class="form-control form-control-lg" value="" name="firstName" id="firstName"
+													required="">
+											</fieldset>
+											<label class="label_h content_l">Tên:</label>
+											<fieldset class="form-group content_r">
+												<input type="text" class="form-control form-control-lg" value="" name="lastName" id="firstName"
 													required="">
 											</fieldset>
 											<label class="label_h content_l">Email:</label>

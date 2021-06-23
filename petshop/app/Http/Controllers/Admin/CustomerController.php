@@ -66,7 +66,17 @@ class CustomerController extends Controller
     
     public function register(Request $request)
     {
-        return view('website.pages.register.index');
+        if ($request->getMethod() == 'GET') {  
+            return view('website.pages.register.index');
+        }
+        Customer::create([
+            'customer_surname' => $request->firstName,
+            'customer_name' => $request->lastName,
+            'customer_phone' => $request->phone,
+            'email' => $request->phone,
+            'password' => bcrypt($request->password)
+        ]);
+        return redirect()->route('login');
     }
 
     public function create(Request $request)

@@ -15,7 +15,7 @@ class AddColumnNoteAndPaymentStatusTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->string('order_note')->after('order_status')->nullable();
-            $table->string('payment_status')->after('note')->default(0);  
+            $table->string('payment_status')->after('order_note')->default(0);  
         });
     }
 

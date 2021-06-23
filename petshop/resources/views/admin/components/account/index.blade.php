@@ -77,7 +77,7 @@
                                 </a>
                             </li>
                             <li class="ui-action-list__item">
-                                <a href="javascript:void(0)" class="ui-action-list-action" data-no-turbolink="true"
+                                <a href="{{route('admin.logout')}}" class="ui-action-list-action" data-no-turbolink="true"
                                     id="btn-logout">
                                     <span class="ui-action-list-action__text">
                                         <div

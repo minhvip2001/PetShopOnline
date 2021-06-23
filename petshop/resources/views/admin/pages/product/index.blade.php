@@ -590,7 +590,6 @@ Sản phẩm
                                                                         @else
                                                                            Ẩn
                                                                         @endif
-
                                                                     </p>
                                                                 </td>
                                                             </tr>
@@ -626,10 +625,9 @@ Sản phẩm
                                             </svg>
                                         </div>
                                         <div>
-                                            Bạn có thể xem thêm hướng dẫn về quản lý danh mục sản phẩm <a
+                                            Bạn có thể xem thêm hướng dẫn về quản lý danh mục sản phẩm<a
                                                 target="_blank" rel="noreferrer noopener"
-                                                title="quản lý danh mục sản phẩm"
-                                                href="https://support.sapo.vn/tim-hieu-ve-danh-muc-san-pham">tại đây</a>
+                                                title="quản lý danh mục sản phẩm" >tại đây</a>
                                         </div>
                                     </div>
                                 </div>

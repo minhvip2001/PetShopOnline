@@ -16,46 +16,46 @@
 				</div>
 
 				<div class="col-md-6 col-sm-6 d-list col-xs-12 a-right topbar_right">
-				<div class="list-inline a-center f-right">
-					<ul>
-	
-						<li>
-							<i class="fa fa-user"></i>
-							@if(session()->has('auth'))
-							<a href="{{route('profile')}}" title="{{session()->get('auth')}}" class="account_a">
-								<span>{{session()->get('auth')}}</span>
-							</a>
-							@else
+					<div class="list-inline a-center f-right">
+						<ul>
+
+							<li>
+								<i class="fa fa-user"></i>
+								@if(session()->has('auth'))
+								<a href="{{route('profile')}}" title="{{session()->get('auth')}}" class="account_a">
+									<span>{{session()->get('auth')}}</span>
+								</a>
+								@else
 								<a href="{{route('register')}}" title="Đăng ký" class="account_a">
-									<span>Đăng kí</span>	
+									<span>Đăng kí</span>
 								</a>
-							@endif
-						</li>
-						<li>
-							<i class="fa fa-lock"></i>
-							@if(session()->has('auth'))
-							<a href="{{route('logout')}}" title="Thoát" class="account_a">
-								<span>Thoát</span>
-							</a>
-							@else
-							<a href="{{route('login')}}" title="Đăng nhập" class="account_a">
-									<span>Đăng nhập</span>	
+								@endif
+							</li>
+							<li>
+								<i class="fa fa-lock"></i>
+								@if(session()->has('auth'))
+								<a href="{{route('logout')}}" title="Thoát" class="account_a">
+									<span>Thoát</span>
 								</a>
-							@endif
-						</li>
-						
-						<li>
-							<i class="fa fa-map-marker"></i>
-							<a href="/lien-he" title="Liên hệ" class="account_a">
-								Hệ thống Shop
-							</a>
-						</li>
-				
-					</ul>
+								@else
+								<a href="{{route('login')}}" title="Đăng nhập" class="account_a">
+									<span>Đăng nhập</span>
+								</a>
+								@endif
+							</li>
+
+							<li>
+								<i class="fa fa-map-marker"></i>
+								<a href="/lien-he" title="Liên hệ" class="account_a">
+									Hệ thống Shop
+								</a>
+							</li>
+
+						</ul>
+					</div>
+
+
 				</div>
-
-
-			</div>
 			</div>
 		</div>
 	</div>
@@ -155,24 +155,11 @@
 										<span class="text_hotline">Gọi đặt hàng:</span> <a class="phone-order" href="tel:0949 111 520">0949
 											111 520</a>
 
-
 									</div>
 									<div class="top-cart-contain f-right hidden-xs hidden-sm visible-md visible-lg">
 										<div class="mini-cart text-xs-center">
-											<div class="heading-cart">
-												<a class="bg_cart" href="{{route('cart')}}" title="Giỏ hàng">
-													<span class="absolute count_item count_item_pr">{{session()->get('quantity_cart')}}</span>
-
-													<i class="fa fa-shopping-bag"></i>
-													<span class="block-small-cart">
-														<span class="text-giohang hidden-xs">Giỏ hàng</span>
-														<span class="block-count-pr">
-															(<span class="count_item count_item_pr">{{session()->get('quantity_cart')}}</span>) sản
-															phẩm
-														</span>
-
-													</span>
-												</a>
+											<div class="heading-cart" id="heading_cart">
+												@include('website.blocks.component.cart')
 											</div>
 											@if(session()->get('cart') != null)
 											<div class="top-cart-content top-cart-content-hover cart-content"
@@ -181,7 +168,7 @@
 											</div>
 											@else
 											<div class="top-cart-content top-cart-content-hover cart-content">
-                      </div>
+											</div>
 											@endif
 										</div>
 									</div>
@@ -243,7 +230,7 @@
 									@foreach($categories as $category)
 									<li class="vermenu-option-2">
 
-										<a class="link-lv1" href="/danh-cho-cho">
+										<a class="link-lv1" href="/danh-cho-cho.html">
 
 
 											<i class="fa fa-paw"></i>
@@ -254,10 +241,10 @@
 											</span>
 
 										</a>
-						
+
 									</li>
 									@endforeach
-						    
+
 								</ul>
 								<div class="btnviewmore "><a href="javascript:void(0);"><i class="fa fa-plus"></i></a></div>
 
@@ -272,124 +259,7 @@
 							<nav class="header-nav">
 								<ul class="item_big">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 									<li class="nav-item ">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 										<a class="a-img menu-lv1" href="/dich-vu-cat-tia-spa"><span>Dịch Vụ</span></a>
 										<i class="fa fa-caret-down open-lv1"></i>
@@ -397,7 +267,6 @@
 
 											<li>
 												<a href="/dich-vu-tam-say-grooming" title="">Tắm Sấy Grooming </a>
-
 
 											</li>
 
@@ -416,436 +285,25 @@
 										</ul>
 									</li>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 									<li class="nav-item ">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 										<a class="a-img menu-lv1" href="https://shp.ee/wup3u5z"><span>Shopee</span></a>
 
 									</li>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 									<li class="nav-item ">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 										<a class="a-img menu-lv1" href="https://lzd.co/cutepets"><span>Lazada</span></a>
 
 									</li>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 									<li class="nav-item ">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 										<a class="a-img menu-lv1" href="https://www.sendo.vn/shop/cute-pets"><span>Sendo</span></a>
 
 									</li>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 									<li class="nav-item ">
-
-
-
-
-
-
-
-
-
-
-
 
 										<a class="a-img menu-lv1" href="https://www.facebook.com/cutepetsHN"><span>Facebook</span></a>
 
@@ -866,15 +324,12 @@
 
 									</li>
 
-
-
 									<li class="nav-item ">
 
 
 										<a class="a-img menu-lv1" href="https://petshophanoi.com/apps/iwish"><span>Yêu Thích</span></a>
 
 									</li>
-
 
 								</ul>
 							</nav>

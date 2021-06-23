@@ -9,7 +9,6 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {   
-        // Auth::logout();
         // session()->flush();
         if ($request->getMethod() == 'GET') {
             return view('admin.pages.login.index');
@@ -25,4 +24,8 @@ class LoginController extends Controller
             return redirect()->back()->with('msg', 'Tài khoản hoặc mật khẩu không đúng');
         }
     }
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect()->route('admin.login');
+      }
 }

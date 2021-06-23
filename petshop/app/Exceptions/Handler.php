@@ -49,12 +49,12 @@ class Handler extends ExceptionHandler
         $login = '';
         switch ($guard) {
             case 'admin':
-                $login = 'admin/login';
+                $login = 'admin.login';
                 break;
             default:
                 $login = 'login';
                 break;
         }
-        return redirect()->to($login);
+        return redirect()->route($login);
     }
 }

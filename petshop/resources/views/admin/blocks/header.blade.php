@@ -141,23 +141,6 @@
                         <img src="//bizweb.dktcdn.net/assets/admin/images/hotro1a.png" />
                         <p style="width:100%;text-align:center">Trợ giúp</p>
                     </a>
-                    <div class="ui-popover ui-popover--align-edge ui-popover--is-positioned-beneath"
-                        data-popover-css-vertical-margin="13" data-popover-css-horizontal-margin="16"
-                        data-popover-css-max-height="300" data-popover-css-max-width="550" id="ui-popover--2"
-                        aria-labelledby="ui-popover-activator--2" aria-expanded="false" role="dialog"
-                        style="max-width: none; margin-right: 0px; margin-left: 0px; transform-origin: 63px -5px 0px; left: 0px;">
-                        <div class="ui-popover__tooltip" style="left: 63px;"></div>
-                        <div class="ui-popover__content-wrapper" style="max-height:417px">
-                            <div class="ui-popover__content ui-popover__mix" style="width: 400px;">
-                                <div class="">
-
-                                    <iframe class="popup-help"
-                                        src="https://support.sapo.vn/?view=web&amp;url=http://mrsloanenglish.mysapo.net/admin/orders"
-                                        style="width: 400px; height: 417px;border:none"></iframe>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

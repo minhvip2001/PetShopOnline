@@ -514,7 +514,6 @@ Thêm mới
                             $('#form-add').submit(function (e) {
                                 e.preventDefault();
                                 var formData = new FormData(jQuery('#form-add')[0])
-                                // console.log(formData)
                                 var url = $(this).attr('data-url');
                                 $.ajax({
                                     type: 'post',

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('admin.login');
 
+Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 Route::middleware('auth:admin')->group(function (){
   // Dashboard
   Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.dashboard');
@@ -73,6 +74,7 @@ Route::middleware('auth:admin')->group(function (){
     // Route::post('/create', [App\Http\Controllers\Admin\PermissionController::class, 'create'])->name('permission.store');
     Route::get('/{id}', [App\Http\Controllers\Admin\OrderController::class, 'edit'])->name('order.edit');
     // Route::post('/{id}', [App\Http\Controllers\Admin\PermissionController::class, 'edit'])->name('permission.update');
+    Route::post('/', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('order.process');
   });
 
 });

@@ -299,75 +299,47 @@
 								</div>
 							</div>
 							<div class="col-lg-3 col-md-3">
-								<div class="header-right">
-									<div class="header-acount hidden-lg-down">
-										<div class="wishlist_header hidden-xs hidden-sm">
+							<div class="header-right">
+								<div class="header-acount hidden-lg-down">
+									<div class="wishlist_header hidden-xs hidden-sm">
 
 
-											<div class="img_hotline"><i class="fa fa-phone"></i></div>
-											<span class="text_hotline">Gọi đặt hàng:</span> <a class="phone-order"
-												href="tel:0949 111 520">0949 111 520</a>
+										<div class="img_hotline"><i class="fa fa-phone"></i></div>
+										<span class="text_hotline">Gọi đặt hàng:</span> <a class="phone-order" href="tel:0949 111 520">0949
+											111 520</a>
 
-
-										</div>
-										<div class="top-cart-contain f-right hidden-xs hidden-sm visible-md visible-lg">
-											<div class="mini-cart text-xs-center">
-												<div class="heading-cart">
-													<a class="bg_cart" href="{{route('cart')}}" title="Giỏ hàng">
-														<span class="absolute count_item count_item_pr">{{session()->get('quantity_cart')}}</span>
-
-														<i class="fa fa-shopping-bag"></i>
-														<span class="block-small-cart">
-															<span class="text-giohang hidden-xs">Giỏ hàng</span>
-															<span class="block-count-pr">(<span class="count_item count_item_pr">{{session()->get('quantity_cart')}}</span>) sản phẩm
-															</span>
-														</span>
-													</a>
-												</div>
-												<div class="top-cart-content">
-													<ul id="cart-sidebar" class="mini-products-list count_li">
-														<li class="list-item">
-															<ul></ul>
-														</li>
-														<li class="action">
-															<ul>
-																<li class="li-fix-1">
-																	<div class="top-subtotal">
-																		Tổng tiền thanh toán:
-																		<span class="price"></span>
-																	</div>
-																</li>
-																<li class="li-fix-2" style="">
-																	<div class="actions">
-																		<a href="/cart" class="btn btn-primary" title="Giỏ hàng">
-																			<span>Giỏ hàng</span>
-																		</a>
-																		<a href="/checkout" class="btn btn-checkout btn-gray" title="Thanh toán">
-																			<span>Thanh toán</span>
-																		</a>
-																	</div>
-																</li>
-															</ul>
-														</li>
-													</ul>
-												</div>
+									</div>
+									<div class="top-cart-contain f-right hidden-xs hidden-sm visible-md visible-lg">
+										<div class="mini-cart text-xs-center">
+											<div class="heading-cart" id="heading_cart">
+												@include('website.blocks.component.cart')
 											</div>
+											@if(session()->get('cart') != null)
+											<div class="top-cart-content top-cart-content-hover cart-content"
+												data-url="{{route('cart.delete')}}">
+												@include('website.pages.home.component.cartMini')
+											</div>
+											@else
+											<div class="top-cart-content top-cart-content-hover cart-content">
+											</div>
+											@endif
 										</div>
-										<div class="top-cart-contain f-right hidden-lg hidden-md visible-xs visible-sm">
-											<div class="mini-cart text-xs-center">
-												<div class="heading-cart">
-													<a class="bg_cart" href="/cart" title="Giỏ hàng">
-														<span class="absolute count_item count_item_pr"></span>
-														<img alt="Giỏ hàng"
-															src="//bizweb.dktcdn.net/thumb/icon/100/307/433/themes/751183/assets/icon-bag.png?1621568561910" />
+									</div>
+									<div class="top-cart-contain f-right hidden-lg hidden-md visible-xs visible-sm">
+										<div class="mini-cart text-xs-center">
+											<div class="heading-cart">
+												<a class="bg_cart" href="/cart" title="Giỏ hàng">
+													<span class="absolute count_item count_item_pr"></span>
+													<img alt="Giỏ hàng"
+														src="//bizweb.dktcdn.net/thumb/icon/100/307/433/themes/751183/assets/icon-bag.png?1620452211114" />
 
-													</a>
-												</div>
+												</a>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+						</div>
 						</div>
 
 					</div>
@@ -3475,7 +3447,6 @@
 
 		};
 	</script>
-	<script src="{{asset('asset/frontend/js/add-to-cart.js')}}" type="text/javascript"></script>
 
 	<script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/quickview.js?1621568561910"
 		type="text/javascript"></script>
@@ -3524,9 +3495,10 @@
 	<script
 		src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/appbulk-available-notice-variant-change.js?1621568561910"
 		type="text/javascript"></script>
-	<!--0bab001634504ff906c489f915646c29-->
 	<script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/ega.code-scanner.settings.js?1621568561910"
 		type="text/javascript"></script>
+	<script src="{{asset('asset/frontend/js/add-to-cart.js?v=')}}<?= time()?>" type="text/javascript"></script>
+
 </body>
 
 </html>

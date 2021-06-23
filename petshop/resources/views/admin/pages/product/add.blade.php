@@ -156,10 +156,7 @@ Thêm mới sản phẩm
                                 'next-upload-dropzone--active': dragging() &amp;&amp; !hasImages(),
                                 'next-upload-dropzone--overlay next-upload-dropzone--active': dragging() &amp;&amp; hasImages()}">
                                 <div class="next-upload-dropzone__hit-area next-upload-dropzone__hit-area--padded">
-                                  <svg class="next-icon next-icon--size-24 next-upload-dropzone__icon">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#next-dropzone">
-                                    </use>
-                                  </svg>
+                                  <i class="fal fa-image" style="font-size: 240px; margin-bottom: 10px"></i>
                                   <h3 class="next-heading next-heading--no-margin next-upload-dropzone__heading">
                                     <div class="styled-file-input hide">
                                       Add images<input type="file" multiple="" accept="image/*" class="js-no-dirty">

@@ -194,299 +194,301 @@
                                          }, 1000);
                                 </script>
                                 <?php endif ?>
-                                <div class="ui-layout__section ui-layout__section--primary">
-                                    <div class="ui-layout__item">
-                                        <section class="ui-card" id="product-form-container">
-                                            <div class="ui-card__section">
-                                                <div class="ui-type-container">
-                                                    <div class="next-input-wrapper">
-                                                        <label class="next-label" for="product-name">
-                                                            Tên sản phẩm
-                                                        </label>
-                                                        <input required="" id="product-name"
-                                                            value="{{$product->product_name}}"
-                                                            placeholder="Nhập tên sản phẩm" class="next-input" size="30"
-                                                            type="text" name="product_name">
-                                                    </div>
-                                                    <div class="next-input-wrapper">
-                                                        <label class="next-label" for="Content">Nội dung</label>
-                                                        <textarea name="product_content"
-                                                            class="next-input">{{$product->product_content}}</textarea>
-                                                    </div>
-                                                    <div define="{shownSummary: false}" class="next-input-wrapper">
-                                                        <label bind-show="!shownSummary" class="next-label"
-                                                            for="product-summary">
-                                                            <a href="#" class="link"
-                                                                bind-event-click="shownSummary = !shownSummary">Thêm mô
-                                                                tả ngắn</a>
-                                                        </label>
-                                                        <div bind-show="shownSummary" class="hide">
-                                                            <label class="next-label" for="product-summary">
-                                                                Mô tả ngắn
+                                    <div class="ui-layout__section ui-layout__section--primary">
+                                        <div class="ui-layout__item">
+                                            <section class="ui-card" id="product-form-container">
+                                                <div class="ui-card__section">
+                                                    <div class="ui-type-container">
+                                                        <div class="next-input-wrapper">
+                                                            <label class="next-label" for="product-name">
+                                                                Tên sản phẩm
                                                             </label>
-                                                            <textarea name="product_description"
-                                                                class="next-input">{{$product->product_description}}</textarea>
+                                                            <input required="" id="product-name"
+                                                                value="{{$product->product_name}}"
+                                                                placeholder="Nhập tên sản phẩm" class="next-input" size="30"
+                                                                type="text" name="product_name">
                                                         </div>
-                                                    </div>
-                                                    <script>
-                                                        CKEDITOR.replace('product_content');
-                                                        CKEDITOR.replace('product_description');
-                                                        timer = setInterval(updateDiv, 100);
-                                                        function updateDiv() {
-                                                            for (instance in CKEDITOR.instances) {
-                                                                var desc = CKEDITOR.instances[instance].updateElement();
+                                                        <div class="next-input-wrapper">
+                                                            <label class="next-label" for="Content">Nội dung</label>
+                                                            <textarea name="product_content"
+                                                                class="next-input">{{$product->product_content}}</textarea>
+                                                        </div>
+                                                        <div define="{shownSummary: false}" class="next-input-wrapper">
+                                                            <label bind-show="!shownSummary" class="next-label"
+                                                                for="product-summary">
+                                                                <a href="#" class="link"
+                                                                    bind-event-click="shownSummary = !shownSummary">Thêm mô
+                                                                    tả ngắn</a>
+                                                            </label>
+                                                            <div bind-show="shownSummary" class="hide">
+                                                                <label class="next-label" for="product-summary">
+                                                                    Mô tả ngắn
+                                                                </label>
+                                                                <textarea name="product_description"
+                                                                    class="next-input">{{$product->product_description}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                        <script>
+                                                            CKEDITOR.replace('product_content');
+                                                            CKEDITOR.replace('product_description');
+                                                            timer = setInterval(updateDiv, 100);
+                                                            function updateDiv() {
+                                                                for (instance in CKEDITOR.instances) {
+                                                                    var desc = CKEDITOR.instances[instance].updateElement();
+                                                                }
                                                             }
-                                                        }
-                                                    </script>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section class="ui-card" id="product-images-container">
-                                            <div data-define="{ imageActions: new Bizweb.ProductCreateImageActions(this, $context) }"
-                                                data-context="imageActions" id="product-images-content"
-                                                data-tg-refresh="product-images-content">
-                                                <header class="next-card__header">
-                                                    <div
-                                                        class="next-grid next-grid--no-padding next-grid--vertically-centered">
-                                                        <div class="next-grid__cell">
-                                                            <h2 class="next-heading">Ảnh sản phẩm</h2>
-                                                        </div>
-                                                        <div class="next-grid__cell next-grid__cell--no-flex">
-                                                            <div
-                                                                class="next-grid next-grid--no-outside-padding next-grid--vertically-centered">
-                                                                <div class="next-grid__cell next-grid__cell--no-flex">
-                                                                    <div class="styled-file-input">
-                                                                        <div class="btn btn--link"
-                                                                            style="display:flex;">
-                                                                            <a href="#"
-                                                                                class="ui-button btn--link change-avatar updateavatar"
-                                                                                style="padding:0 15px;"
-                                                                                id="ht-cre-product-add-image">Sửa
-                                                                                ảnh</a>
-                                                                            <input id="uploadAvatar" type="file"
-                                                                                name="product_image" accept="image/*"
-                                                                                class="js-no-dirty hide">
-                                                                            <a href="#"
-                                                                                class="ui-button btn--link change-avatar uploadImage"
-                                                                                style="padding:0 15px;"
-                                                                                id="ht-cre-product-add-image">Thêm các
-                                                                                ảnh sản phẩm</a>
-                                                                            <input id="uploadImage" type="file"
-                                                                                name="product_images[]" multiple=""
-                                                                                accept="image/*"
-                                                                                class="js-no-dirty hide">
-                                                                            <script>
-
-                                                                                $('.updateavatar').click(function (e) {
-                                                                                    e.preventDefault();
-                                                                                    $("#uploadAvatar").trigger('click');
-                                                                                })
-                                                                                $('.uploadImage').click(function (e) {
-                                                                                    e.preventDefault();
-                                                                                    $("#uploadImage").trigger('click');
-                                                                                })
-
-                                                                            </script>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        </script>
                                                     </div>
-                                                </header>
-                                                <div class="next-card__section">
-                                                    <div class="next-upload-dropzone__wrapper">
-                                                        <!-- Upload Image -->
-                                                        <ol id="product-images" data-tg-refresh="product-images"
-                                                            class="product-photo-grid product-photo-grid--is-showing-all clearfix ui-sortable">
-
-                                                            @if($product->product_feature_image != '')
-                                                            <li
-                                                                class="js-product-photo-grid-item product-photo-grid__item ui-sortable-handle">
-                                                                <div class="aspect-ratio aspect-ratio--square">
-                                                                    <img class="aspect-ratio__content"
-                                                                        src="{{asset('uploads/products/'.$product->product_feature_image)}}"
-                                                                        id="image-41702134">
-                                                                    <div class="product-photo-hover-overlay drag">
-                                                                        <ul class="photo-overlay-actions photo-overlay-actions__selection"
-                                                                            data-bind-event-click="toggleImageSelection(41702134)">
-                                                                            <li>
-                                                                                <a
-                                                                                    class="photo-overlay-actions__link image-action tooltip tooltip-top">
-                                                                                    <i
-                                                                                        style="width: 17px; height: 17px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 2px solid white">
-                                                                                        <svg class="next-icon next-icon--color-white hide"
-                                                                                            style="top:0;width:10px;height:10px"
-                                                                                            data-bind-show="isImageIdSelected(41702134)">
-                                                                                            <use
-                                                                                                xlink:href="#next-checkmark-thick">
-                                                                                            </use>
-                                                                                        </svg>
-                                                                                    </i>
-                                                                                    <span
-                                                                                        class="tooltip-container"><span
-                                                                                            class="tooltip-label">Chọn</span></span>
-                                                                                </a>
-                                                                            </li>
-                                                                        </ul>
-                                                                        <ul class="photo-overlay-actions">
-                                                                            <li>
-                                                                                <a href="javascript:void(0)"
-                                                                                    id="deleteFeatureImage"
-                                                                                    class="photo-overlay-actions__link tooltip tooltip-top">
-                                                                                    <svg role="img"
-                                                                                        class="next-icon next-icon--color-white next-icon--size-16"
-                                                                                        aria-labelledby="next-preview-ae8344009b0b43faaa8885080c887429-title">
-                                                                                        <title
-                                                                                            id="next-preview-bf4d06cb5d3047b3bdd85ac6883de0b9-title">
-                                                                                            xem ảnh
-                                                                                        </title>
-                                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                            xlink:href="#next-preview">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    <span class="tooltip-container">
-                                                                                        <span class="tooltip-label">Xem
-                                                                                            ảnh</span>
-                                                                                    </span>
-                                                                                </a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a
-                                                                                    class="photo-overlay-actions__link tooltip tooltip-top">
-                                                                                    <svg role="img"
-                                                                                        class="next-icon next-icon--color-white next-icon--size-20"
-                                                                                        aria-labelledby="delete-minor-f82704e58a9f4943b98c26f1acbf02fa-title">
-                                                                                        <title
-                                                                                            id="delete-minor-439892bff05a47d3989cab2f1d478c2e-title">
-                                                                                            Xóa ảnh
-                                                                                        </title>
-                                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                            xlink:href="#delete-minor">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    <span
-                                                                                        class="tooltip-container"><span
-                                                                                            class="tooltip-label">Xóa
-                                                                                            ảnh</span></span>
-                                                                                </a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-
-                                                            @foreach($product->images as $mutipleImage)
-                                                            <li
-                                                                class="js-product-photo-grid-item product-photo-grid__item ui-sortable-handle">
-                                                                <div class="aspect-ratio aspect-ratio--square">
-                                                                    <img class="aspect-ratio__content"
-                                                                        src="{{asset('uploads/products/'.$mutipleImage->image_path)}}"
-                                                                        id="image-41702134">
-                                                                    <div class="product-photo-hover-overlay drag">
-                                                                        <ul class="photo-overlay-actions photo-overlay-actions__selection"
-                                                                            data-bind-event-click="toggleImageSelection(41702134)">
-                                                                            <li>
-                                                                                <a
-                                                                                    class="photo-overlay-actions__link image-action tooltip tooltip-top">
-                                                                                    <i
-                                                                                        style="width: 17px; height: 17px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 2px solid white">
-                                                                                        <svg class="next-icon next-icon--color-white hide"
-                                                                                            style="top:0;width:10px;height:10px"
-                                                                                            data-bind-show="isImageIdSelected(41702134)">
-                                                                                            <use
-                                                                                                xlink:href="#next-checkmark-thick">
-                                                                                            </use>
-                                                                                        </svg>
-                                                                                    </i>
-                                                                                    <span
-                                                                                        class="tooltip-container"><span
-                                                                                            class="tooltip-label">Chọn</span></span>
-                                                                                </a>
-                                                                            </li>
-                                                                        </ul>
-                                                                        <ul class="photo-overlay-actions">
-                                                                            <li>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="photo-overlay-actions__link tooltip tooltip-top">
-                                                                                    <svg role="img"
-                                                                                        class="next-icon next-icon--color-white next-icon--size-16"
-                                                                                        aria-labelledby="next-preview-ae8344009b0b43faaa8885080c887429-title">
-                                                                                        <title
-                                                                                            id="next-preview-bf4d06cb5d3047b3bdd85ac6883de0b9-title">
-                                                                                            xem ảnh
-                                                                                        </title>
-                                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                            xlink:href="#next-preview">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    <span class="tooltip-container">
-                                                                                        <span class="tooltip-label">Xem
-                                                                                            ảnh</span>
-                                                                                    </span>
-                                                                                </a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a
-                                                                                    class="photo-overlay-actions__link tooltip tooltip-top">
-                                                                                    <svg role="img"
-                                                                                        class="next-icon next-icon--color-white next-icon--size-20"
-                                                                                        aria-labelledby="delete-minor-f82704e58a9f4943b98c26f1acbf02fa-title">
-                                                                                        <title
-                                                                                            id="delete-minor-439892bff05a47d3989cab2f1d478c2e-title">
-                                                                                            Xóa ảnh
-                                                                                        </title>
-                                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                            xlink:href="#delete-minor">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    <span
-                                                                                        class="tooltip-container"><span
-                                                                                            class="tooltip-label">Xóa
-                                                                                            ảnh</span></span>
-                                                                                </a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            @endforeach
-                                                            @endif
-                                                        </ol>
-                                                        <!-- Process if image is null -->
-                                                        @if($product->product_feature_image == '')
-                                                        <div id="image-exist">
-                                                            <div class="next-upload-dropzone">
+                                                </div>
+                                            </section>
+                                           
+                                            <section class="ui-card" id="product-images-container">
+                                                <div data-define="{ imageActions: new Bizweb.ProductCreateImageActions(this, $context) }"
+                                                    data-context="imageActions" id="product-images-content"
+                                                    data-tg-refresh="product-images-content">
+                                                    <header class="next-card__header">
+                                                        <div
+                                                            class="next-grid next-grid--no-padding next-grid--vertically-centered">
+                                                            <div class="next-grid__cell">
+                                                                <h2 class="next-heading">Ảnh sản phẩm</h2>
+                                                            </div>
+                                                            <div class="next-grid__cell next-grid__cell--no-flex">
                                                                 <div
-                                                                    class="next-upload-dropzone__hit-area next-upload-dropzone__hit-area--padded">
-                                                                    <svg
-                                                                        class="next-icon next-icon--size-24 next-upload-dropzone__icon">
-                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                            xlink:href="#next-dropzone">
-                                                                        </use>
-                                                                    </svg>
-                                                                    <h3
-                                                                        class="next-heading next-heading--no-margin next-upload-dropzone__heading">
-                                                                        <div class="styled-file-input hide">
-                                                                            Add images<input type="file" multiple=""
-                                                                                accept="image/*" class="js-no-dirty">
-                                                                            or drag and drop to upload
-                                                                        </div>
-                                                                        <div data-bind-show="dragging"
-                                                                            aria-hidden="true">
-                                                                            Thả file ảnh vào đây để thêm mới
-                                                                        </div>
-                                                                    </h3>
-                                                                </div>
+                                                                    class="next-grid next-grid--no-outside-padding next-grid--vertically-centered">
+                                                                    <div class="next-grid__cell next-grid__cell--no-flex">
+                                                                        <div class="styled-file-input">
+                                                                            <div class="btn btn--link"
+                                                                                style="display:flex;">
+                                                                                <a href="#"
+                                                                                    class="ui-button btn--link change-avatar updateavatar"
+                                                                                    style="padding:0 15px;"
+                                                                                    id="ht-cre-product-add-image">Sửa
+                                                                                    ảnh</a>
+                                                                                <input id="uploadAvatar" type="file"
+                                                                                    name="product_image" accept="image/*"
+                                                                                    class="js-no-dirty hide">
+                                                                                <a href="#"
+                                                                                    class="ui-button btn--link change-avatar uploadImage"
+                                                                                    style="padding:0 15px;"
+                                                                                    id="ht-cre-product-add-image">Thêm các
+                                                                                    ảnh sản phẩm</a>
+                                                                                <input id="uploadImage" type="file"
+                                                                                    name="product_images[]" multiple=""
+                                                                                    accept="image/*"
+                                                                                    class="js-no-dirty hide">
+                                                                                <script>
 
+                                                                                    $('.updateavatar').click(function (e) {
+                                                                                        e.preventDefault();
+                                                                                        $("#uploadAvatar").trigger('click');
+                                                                                    })
+                                                                                    $('.uploadImage').click(function (e) {
+                                                                                        e.preventDefault();
+                                                                                        $("#uploadImage").trigger('click');
+                                                                                    })
+
+                                                                                </script>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        @endif
+                                                    </header>
+                                                    <div class="next-card__section">
+                                                        <div class="next-upload-dropzone__wrapper">
+                                                            <!-- Upload Image -->
+                                                            <ol id="product-images" data-tg-refresh="product-images"
+                                                                class="product-photo-grid product-photo-grid--is-showing-all clearfix ui-sortable">
+
+                                                                @if($product->product_feature_image != '')
+                                                                <li
+                                                                    class="js-product-photo-grid-item product-photo-grid__item ui-sortable-handle">
+                                                                    <div class="aspect-ratio aspect-ratio--square">
+                                                                        <img class="aspect-ratio__content"
+                                                                            src="{{asset('uploads/products/'.$product->product_feature_image)}}"
+                                                                            id="image-41702134">
+                                                                        <div class="product-photo-hover-overlay drag">
+                                                                            <ul class="photo-overlay-actions photo-overlay-actions__selection"
+                                                                                data-bind-event-click="toggleImageSelection(41702134)">
+                                                                                <li>
+                                                                                    <a
+                                                                                        class="photo-overlay-actions__link image-action tooltip tooltip-top">
+                                                                                        <i
+                                                                                            style="width: 17px; height: 17px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 2px solid white">
+                                                                                            <svg class="next-icon next-icon--color-white hide"
+                                                                                                style="top:0;width:10px;height:10px"
+                                                                                                data-bind-show="isImageIdSelected(41702134)">
+                                                                                                <use
+                                                                                                    xlink:href="#next-checkmark-thick">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </i>
+                                                                                        <span
+                                                                                            class="tooltip-container"><span
+                                                                                                class="tooltip-label">Chọn</span></span>
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                            <ul class="photo-overlay-actions">
+                                                                                <li>
+                                                                                    <a href="javascript:void(0)"
+                                                                                        id="deleteFeatureImage"
+                                                                                        class="photo-overlay-actions__link tooltip tooltip-top">
+                                                                                        <svg role="img"
+                                                                                            class="next-icon next-icon--color-white next-icon--size-16"
+                                                                                            aria-labelledby="next-preview-ae8344009b0b43faaa8885080c887429-title">
+                                                                                            <title
+                                                                                                id="next-preview-bf4d06cb5d3047b3bdd85ac6883de0b9-title">
+                                                                                                xem ảnh
+                                                                                            </title>
+                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                xlink:href="#next-preview">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                        <span class="tooltip-container">
+                                                                                            <span class="tooltip-label">Xem
+                                                                                                ảnh</span>
+                                                                                        </span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a
+                                                                                        class="photo-overlay-actions__link tooltip tooltip-top">
+                                                                                        <svg role="img"
+                                                                                            class="next-icon next-icon--color-white next-icon--size-20"
+                                                                                            aria-labelledby="delete-minor-f82704e58a9f4943b98c26f1acbf02fa-title">
+                                                                                            <title
+                                                                                                id="delete-minor-439892bff05a47d3989cab2f1d478c2e-title">
+                                                                                                Xóa ảnh
+                                                                                            </title>
+                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                xlink:href="#delete-minor">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                        <span
+                                                                                            class="tooltip-container"><span
+                                                                                                class="tooltip-label">Xóa
+                                                                                                ảnh</span></span>
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+
+                                                                @foreach($product->images as $mutipleImage)
+                                                                <li
+                                                                    class="js-product-photo-grid-item product-photo-grid__item ui-sortable-handle">
+                                                                    <div class="aspect-ratio aspect-ratio--square">
+                                                                        <img class="aspect-ratio__content"
+                                                                            src="{{asset('uploads/products/'.$mutipleImage->image_path)}}"
+                                                                            id="image-41702134">
+                                                                        <div class="product-photo-hover-overlay drag">
+                                                                            <ul class="photo-overlay-actions photo-overlay-actions__selection"
+                                                                                data-bind-event-click="toggleImageSelection(41702134)">
+                                                                                <li>
+                                                                                    <a
+                                                                                        class="photo-overlay-actions__link image-action tooltip tooltip-top">
+                                                                                        <i
+                                                                                            style="width: 17px; height: 17px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 2px solid white">
+                                                                                            <svg class="next-icon next-icon--color-white hide"
+                                                                                                style="top:0;width:10px;height:10px"
+                                                                                                data-bind-show="isImageIdSelected(41702134)">
+                                                                                                <use
+                                                                                                    xlink:href="#next-checkmark-thick">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </i>
+                                                                                        <span
+                                                                                            class="tooltip-container"><span
+                                                                                                class="tooltip-label">Chọn</span></span>
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                            <ul class="photo-overlay-actions">
+                                                                                <li>
+                                                                                    <a href="javascript:void(0)"
+                                                                                        class="photo-overlay-actions__link tooltip tooltip-top">
+                                                                                        <svg role="img"
+                                                                                            class="next-icon next-icon--color-white next-icon--size-16"
+                                                                                            aria-labelledby="next-preview-ae8344009b0b43faaa8885080c887429-title">
+                                                                                            <title
+                                                                                                id="next-preview-bf4d06cb5d3047b3bdd85ac6883de0b9-title">
+                                                                                                xem ảnh
+                                                                                            </title>
+                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                xlink:href="#next-preview">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                        <span class="tooltip-container">
+                                                                                            <span class="tooltip-label">Xem
+                                                                                                ảnh</span>
+                                                                                        </span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a
+                                                                                        class="photo-overlay-actions__link tooltip tooltip-top">
+                                                                                        <svg role="img"
+                                                                                            class="next-icon next-icon--color-white next-icon--size-20"
+                                                                                            aria-labelledby="delete-minor-f82704e58a9f4943b98c26f1acbf02fa-title">
+                                                                                            <title
+                                                                                                id="delete-minor-439892bff05a47d3989cab2f1d478c2e-title">
+                                                                                                Xóa ảnh
+                                                                                            </title>
+                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                xlink:href="#delete-minor">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                        <span
+                                                                                            class="tooltip-container"><span
+                                                                                                class="tooltip-label">Xóa
+                                                                                                ảnh</span></span>
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                @endforeach
+                                                                @endif
+                                                            </ol>
+                                                            <!-- Process if image is null -->
+                                                            @if($product->product_feature_image == '')
+                                                            <div id="image-exist">
+                                                                <div class="next-upload-dropzone">
+                                                                    <div
+                                                                        class="next-upload-dropzone__hit-area next-upload-dropzone__hit-area--padded">
+                                                                        <svg
+                                                                            class="next-icon next-icon--size-24 next-upload-dropzone__icon">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                xlink:href="#next-dropzone">
+                                                                            </use>
+                                                                        </svg>
+                                                                        <h3
+                                                                            class="next-heading next-heading--no-margin next-upload-dropzone__heading">
+                                                                            <div class="styled-file-input hide">
+                                                                                Add images<input type="file" multiple=""
+                                                                                    accept="image/*" class="js-no-dirty">
+                                                                                or drag and drop to upload
+                                                                            </div>
+                                                                            <div data-bind-show="dragging"
+                                                                                aria-hidden="true">
+                                                                                Thả file ảnh vào đây để thêm mới
+                                                                            </div>
+                                                                        </h3>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            @endif
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </section>
+                                            </section>
+                                           
                                     </div>
                                     <div class="ui-layout__item" id="product-outer-variants"
                                         data-tg-refresh="product-outer-variants">
@@ -509,7 +511,7 @@
                                                                         <span
                                                                             class="next-input__add-on next-input__add-on--before">₫</span>
                                                                         <input type="text" name="product_price"
-                                                                            id="variant-price" value="0"
+                                                                            id="variant-price" value="{{$product->product_price}}"
                                                                             class="next-input next-input--invisible js-money-field"
                                                                             placeholder="0" data-bind="price"
                                                                             data-autonumeric="autoNumeric">
@@ -521,9 +523,9 @@
                                                                         mãi</label>
                                                                     <div class="next-input--stylized">
                                                                         <span
-                                                                            class="next-input__add-on next-input__add-on--before">₫</span>
+                                                                            class="next-input__add-on next-input__add-on--before"></span>
                                                                         <input type="text" name="product_price_sale"
-                                                                            id="variant-compare_at_price" value=""
+                                                                            id="variant-compare_at_price" value="0"
                                                                             class="next-input next-input--invisible js-money-field"
                                                                             data-bind="compareAtPrice"
                                                                             data-autonumeric="autoNumeric">

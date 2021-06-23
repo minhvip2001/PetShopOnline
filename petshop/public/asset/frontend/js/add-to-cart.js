@@ -1,10 +1,31 @@
 $(document).ready(function () {
-  $(document).on('click', '.add_cart', addToCart)
-  $(document).on('click', '.btn-plus', plus)
-  $(document).on('click', '.btn-minus', minus)
-  $(document).on('click', '.cart_update', cartUpdate)
-  $(document).on('click', '.remove-cart-item', removeCart)
+    $(document).on('click', '.add_cart', addToCart)
+    $(document).on('click', '.btn-plus', plus)
+    $(document).on('click', '.btn-minus', minus)
+    $(document).on('click', '.cart_update', cartUpdate)
+    $(document).on('click', '.remove-cart-item', removeCart)
+    $(document).on('click', '.quick_view', quickView)
 })
+
+// Quick View 
+function quickView(e) {
+  e.preventDefault();
+  alert('ssssss')
+  $('#quick-view-product').css('display', 'block')
+  // let urlCart = $(this).data('url')
+  // var product_qty = $('input[name=product_qty]')
+  // $.ajax({
+  //   url: urlCart,
+  //   method: "Get",
+  //   data: product_qty,
+  //   dataType: 'json',
+  //   success: function (data) {
+  //     $('#popup-cart').html(data.data);
+  //     $('.top-cart-content-hover.cart-content').html(data.data1);
+  //     $('#heading_cart').html(data.data2);
+  //   }
+  // })
+}
 
 function addToCart(e) {
   e.preventDefault();
@@ -19,6 +40,7 @@ function addToCart(e) {
     success: function (data) {
       $('#popup-cart').html(data.data);
       $('.top-cart-content-hover.cart-content').html(data.data1);
+      $('#heading_cart').html(data.data2);
     }
   })
 }
@@ -60,6 +82,7 @@ function cartUpdate(event) {
       $('.main-cart-page.main-container.col1-layout').html(data.data);
       $('.modal.cart-content').html(data.data1);
       $('.top-cart-content-hover.cart-content').html(data.data2);
+      $('#heading_cart').html(data.data3);
     }
   })
 }
@@ -76,6 +99,7 @@ function removeCart(event) {
       $('.main-cart-page.main-container.col1-layout').html(data.data);
       $('.modal.cart-content').html(data.data1);
       $('.top-cart-content-hover.cart-content').html(data.data2);
+      $('#heading_cart').html(data.data3);
     }
   })
 }

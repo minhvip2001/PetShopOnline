@@ -49,7 +49,7 @@ class ProductController extends Controller
         $dataProductCreate = [
             'product_name' => $request->product_name,
             'product_price' => $request->product_price,
-            'product_price_sale' => '1',
+            'product_price_sale' => 0,
             'product_content' => $request->product_content,
             'product_description' => $request->product_description,
             'product_slug' => STR::slug($request->product_name),
@@ -115,7 +115,8 @@ class ProductController extends Controller
     {   
         if($product_slug){
             $product = Product::where('product_slug', $product_slug)->take(1)->get();
-            return view('website.pages.product.index', compact('product')); 
+            $similar_products = Product::latest()->where('category_id', $product[0]->category_id)->limit(10)->get();
+            return view('website.pages.product.index', compact('product', 'similar_products')); 
         }
       
     }
@@ -145,9 +146,11 @@ class ProductController extends Controller
         }
 
         $check = true;
+        $product_price = $request->product_price;
+        $product_price = preg_replace('/[^0-9]/s', '', $product_price);
         $dataProductUpdate = [
             'product_name' => $request->product_name,
-            'product_price' => $request->product_price,
+            'product_price' => $product_price,
             'product_price_sale' => '1',
             'product_content' => $request->product_content,
             'product_description' => $request->product_description,
