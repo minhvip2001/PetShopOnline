@@ -687,7 +687,7 @@
   <script src="//bizweb.dktcdn.net/100/307/433/themes/751183/assets/appear.js?1620452211114"
     type="text/javascript"></script>
   <!-- Quick view -->
-  <div id="quick-view-product" class="quickview-product in" style="display: block;">
+  <div id="quick-view-product" class="quickview-product in" style="display: none;">
     <div class="quickview-overlay fancybox-overlay fancybox-overlay-fixed"></div>
     <div class="quick-view-product">
       <div class="block-quickview primary_block row">

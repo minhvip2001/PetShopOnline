@@ -13518,6 +13518,8 @@ Siêu thị thú cưng Pet shop Hà Nội
 </section>
 
 <div id="popup-cart" class="modal cart-content" role="dialog" data-url="{{route('cart.delete')}}">
+ @if(session()->get('cart') != null)
   @include('website.pages.home.component.cartModel')
+ @endif 
 </div>
 @endsection
